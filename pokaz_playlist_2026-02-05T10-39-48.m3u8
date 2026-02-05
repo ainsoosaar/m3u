@@ -31,7 +31,8 @@ https://s.pokaz.me/202/index.m3u8?k=1770305551p502i89i921i19Seaf99db69f2c9e43b3b
 # ==================================================
 # КАТЕГОРИЯ: КИНО
 # ==================================================
-
+#EXTINF:-1 tvg-id="pokaz_010" tvg-name="Дом кино" tvg-logo="https://pokaz.me/posts/2017-11/1511429168_1393714236_domkino.png" group-title="Кино",Мосфильм
+https://s.ontivi.net/235/index.m3u8?k=1770322113p502i89i921i19S933128857283a7e0540d1ac2bcc089c9
 #EXTINF:-1 tvg-id="pokaz_010" tvg-name="Дом кино" tvg-logo="https://pokaz.me/posts/2017-11/1511429168_1393714236_domkino.png" group-title="Кино",Дом кино
 https://s.pokaz.me/186/index.m3u8?k=1770305436p502i89i921i19S385ac1209cdede102262bf31ca9f54c9
 #EXTINF:-1 tvg-id="pokaz_011" tvg-name="Дом кино Премиум" tvg-logo="https://pokaz.me/posts/2017-11/1512068026_dom-kino-premium.png" group-title="Кино",Дом кино Премиум
