@@ -1,6 +1,6 @@
 #EXTM3U x-tvg-url=""
 #PLAYLIST:Pokaz.ME TV Channels
-#GENERATED:2026-02-05T16:22:50.560Z
+#GENERATED:2026-02-05T18:07:24.751Z
 #VERSION:1.3
 #AUTHOR:Pokaz.ME Parser Extension
 
@@ -10,73 +10,205 @@
 # ==================================================
 
 #EXTINF:-1 tvg-id="pokaz_001" tvg-name="В Гостях у Сказки" tvg-logo="https://pokaz.me/posts/2018-11/1541144907_v_gostyah_v_skazki.png" group-title="Детские",В Гостях у Сказки
-https://s.pokaz.me/550/index.m3u8?k=1770326536p502i89i921i19S64401bd80acfee4a099fb71bb1ca255b
+https://s.pokaz.me/550/index.m3u8?k=1770332622p502i89i921i19S9ce4d2361843940177ae1ab045a40f90
+#EXTINF:-1 tvg-id="pokaz_002" tvg-name="Ералаш" tvg-logo="https://pokaz.me/posts/2017-11/1511598417_eralash.png" group-title="Детские",Ералаш
+https://s.pokaz.me/512/index.m3u8?k=1770332639p502i89i921i19S505c487ad5ecddb51b29b23c24a826e3
+#EXTINF:-1 tvg-id="pokaz_003" tvg-name="Карусель" tvg-logo="https://pokaz.me/posts/2017-12/1513413729__karusel.png" group-title="Детские",Карусель
+https://s.pokaz.me/157/index.m3u8?k=1770332650p502i89i921i19Sf76a5b373e345852076980a44d596666
+#EXTINF:-1 tvg-id="pokaz_004" tvg-name="Солнце" tvg-logo="https://pokaz.me/posts/2018-12/1545320987_disney.png" group-title="Детские",Солнце
+https://s.pokaz.me/154/index.m3u8?k=1770332662p502i89i921i19Sa78f406b25aaca5c58d9266a218e41e0
+#EXTINF:-1 tvg-id="pokaz_005" tvg-name="СоюзМультфильм" tvg-logo="https://pokaz.me/posts/2017-11/1511427514_1421945112_soyuzmultfilm.png" group-title="Детские",СоюзМультфильм
+https://s.pokaz.me/511/index.m3u8?k=1770332627p502i89i921i19Sa5aab88d0be0de6c4b3505ceafb98630
+#EXTINF:-1 tvg-id="pokaz_006" tvg-name="Gulli" tvg-logo="https://pokaz.me/posts/2018-01/1516184153_gulli.png" group-title="Детские",Gulli
+https://s.pokaz.me/180/index.m3u8?k=1770332645p502i89i921i19S50852e268c578ce89931d4caf21539f9
+#EXTINF:-1 tvg-id="pokaz_007" tvg-name="Nick Jr" tvg-logo="https://pokaz.me/posts/2017-12/1512375336_nick-jr.png" group-title="Детские",Nick Jr
+https://s.pokaz.me/210/index.m3u8?k=1770332667p502i89i921i19Sdc6e1a7e5af058c79504457462f2a243
+#EXTINF:-1 tvg-id="pokaz_008" tvg-name="Nickelodeon" tvg-logo="https://pokaz.me/posts/2017-11/1511429116_1381948724_nickelodeon.png" group-title="Детские",Nickelodeon
+https://s.pokaz.me/155/index.m3u8?k=1770332656p502i89i921i19S05d63160ea01fa3a2b6f7244d6131b34
+#EXTINF:-1 tvg-id="pokaz_009" tvg-name="Tiji" tvg-logo="https://pokaz.me/posts/2017-12/1512377041_tiji.png" group-title="Детские",Tiji
+https://s.pokaz.me/202/index.m3u8?k=1770332633p502i89i921i19S3c3e230d3e4ed1fcaa90bee0628a8660
 
 # ==================================================
 # КАТЕГОРИЯ: КИНО
 # ==================================================
 
-#EXTINF:-1 tvg-id="pokaz_002" tvg-name="Дом кино" tvg-logo="https://pokaz.me/posts/2017-11/1511429168_1393714236_domkino.png" group-title="Кино",Дом кино
-https://s.pokaz.me/186/index.m3u8?k=1770326530p502i89i921i19S2b4aa982d867dd9a91a3a007e5fe93a0
+#EXTINF:-1 tvg-id="pokaz_010" tvg-name="Дом кино" tvg-logo="https://pokaz.me/posts/2017-11/1511429168_1393714236_domkino.png" group-title="Кино",Дом кино
+https://s.pokaz.me/186/index.m3u8?k=1770332519p502i89i921i19Se63c21c68993b3eebc67e44b6fe30c86
+#EXTINF:-1 tvg-id="pokaz_011" tvg-name="Дом кино Премиум" tvg-logo="https://pokaz.me/posts/2017-11/1512068026_dom-kino-premium.png" group-title="Кино",Дом кино Премиум
+https://s.pokaz.me/187/index.m3u8?k=1770332588p502i89i921i19S35f9be79bcc163a5b7fb9c2cf76419df
+#EXTINF:-1 tvg-id="pokaz_012" tvg-name="Дорама" tvg-logo="https://pokaz.me/posts/2018-11/1541870614_dorama.png" group-title="Кино",Дорама
+https://s.pokaz.me/562/index.m3u8?k=1770332548p502i89i921i19Sfcc7eac6ad883db614e67c372b6d9b72
+#EXTINF:-1 tvg-id="pokaz_013" tvg-name="ЕвроКино" tvg-logo="https://pokaz.me/posts/2017-11/1511374986_eurokino.png" group-title="Кино",ЕвроКино
+https://s.pokaz.me/126/index.m3u8?k=1770332582p502i89i921i19S07cefe646f3ba5eec90450eaf8bd91fd
+#EXTINF:-1 tvg-id="pokaz_014" tvg-name="Иллюзион" tvg-logo="https://pokaz.me/posts/2018-05/1526240995_illyuzion-plyus.png" group-title="Кино",Иллюзион
+https://s.pokaz.me/130/index.m3u8?k=1770332610p502i89i921i19S984b6ae053386e856f749a95b9bb54e5
+#EXTINF:-1 tvg-id="pokaz_015" tvg-name="Любимое Кино" tvg-logo="https://pokaz.me/posts/2018-11/1541144693_lubimoe_kino.png" group-title="Кино",Любимое Кино
+https://s.pokaz.me/534/index.m3u8?k=1770332553p502i89i921i19S3dc40ee863e6fd0717908d023d44083d
+#EXTINF:-1 tvg-id="pokaz_016" tvg-name="Мир сериала" tvg-logo="https://pokaz.me/posts/2018-04/1524073959_mir-seriala.png" group-title="Кино",Мир сериала
+https://s.pokaz.me/589/index.m3u8?k=1770332616p502i89i921i19Sbb114818ac8d5caa7eb332597c183bbd
+#EXTINF:-1 tvg-id="pokaz_017" tvg-name="Наше крутое" tvg-logo="https://pokaz.me/posts/2017-11/1511427434_1503338197_nash-detektiv-1.png" group-title="Кино",Наше крутое
+https://s.pokaz.me/171/index.m3u8?k=1770332576p502i89i921i19Sb07fff8c53e255acfc03a18db6f2428a
+#EXTINF:-1 tvg-id="pokaz_018" tvg-name="НТВ Сериал" tvg-logo="https://pokaz.me/posts/2019-05/1558171420_serial.png" group-title="Кино",НТВ Сериал
+https://s.pokaz.me/509/index.m3u8?k=1770332531p502i89i921i19Sb9e7fb649c3cdab048653adbe331bf96
+#EXTINF:-1 tvg-id="pokaz_019" tvg-name="НТВ Хит" tvg-logo="https://pokaz.me/posts/2019-05/1558171594_ntv_hit.png" group-title="Кино",НТВ Хит
+https://s.pokaz.me/508/index.m3u8?k=1770332525p502i89i921i19S6efee09d5c0edfc3804a35e6c39db17b
+#EXTINF:-1 tvg-id="pokaz_020" tvg-name="Остросюжетное HD" tvg-logo="https://pokaz.me/posts/2017-11/1511427178_1461318239_ostrosyuzhetnoe-hd.png" group-title="Кино",Остросюжетное HD
+https://s.pokaz.me/578/index.m3u8?k=1770332599p502i89i921i19S2a2e1c9d0bb1a489a57b2611a52f881a
+#EXTINF:-1 tvg-id="pokaz_021" tvg-name="Русский бестселлер" tvg-logo="https://pokaz.me/posts/2017-12/1513005099_russkiy-bestseller.png" group-title="Кино",Русский бестселлер
+https://s.pokaz.me/135/index.m3u8?k=1770332559p502i89i921i19Sfb71c4854f339a67dfb510b5740f268c
+#EXTINF:-1 tvg-id="pokaz_022" tvg-name="Русский иллюзион" tvg-logo="https://pokaz.me/posts/2018-12/1545252175_illyuzion.png" group-title="Кино",Русский иллюзион
+https://s.pokaz.me/131/index.m3u8?k=1770332571p502i89i921i19S93d5c716c9f28ac7f27f85327e23c660
+#EXTINF:-1 tvg-id="pokaz_023" tvg-name="Шокирующее HD" tvg-logo="https://pokaz.me/posts/2019-02/1550063189_shokiruyuschee_hd.png" group-title="Кино",Шокирующее HD
+https://s.pokaz.me/169/index.m3u8?k=1770332542p502i89i921i19Sd08c495c22d8c3a3753ef2bd7ec1ae74
+#EXTINF:-1 tvg-id="pokaz_024" tvg-name="Bollywood" tvg-logo="https://pokaz.me/posts/2018-12/1545320274_bollywood.png" group-title="Кино",Bollywood
+https://s.pokaz.me/184/index.m3u8?k=1770332605p502i89i921i19S40d75bdc8170546fc1aea0a224f99395
+#EXTINF:-1 tvg-id="pokaz_025" tvg-name="Fox live" tvg-logo="https://pokaz.me/posts/2018-12/1545319966_fox_life.png" group-title="Кино",Fox live
+https://s.pokaz.me/568/index.m3u8?k=1770332593p502i89i921i19S12c0d93c6a314ad9f4439058a36a6162
+#EXTINF:-1 tvg-id="pokaz_026" tvg-name="Hollywood" tvg-logo="https://pokaz.me/posts/2019-05/1558192367_hollywood.png" group-title="Кино",Hollywood
+https://s.pokaz.me/507/index.m3u8?k=1770332536p502i89i921i19S02b411f5bb6970a038db9e27312ebc7d
+#EXTINF:-1 tvg-id="pokaz_027" tvg-name="Sci-Fi" tvg-logo="https://pokaz.me/posts/2017-12/1512204483_sony-sci-fi.png" group-title="Кино",Sci-Fi
+https://s.pokaz.me/145/index.m3u8?k=1770332565p502i89i921i19S3e422c92a4a436688f9f22e8a48f894c
 
 # ==================================================
 # КАТЕГОРИЯ: МУЗЫКА
 # ==================================================
 
-#EXTINF:-1 tvg-id="pokaz_003" tvg-name="МСМ ТОР" tvg-logo="https://pokaz.me/posts/2018-12/1545252048_mcm_topr.png" group-title="Музыка",МСМ ТОР
-https://s.pokaz.me/535/index.m3u8?k=1770326541p502i89i921i19S56e033e40e3af70599ab348552416926
+#EXTINF:-1 tvg-id="pokaz_028" tvg-name="МСМ ТОР" tvg-logo="https://pokaz.me/posts/2018-12/1545252048_mcm_topr.png" group-title="Музыка",МСМ ТОР
+https://s.pokaz.me/535/index.m3u8?k=1770332673p502i89i921i19Sa21f01b760bfbb35a2be535138f410c6
+#EXTINF:-1 tvg-id="pokaz_029" tvg-name="Муз ТВ" tvg-logo="https://pokaz.me/posts/2018-11/1542829296_muztv_.png" group-title="Музыка",Муз ТВ
+https://s.pokaz.me/163/index.m3u8?k=1770332696p502i89i921i19Sa25161a5d39c155dcca01369342e9cc5
+#EXTINF:-1 tvg-id="pokaz_030" tvg-name="ТНТ MUSIC" tvg-logo="https://pokaz.me/posts/2018-12/1545320553_tnt__music.png" group-title="Музыка",ТНТ MUSIC
+https://s.pokaz.me/159/index.m3u8?k=1770332713p502i89i921i19Sf823230e414e15b4c5efc270a967940f
+#EXTINF:-1 tvg-id="pokaz_031" tvg-name="Шансон ТВ" tvg-logo="https://pokaz.me/posts/2017-11/1511427103_1393348724_shanson.png" group-title="Музыка",Шансон ТВ
+https://s.pokaz.me/165/index.m3u8?k=1770332679p502i89i921i19S1d84a11844f5c8db160fcdd7987e2b6a
+#EXTINF:-1 tvg-id="pokaz_032" tvg-name="MTV Hits" tvg-logo="https://pokaz.me/posts/2018-12/1545319638_mtv_hits.png" group-title="Музыка",MTV Hits
+https://s.pokaz.me/204/index.m3u8?k=1770332701p502i89i921i19Sf789bb5bca67f950d780554a09019623
+#EXTINF:-1 tvg-id="pokaz_033" tvg-name="RU TV" tvg-logo="https://pokaz.me/posts/2018-04/1524604083_ru-tv.png" group-title="Музыка",RU TV
+https://s.pokaz.me/596/index.m3u8?k=1770332690p502i89i921i19Se06cfe6a24a1d538fbdcfc7d3b4506af
+#EXTINF:-1 tvg-id="pokaz_034" tvg-name="VH1 Classik" tvg-logo="https://pokaz.me/posts/2017-12/1512733846__vh1.png" group-title="Музыка",VH1 Classik
+https://s.pokaz.me/174/index.m3u8?k=1770332684p502i89i921i19S5d2a71de7a0dcd19aded398163aea387
+#EXTINF:-1 tvg-id="pokaz_035" tvg-name="VH1 Europe" tvg-logo="https://pokaz.me/posts/2017-12/1512812438_vh1.png" group-title="Музыка",VH1 Europe
+https://s.pokaz.me/175/index.m3u8?k=1770332707p502i89i921i19S9c310efcca2cb26acfebd91188d23544
 
 # ==================================================
 # КАТЕГОРИЯ: НОВОСТИ
 # ==================================================
 
-#EXTINF:-1 tvg-id="pokaz_004" tvg-name="Россия 24" tvg-logo="https://pokaz.me/posts/2017-11/1511428941_1388683762_vesti.png" group-title="Новости",Россия 24
-https://s.pokaz.me/563/index.m3u8?k=1770326547p502i89i921i19Sc99b271aaa9ac858932d71a3d918a22a
+#EXTINF:-1 tvg-id="pokaz_036" tvg-name="КРЫМ 24" tvg-logo="https://pokaz.me/posts/2017-11/1511427105_1490630413_krim24.png" group-title="Новости",КРЫМ 24
+https://s.pokaz.me/567/index.m3u8?k=1770332736p502i89i921i19Sf1a2485d4aa1dfdbadb632f699c7c475
+#EXTINF:-1 tvg-id="pokaz_037" tvg-name="Москва 24" tvg-logo="https://pokaz.me/posts/2018-01/1516185202_moskva-24.png" group-title="Новости",Москва 24
+https://s.pokaz.me/585/index.m3u8?k=1770332724p502i89i921i19S31114aa28b82bd4d09f4d5cf91ae88c8
+#EXTINF:-1 tvg-id="pokaz_038" tvg-name="РБК" tvg-logo="https://pokaz.me/posts/2018-01/1515494874_rbk.png" group-title="Новости",РБК
+https://s.pokaz.me/588/index.m3u8?k=1770332730p502i89i921i19Sf42a8bf052c8b783db43d9478eb140ee
+#EXTINF:-1 tvg-id="pokaz_039" tvg-name="Россия 24" tvg-logo="https://pokaz.me/posts/2017-11/1511428941_1388683762_vesti.png" group-title="Новости",Россия 24
+https://s.pokaz.me/563/index.m3u8?k=1770332719p502i89i921i19Sd28f605bbdab0cc8aeebf624b64461a6
 
 # ==================================================
 # КАТЕГОРИЯ: ОБРАЗОВАНИЕ
 # ==================================================
 
-#EXTINF:-1 tvg-id="pokaz_005" tvg-name="Наука 2" tvg-logo="https://pokaz.me/posts/2017-11/1511770739_nauka2_0.png" group-title="Образование",Наука 2
-https://s.pokaz.me/115/index.m3u8?k=1770326564p502i89i921i19S7b4794d448e202229131887955d2bafc
+#EXTINF:-1 tvg-id="pokaz_040" tvg-name="24 Техно" tvg-logo="https://pokaz.me/posts/2017-11/1511427266_1483105958_24texno.png" group-title="Образование",24 Техно
+https://s.pokaz.me/116/index.m3u8?k=1770332798p502i89i921i19S703430bffd4c06e5b90bbb5ff457da2b
+#EXTINF:-1 tvg-id="pokaz_041" tvg-name="Еда ТВ" tvg-logo="https://pokaz.me/posts/2017-11/1511428014_1393239486_64240194.png" group-title="Образование",Еда ТВ
+https://s.pokaz.me/198/index.m3u8?k=1770332833p502i89i921i19S87e0e1b6e6aa3da86f58aa328def35e7
+#EXTINF:-1 tvg-id="pokaz_042" tvg-name="Наука 2" tvg-logo="https://pokaz.me/posts/2017-11/1511770739_nauka2_0.png" group-title="Образование",Наука 2
+https://s.pokaz.me/115/index.m3u8?k=1770332781p502i89i921i19S7781f0a87b3cfe20ee636eb5e013a866
+#EXTINF:-1 tvg-id="pokaz_043" tvg-name="Охота и рыбалка" tvg-logo="https://pokaz.me/posts/2018-12/1545319804_ohota_ribalka.png" group-title="Образование",Охота и рыбалка
+https://s.pokaz.me/538/index.m3u8?k=1770332821p502i89i921i19Se530329e0ca781bfd5313a51b5fa7f0a
+#EXTINF:-1 tvg-id="pokaz_044" tvg-name="Охотник и рыболов" tvg-logo="https://pokaz.me/posts/2018-01/1515849588_ohotnik-i-rybolov.png" group-title="Образование",Охотник и рыболов
+https://s.pokaz.me/121/index.m3u8?k=1770332827p502i89i921i19S5b589736469796525123c33c96699a3f
+#EXTINF:-1 tvg-id="pokaz_045" tvg-name="Приключения HD" tvg-logo="https://pokaz.me/posts/2018-11/1541870979_priklusenie.png" group-title="Образование",Приключения HD
+https://s.pokaz.me/542/index.m3u8?k=1770332804p502i89i921i19S28a5cbdd23f5f3d693c96450f2920a07
+#EXTINF:-1 tvg-id="pokaz_046" tvg-name="Совершенно секретно" tvg-logo="https://pokaz.me/posts/2017-12/1514573387_sov-sekretno.png" group-title="Образование",Совершенно секретно
+https://s.pokaz.me/546/index.m3u8?k=1770332810p502i89i921i19S7a736b1a9e5b321fa7fb3e2ac873052f
+#EXTINF:-1 tvg-id="pokaz_047" tvg-name="History Channel" tvg-logo="https://pokaz.me/posts/2017-11/1511427377_1406471061_history-onlayn.png" group-title="Образование",History Channel
+https://s.pokaz.me/114/index.m3u8?k=1770332793p502i89i921i19S8cbb32b86ff16a9a8f2867039408c442
+#EXTINF:-1 tvg-id="pokaz_048" tvg-name="RTG" tvg-logo="https://pokaz.me/posts/2018-10/1540800669_rtg.png" group-title="Образование",RTG
+https://s.pokaz.me/545/index.m3u8?k=1770332787p502i89i921i19S40b3b8fe9052cd1d89d2ff2e1cedae4f
+#EXTINF:-1 tvg-id="pokaz_049" tvg-name="Travel and Adventure" tvg-logo="https://pokaz.me/posts/2017-11/1511428340_1428669569_travel-and-adventure.png" group-title="Образование",Travel and Adventure
+https://s.pokaz.me/112/index.m3u8?k=1770332839p502i89i921i19S09384c6765ea89d983b291a94f90ea6f
+#EXTINF:-1 tvg-id="pokaz_050" tvg-name="Travel Channel" tvg-logo="https://pokaz.me/posts/2017-11/1511428117_1407140774_travel-channel.png" group-title="Образование",Travel Channel
+https://s.pokaz.me/113/index.m3u8?k=1770332816p502i89i921i19S1832add02e3d6e2cc4fbac748d1cec34
 
 # ==================================================
 # КАТЕГОРИЯ: ОБЩЕСТВЕННЫЕ
 # ==================================================
 
-#EXTINF:-1 tvg-id="pokaz_006" tvg-name="Первый канал" tvg-logo="https://pokaz.me/posts/2017-11/1511429376_1463597059_pervyy-kanal.png" group-title="Общественные",Первый канал
-https://s.pokaz.me/540/index.m3u8?k=1770326524p502i89i921i19S0cea0b6d5e5d2d5071465ba3545c16a9
+#EXTINF:-1 tvg-id="pokaz_051" tvg-name="360 Подмосковье" tvg-logo="https://pokaz.me/posts/2019-05/1558171245_360.png" group-title="Общественные",360 Подмосковье
+https://s.pokaz.me/523/index.m3u8?k=1770332468p502i89i921i19S5afdea1bd1327fc41ac366731e02c45f
+#EXTINF:-1 tvg-id="pokaz_052" tvg-name="Бобёр" tvg-logo="https://pokaz.me/posts/2017-11/1511427822_1497001337_bober.png" group-title="Общественные",Бобёр
+https://s.pokaz.me/189/index.m3u8?k=1770332508p502i89i921i19S7a346767ec2737a8f9254b3bffcf84a2
+#EXTINF:-1 tvg-id="pokaz_053" tvg-name="Домашний" tvg-logo="https://pokaz.me/posts/2017-11/1511429092_1461686810_domashniy.png" group-title="Общественные",Домашний
+https://s.pokaz.me/561/index.m3u8?k=1770332444p502i89i921i19S14f72e890cae190fe63cda93fed572db
+#EXTINF:-1 tvg-id="pokaz_054" tvg-name="Звезда" tvg-logo="https://pokaz.me/posts/2017-11/1511428030_1416945233_zvezda.png" group-title="Общественные",Звезда
+https://s.pokaz.me/125/index.m3u8?k=1770332491p502i89i921i19S9006d61fc05493d7485957ee5c9f3a19
+#EXTINF:-1 tvg-id="pokaz_055" tvg-name="Крым 1" tvg-logo="https://pokaz.me/posts/2017-12/1514366573_krym1.png" group-title="Общественные",Крым 1
+https://s.pokaz.me/533/index.m3u8?k=1770332473p502i89i921i19Seaf28fe3ca684be77c461865d8e39ef5
+#EXTINF:-1 tvg-id="pokaz_056" tvg-name="Мир ТВ" tvg-logo="https://pokaz.me/posts/2018-05/1526240782_mir.png" group-title="Общественные",Мир ТВ
+https://s.pokaz.me/587/index.m3u8?k=1770332485p502i89i921i19S28f5e2d087abf56363bde881b194d687
+#EXTINF:-1 tvg-id="pokaz_057" tvg-name="Моя стихия" tvg-logo="https://pokaz.me/posts/2017-11/1512067834_morksai.png" group-title="Общественные",Моя стихия
+https://s.pokaz.me/592/index.m3u8?k=1770332502p502i89i921i19Sb85f71b6b78b8a527f663a3e203777b9
+#EXTINF:-1 tvg-id="pokaz_058" tvg-name="НТВ" tvg-logo="https://pokaz.me/posts/2017-11/1511428847_1381933138_ntv.png" group-title="Общественные",НТВ
+https://s.pokaz.me/537/index.m3u8?k=1770332433p502i89i921i19S41a44d39ec2dd387cd73190a3e0a0c49
+#EXTINF:-1 tvg-id="pokaz_059" tvg-name="Оружие" tvg-logo="https://pokaz.me/posts/2017-11/1511771582_oruzhie.png" group-title="Общественные",Оружие
+https://s.pokaz.me/117/index.m3u8?k=1770332514p502i89i921i19S432aa79b271ecd713b2c9dc28ab3996c
+#EXTINF:-1 tvg-id="pokaz_060" tvg-name="Первый канал" tvg-logo="https://pokaz.me/posts/2017-11/1511429376_1463597059_pervyy-kanal.png" group-title="Общественные",Первый канал
+https://s.pokaz.me/540/index.m3u8?k=1770332422p502i89i921i19S20ef2dbef39a65564bce694caaed14b0
+#EXTINF:-1 tvg-id="pokaz_061" tvg-name="Пятый канал" tvg-logo="https://pokaz.me/posts/2017-11/1511429153_1392740088_5kanal.png" group-title="Общественные",Пятый канал
+https://s.pokaz.me/524/index.m3u8?k=1770332456p502i89i921i19Sd4f543060d81815b0f9a5a7c82b907be
+#EXTINF:-1 tvg-id="pokaz_062" tvg-name="Рен ТВ" tvg-logo="https://pokaz.me/posts/2018-12/1545320907_rentv.png" group-title="Общественные",Рен ТВ
+https://s.pokaz.me/543/index.m3u8?k=1770332439p502i89i921i19Sf39a3711b1b59410a447b728b4e7d2cd
+#EXTINF:-1 tvg-id="pokaz_063" tvg-name="Россия 1" tvg-logo="https://pokaz.me/posts/2017-11/1511432255_rossiya-1.png" group-title="Общественные",Россия 1
+https://s.pokaz.me/544/index.m3u8?k=1770332427p502i89i921i19S8ddc19c5dabdfc840dfd8d0e103f5870
+#EXTINF:-1 tvg-id="pokaz_064" tvg-name="Россия К" tvg-logo="https://pokaz.me/posts/2018-03/1520255669__rossiya_k_1.png" group-title="Общественные",Россия К
+https://s.pokaz.me/579/index.m3u8?k=1770332462p502i89i921i19S621bd7210bf4c693407c4e9f1136d68a
+#EXTINF:-1 tvg-id="pokaz_065" tvg-name="РТР Планета" tvg-logo="https://pokaz.me/posts/2017-11/1511427420_1396605166_rtr-planeta.png" group-title="Общественные",РТР Планета
+https://s.pokaz.me//index.m3u8?k=1770332479p502i89i921i19Safb32d3f9e897d5331b937f10eb9f922
+#EXTINF:-1 tvg-id="pokaz_066" tvg-name="ТВЦ" tvg-logo="https://pokaz.me/posts/2018-05/1525937702_1525937690.png" group-title="Общественные",ТВЦ
+https://s.pokaz.me/548/index.m3u8?k=1770332450p502i89i921i19S2e6b782084f96170f840116928663f7a
+#EXTINF:-1 tvg-id="pokaz_067" tvg-name="Galaxy TV" tvg-logo="https://pokaz.me/posts/2018-05/1526239820_galaxy_tv_2.png" group-title="Общественные",Galaxy TV
+https://s.pokaz.me/205/index.m3u8?k=1770332496p502i89i921i19S4d4b8042a90519d123b21ae4bda2f9c9
 
 # ==================================================
 # КАТЕГОРИЯ: РАЗВЛЕЧЕНИЕ
 # ==================================================
 
-#EXTINF:-1 tvg-id="pokaz_007" tvg-name="ТНТ" tvg-logo="https://pokaz.me/posts/2017-11/1511428867_1461317268_tnt.png" group-title="Развлечение",ТНТ
-https://s.pokaz.me/547/index.m3u8?k=1770326553p502i89i921i19S4c5ba71f8d4e73a45254cfa22d37a99a
+#EXTINF:-1 tvg-id="pokaz_068" tvg-name="СТС" tvg-logo="https://pokaz.me/posts/2017-11/1511428757_1461317169_sts.png" group-title="Развлечение",СТС
+https://s.pokaz.me/591/index.m3u8?k=1770332747p502i89i921i19S889bfb35ad04f70b911cc96a44cc81c4
+#EXTINF:-1 tvg-id="pokaz_069" tvg-name="СТС Love" tvg-logo="https://pokaz.me/posts/2017-11/1511427784_1481287122_sts_love.png" group-title="Развлечение",СТС Love
+https://s.pokaz.me/123/index.m3u8?k=1770332753p502i89i921i19S2f548b5b459e350ee9cad5fa40eb094f
+#EXTINF:-1 tvg-id="pokaz_070" tvg-name="ТНТ" tvg-logo="https://pokaz.me/posts/2017-11/1511428867_1461317268_tnt.png" group-title="Развлечение",ТНТ
+https://s.pokaz.me/547/index.m3u8?k=1770332741p502i89i921i19Sa7f226fffad2044ec38c5a5a0a06c524
+#EXTINF:-1 tvg-id="pokaz_071" tvg-name="ТНТ4" tvg-logo="https://pokaz.me/posts/2017-12/1512374622_tnt4.png" group-title="Развлечение",ТНТ4
+https://s.pokaz.me/105/index.m3u8?k=1770332758p502i89i921i19S8fe56496379c13175e15633727ebefec
+#EXTINF:-1 tvg-id="pokaz_072" tvg-name="Че ТВ" tvg-logo="https://pokaz.me/posts/2018-12/1545320148__shetv.png" group-title="Развлечение",Че ТВ
+https://s.pokaz.me/526/index.m3u8?k=1770332770p502i89i921i19S5c2dc0333084fae94de0ddd4956245e4
+#EXTINF:-1 tvg-id="pokaz_073" tvg-name="Ю ТВ" tvg-logo="https://pokaz.me/posts/2018-12/1545319209_yu_tv.png" group-title="Развлечение",Ю ТВ
+https://s.pokaz.me/107/index.m3u8?k=1770332764p502i89i921i19Sa86b86ec31f0b8166956dac8b1322c13
 
 # ==================================================
 # КАТЕГОРИЯ: СПОРТ
 # ==================================================
 
-#EXTINF:-1 tvg-id="pokaz_008" tvg-name="Setanta Sports" tvg-logo="https://pokaz.me/posts/2017-11/1511426983_1484409831_sport.png" group-title="Спорт",Setanta Sports
-https://s.pokaz.me/208/index.m3u8?k=1770326559p502i89i921i19S083c6be9b3b95a3450c10e6c8bef5de7
+#EXTINF:-1 tvg-id="pokaz_074" tvg-name="Setanta Sports" tvg-logo="https://pokaz.me/posts/2017-11/1511426983_1484409831_sport.png" group-title="Спорт",Setanta Sports
+https://s.pokaz.me/208/index.m3u8?k=1770332775p502i89i921i19Sda20cd82ae2600e1a8861274b19e41fb
 
 # ==================================================
 # СТАТИСТИКА
 # ==================================================
-# Всего каналов: 8
-# Всего обработано: 8
-# Успешных: 8
+# Всего каналов: 74
+# Всего обработано: 74
+# Успешных: 74
 # Неудачных: 0
 
 # Распределение по категориям:
-#   Детские: 1 каналов
-#   Кино: 1 каналов
-#   Музыка: 1 каналов
-#   Новости: 1 каналов
-#   Образование: 1 каналов
-#   Общественные: 1 каналов
-#   Развлечение: 1 каналов
+#   Детские: 9 каналов
+#   Кино: 18 каналов
+#   Музыка: 8 каналов
+#   Новости: 4 каналов
+#   Образование: 11 каналов
+#   Общественные: 17 каналов
+#   Развлечение: 6 каналов
 #   Спорт: 1 каналов
 
 # ==================================================
