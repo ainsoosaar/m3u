@@ -1,12 +1,13 @@
 import fs from 'fs';
 import path from 'path';
 import puppeteer from 'puppeteer';
+import { savePlaylist, cleanName, delay } from './utils.js';
 
 const BASE = 'https://pokaz.me';
 const PLAYLIST_FILE = path.resolve('./playlists/pokaz_playlist.m3u8');
 const LOG_FILE = path.resolve('./playlists/error_log.txt');
 
-// Список каналов
+// Список каналов (полный, из вашего скрипта)
 const channels = [
   '/336-tv_pervyy_kanal_online.html',
   '/385-kanal-rossiya-1-tv.html',
@@ -84,66 +85,135 @@ const channels = [
   '/62-kanal-rossiya-24.html'
 ];
 
-// Очистка текста названия
-function cleanName(name) {
-  return name.replace(/^Телеканал\s+/i, '').trim();
-}
-
-// Главная сборка плейлиста
 async function build() {
+  console.log('🚀 Запуск сборки плейлиста...');
+  console.log('='.repeat(50));
+
   const browser = await puppeteer.launch({
-    headless: false,   // для отладки ставь false
-    defaultViewport: null
+    headless: 'new',
+    defaultViewport: null,
+    args: [
+      '--no-sandbox',
+      '--disable-setuid-sandbox',
+      '--disable-dev-shm-usage',
+      '--disable-accelerated-2d-canvas',
+      '--disable-gpu',
+      '--window-size=1920,1080'
+    ]
   });
+
   const page = await browser.newPage();
+  
+  // Устанавливаем правильный User-Agent
+  await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36');
 
   let playlist = '#EXTM3U\n';
   fs.writeFileSync(LOG_FILE, ''); // очистка лога
 
-  for (const ch of channels) {
-    const url = BASE + ch;
-    console.log('➡', url);
+  let successCount = 0;
+  let failCount = 0;
+
+  for (let i = 0; i < channels.length; i++) {
+    const channelPath = channels[i];
+    const url = BASE + channelPath;
+    
+    console.log(`📺 [${i + 1}/${channels.length}] ${url}`);
 
     try {
-      await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 30000 });
+      // Ждем загрузки всех ресурсов, включая JS
+      await page.goto(url, { waitUntil: 'networkidle2', timeout: 30000 });
+      
+      // Ждем появления pjsdiv с видео (до 10 секунд)
+      await page.waitForSelector('pjsdiv video', { timeout: 10000 }).catch(() => null);
+      
+      // Даем дополнительное время на загрузку
+      await delay(2000);
 
       // Получаем название
-      const title = await page.$eval('article.block.story h1', el => el.textContent.trim());
-      const name = cleanName(title);
+      let name = '';
+      try {
+        name = await page.$eval('h1', el => el.textContent.trim());
+      } catch {
+        name = await page.$eval('title', el => el.textContent.split('—')[0].trim());
+      }
+      const cleanChannelName = cleanName(name);
 
       // Логотип
-      const logo = await page.$eval('article.block.story img', img =>
-        img.src.startsWith('http') ? img.src : 'https://pokaz.me' + img.src
-      );
-
-      // Поток
-      let stream = '';
+      let logo = '';
       try {
-        stream = await page.$eval('video', vid => vid.src);
+        logo = await page.$eval('article.block.story img', img =>
+          img.src.startsWith('http') ? img.src : 'https://pokaz.me' + img.src
+        );
       } catch {
-        console.warn('⚠ Play-кнопка/поток не найден, пропускаем');
+        // Игнорируем
+      }
+
+      // 🔥 ПОЛУЧАЕМ ПОЛНЫЙ ТОКЕН ИЗ PJSON DIV
+      let stream = '';
+      
+      // Сначала ищем video внутри pjsdiv (самый надежный способ)
+      try {
+        stream = await page.$eval('pjsdiv video', vid => vid.src);
+        console.log('  ✅ Найден полный токен в pjsdiv');
+      } catch {
+        // Если не нашли, пробуем найти video напрямую
+        try {
+          stream = await page.$eval('video', vid => vid.src);
+          console.log('  ⚠️ Найден video без pjsdiv');
+        } catch {
+          // Если не нашли, ищем в скриптах
+          stream = await page.evaluate(() => {
+            const scripts = Array.from(document.getElementsByTagName('script'));
+            for (const script of scripts) {
+              if (script.textContent && script.textContent.includes('.m3u8?k=')) {
+                const match = script.textContent.match(/https?:[^"']*\.m3u8\?k=[^"']*/);
+                if (match) return match[0];
+              }
+            }
+            return null;
+          });
+          if (stream) console.log('  ⚠️ Найден в скриптах');
+        }
+      }
+
+      if (!stream) {
+        console.log('  ❌ Не удалось найти поток');
         fs.appendFileSync(LOG_FILE, `${url} - поток не найден\n`);
+        failCount++;
         continue;
       }
 
-      playlist += `#EXTINF:-1 tvg-id="${name}" tvg-name="${name}" tvg-logo="${logo}",${name}\n${stream}\n`;
-      console.log('✅', name);
+      // 🔥 ДОБАВЛЯЕМ REFERER ДЛЯ РАБОТЫ В ПЛЕЕРЕ
+      const streamWithReferer = `${stream}|Referer=https://pokaz.me/`;
+      
+      playlist += `#EXTINF:-1 tvg-id="${cleanChannelName}" tvg-name="${cleanChannelName}" tvg-logo="${logo}",${cleanChannelName}\n${streamWithReferer}\n`;
+      console.log(`  ✅ ${cleanChannelName}`);
+      successCount++;
 
     } catch (err) {
-      console.error('❌ Ошибка на канале', ch, err.message);
+      console.error(`  ❌ Ошибка на канале ${channelPath}:`, err.message);
       fs.appendFileSync(LOG_FILE, `${url} - ${err.message}\n`);
+      failCount++;
     }
+
+    // Задержка между каналами
+    await delay(1000);
   }
 
+  // Сохраняем плейлист
   fs.writeFileSync(PLAYLIST_FILE, playlist);
-  console.log('📄 Плейлист собран:', PLAYLIST_FILE);
+  
+  console.log('\n' + '='.repeat(50));
+  console.log(`📊 Статистика:`);
+  console.log(`   ✅ Успешно: ${successCount}`);
+  console.log(`   ❌ Ошибок: ${failCount}`);
+  console.log(`   📁 Плейлист сохранён: ${PLAYLIST_FILE}`);
 
   await browser.close();
 }
 
-// Для запуска через npm run build
-if (process.argv[1].endsWith('build_pokaz.js')) {
-  build();
-}
-
-export { build };
+// Запуск
+build().catch(err => {
+  console.error('❌ Критическая ошибка:', err);
+  process.exit(1);
+});
