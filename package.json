@@ -1,31 +1,34 @@
 {
-  "name": "pokaz-playlists",
+  "name": "m3u",
   "version": "1.0.0",
+  "description": "Автоматический сборщик плейлистов для pokaz.me",
+  "main": "src/build_pokaz.js",
   "type": "module",
   "scripts": {
     "build": "node src/build_pokaz.js",
-    "debug": "node src/debug_build.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "keywords": [
+    "iptv",
+    "playlist",
+    "m3u",
+    "pokaz",
+    "puppeteer"
+  ],
+  "author": "ainsoosaar",
+  "license": "MIT",
   "dependencies": {
-    "node-cron": "^3.0.2",
-<<<<<<< HEAD
-    "puppeteer": "^24.37.5"
+    "puppeteer": "^21.0.0"
   },
-  "description": "",
-  "main": "index.js",
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ainsoosaar/m3u.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "bugs": {
     "url": "https://github.com/ainsoosaar/m3u/issues"
   },
   "homepage": "https://github.com/ainsoosaar/m3u#readme"
-=======
-    "puppeteer": "^24.37.2"
-  }
->>>>>>> dd7df158dabc1e6e16d079f3f77e4acd4442a259
 }
