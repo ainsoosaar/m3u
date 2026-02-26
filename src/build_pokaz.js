@@ -1,12 +1,12 @@
 import fs from 'fs';
 import path from 'path';
-import puppeteer from 'puppeteer';
+import https from 'https';
 
 const BASE = 'https://pokaz.me';
 const PLAYLIST_FILE = path.resolve('./playlists/pokaz_playlist.m3u8');
 const LOG_FILE = path.resolve('./playlists/error_log.txt');
 
-// Список каналов
+// Список каналов (ваш список)
 const channels = [
   '/336-tv_pervyy_kanal_online.html',
   '/385-kanal-rossiya-1-tv.html',
@@ -84,66 +84,137 @@ const channels = [
   '/62-kanal-rossiya-24.html'
 ];
 
-// Очистка текста названия
-function cleanName(name) {
-  return name.replace(/^Телеканал\s+/i, '').trim();
+// Функция для HTTP запроса с таймаутом
+function fetchUrl(url) {
+  return new Promise((resolve, reject) => {
+    const req = https.get(url, {
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
+        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+        'Accept-Language': 'ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7'
+      },
+      timeout: 15000
+    }, (res) => {
+      if (res.statusCode !== 200) {
+        reject(new Error(`HTTP ${res.statusCode}`));
+        return;
+      }
+      
+      let data = '';
+      res.on('data', chunk => data += chunk);
+      res.on('end', () => resolve(data));
+    });
+    
+    req.on('error', reject);
+    req.on('timeout', () => {
+      req.destroy();
+      reject(new Error('Timeout'));
+    });
+  });
 }
 
-// Главная сборка плейлиста
+// Извлечение данных из HTML
+function parseChannelPage(html, channelUrl) {
+  try {
+    // Название канала
+    let name = '';
+    const nameMatch = html.match(/<h1[^>]*>([^<]+)<\/h1>/i) || 
+                     html.match(/<title>([^<]+)<\/title>/i);
+    if (nameMatch) {
+      name = nameMatch[1]
+        .replace(/смотреть онлайн/i, '')
+        .replace(/телеканал/i, '')
+        .trim();
+    }
+    
+    // Логотип
+    let logo = '';
+    const logoMatch = html.match(/<img[^>]*src="([^"]*)"[^>]*class="[^"]*logo[^"]*"[^>]*>/i) ||
+                     html.match(/<img[^>]*src="([^"]*)"[^>]*alt="[^"]*логотип[^"]*"[^>]*>/i);
+    if (logoMatch) {
+      logo = logoMatch[1].startsWith('http') ? logoMatch[1] : 'https://pokaz.me' + logoMatch[1];
+    }
+    
+    // Поток (ищем video src или ссылку на .m3u8)
+    let stream = '';
+    
+    // Сначала ищем video тег
+    const videoMatch = html.match(/<video[^>]*src="([^"]*\.m3u8[^"]*)"[^>]*>/i);
+    if (videoMatch) {
+      stream = videoMatch[1];
+    } else {
+      // Ищем прямую ссылку на .m3u8
+      const m3u8Match = html.match(/"(https?:\/\/[^"]*\.m3u8[^"]*)"/i) ||
+                       html.match(/'([^']*\.m3u8[^']*)'/i);
+      if (m3u8Match) {
+        stream = m3u8Match[1];
+      }
+    }
+    
+    return { name, logo, stream };
+  } catch (err) {
+    return { name: '', logo: '', stream: '' };
+  }
+}
+
+// Главная функция
 async function build() {
-  const browser = await puppeteer.launch({
-    headless: false,   // для отладки ставь false
-    defaultViewport: null
-  });
-  const page = await browser.newPage();
-
+  console.log('🚀 Запуск сборки плейлиста...');
+  
   let playlist = '#EXTM3U\n';
-  fs.writeFileSync(LOG_FILE, ''); // очистка лога
-
-  for (const ch of channels) {
-    const url = BASE + ch;
-    console.log('➡', url);
-
+  fs.writeFileSync(LOG_FILE, '');
+  
+  let successCount = 0;
+  let failCount = 0;
+  
+  for (let i = 0; i < channels.length; i++) {
+    const channelPath = channels[i];
+    const url = BASE + channelPath;
+    
+    console.log(`📺 [${i + 1}/${channels.length}] ${url}`);
+    
     try {
-      await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 30000 });
-
-      // Получаем название
-      const title = await page.$eval('article.block.story h1', el => el.textContent.trim());
-      const name = cleanName(title);
-
-      // Логотип
-      const logo = await page.$eval('article.block.story img', img =>
-        img.src.startsWith('http') ? img.src : 'https://pokaz.me' + img.src
-      );
-
-      // Поток
-      let stream = '';
-      try {
-        stream = await page.$eval('video', vid => vid.src);
-      } catch {
-        console.warn('⚠ Play-кнопка/поток не найден, пропускаем');
-        fs.appendFileSync(LOG_FILE, `${url} - поток не найден\n`);
+      // Получаем HTML страницы
+      const html = await fetchUrl(url);
+      
+      // Парсим данные
+      const { name, logo, stream } = parseChannelPage(html, url);
+      
+      if (!name || !stream) {
+        console.warn(`  ❌ Не удалось найти название или поток`);
+        fs.appendFileSync(LOG_FILE, `${url} - данные не найдены\n`);
+        failCount++;
         continue;
       }
-
+      
+      // Добавляем в плейлист
       playlist += `#EXTINF:-1 tvg-id="${name}" tvg-name="${name}" tvg-logo="${logo}",${name}\n${stream}\n`;
-      console.log('✅', name);
-
+      console.log(`  ✅ ${name}`);
+      successCount++;
+      
     } catch (err) {
-      console.error('❌ Ошибка на канале', ch, err.message);
+      console.error(`  ❌ Ошибка: ${err.message}`);
       fs.appendFileSync(LOG_FILE, `${url} - ${err.message}\n`);
+      failCount++;
     }
+    
+    // Небольшая задержка между запросами
+    await new Promise(resolve => setTimeout(resolve, 1000));
   }
-
+  
+  // Сохраняем плейлист
   fs.writeFileSync(PLAYLIST_FILE, playlist);
-  console.log('📄 Плейлист собран:', PLAYLIST_FILE);
-
-  await browser.close();
+  
+  console.log('\n' + '='.repeat(50));
+  console.log(`📊 Статистика:`);
+  console.log(`   ✅ Успешно: ${successCount}`);
+  console.log(`   ❌ Ошибок: ${failCount}`);
+  console.log(`   📁 Плейлист сохранён: ${PLAYLIST_FILE}`);
+  console.log('='.repeat(50));
 }
 
-// Для запуска через npm run build
-if (process.argv[1].endsWith('build_pokaz.js')) {
-  build();
-}
-
-export { build };
+// Запуск
+build().catch(err => {
+  console.error('❌ Критическая ошибка:', err);
+  process.exit(1);
+});
