@@ -92,8 +92,15 @@ function cleanName(name) {
 // Главная сборка плейлиста
 async function build() {
   const browser = await puppeteer.launch({
-    headless: false,   // для отладки ставь false
-    defaultViewport: null
+    headless: 'new',   // используем новый headless режим
+    defaultViewport: null,
+    args: [
+      '--no-sandbox',
+      '--disable-setuid-sandbox',
+      '--disable-dev-shm-usage',
+      '--disable-accelerated-2d-canvas',
+      '--disable-gpu'
+    ]
   });
   const page = await browser.newPage();
 
