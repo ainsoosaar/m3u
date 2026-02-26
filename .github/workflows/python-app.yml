@@ -27,7 +27,7 @@ jobs:
           libdrm2 \
           libxkbcommon0 \
           libgbm1 \
-          libasound2
+          libasound2t64
     
     - name: Setup Node.js
       uses: actions/setup-node@v3
