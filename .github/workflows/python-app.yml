@@ -17,18 +17,6 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v3
     
-    - name: Install Puppeteer dependencies
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y \
-          chromium-browser \
-          libnss3 \
-          libatk-bridge2.0-0 \
-          libdrm2 \
-          libxkbcommon0 \
-          libgbm1 \
-          libasound2t64
-    
     - name: Setup Node.js
       uses: actions/setup-node@v3
       with:
@@ -37,9 +25,20 @@ jobs:
     - name: Install dependencies
       run: |
         npm install puppeteer
+        # Устанавливаем системные зависимости для Chrome
+        sudo apt-get update
+        sudo apt-get install -y \
+          chromium-browser \
+          libnss3 \
+          libatk-bridge2.0-0 \
+          libdrm2 \
+          libxkbcommon0 \
+          libgbm1 \
+          libasound2t64 \
+          xvfb
     
-    - name: Build playlist
-      run: node src/build_pokaz.js
+    - name: Build playlist with xvfb
+      run: xvfb-run --auto-servernum node src/build_pokaz.js
     
     - name: Check for changes
       id: git-check
