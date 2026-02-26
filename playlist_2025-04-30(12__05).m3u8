@@ -1,0 +1,177 @@
+#EXTM3U
+#EXTINF:-1 tvg-id="Россия 1" group-title="OnlineTV",Россия 1 (89%)
+https://edge01d.mediavitrina.ru/hls-livef1/russia1/tracks-v3a1/mono.m3u8?token=v2.lGGO1cWB1UbmYy7LYUrtTqtFhGbnPEHrpnEaMOX0R4k.Vizw1uKcqAFLHNPAl2lV2jzJaKFrWtp3fMdGyl-paTc.1747753982.5a4f7f1f7dd9021bb66cc0c4088874c0
+#EXTINF:-1 tvg-id="Матч ТВ" group-title="OnlineTV",Матч ТВ (76%)
+https://edge01r.mediavitrina.ru/hls-livef1/matchtv/tracks-v3a1/mono.m3u8?token=v2.JKodf1RsboEN7wZkuI_TNEO24dTq87kr0OcBmivUhFM.kXpIHrpTPfZsshQIR1ntkJDjwYbKV6zNE_nh27R2Eb4.1747753987.7190024a43a2284f78dec052eb091d10
+#EXTINF:-1 tvg-id="НТВ" group-title="OnlineTV",НТВ (70%)
+https://edge02d.mediavitrina.ru/hls-livef7/ntv0h/tracks-v3a1/mono.m3u8?token=v2.MMQOOnvWnnSan91lO5zWi7-FnEzUXK7FFWJ2MISOSmg.0tQ479JPS5WmchVPZGweKNGoGMZdZQzxAGVllEQw3lY.1747753996.c44d43bd3137fedc52bfde6c6a000e60
+#EXTINF:-1 tvg-id="Мосфильм золотая коллекция" group-title="OnlineTV",Мосфильм золотая коллекция (75%)
+https://server.musical.uz/tv/mos-film_web/index.m3u8?token=ba2b1d7a55f8885319025edce9c9de6c2d2efc51-a72121dd359a5e6a8019840f25698a2a-1747159699-1747148899&remote=212.231.121.4
+#EXTINF:-1 tvg-id="Рен ТВ" group-title="OnlineTV",Рен ТВ (90%)
+https://edge01d.mediavitrina.ru/hls-livef1/ren-tv/tracks-v3a1/mono.m3u8?token=v2.kjyAJYWTuLAeq8W2pFu-L2lAz_49acHQdmNDIbXDdlQ.DLFObPEfLhRlcF43g1hst-MexNuTy6jE9kJdm_Ko75I.1747754002.e9cafe868c907b302c7bed5068aa29fb
+#EXTINF:-1 tvg-id="Русский роман" group-title="OnlineTV",Русский роман (82%)
+https://server.musical.uz/tv/rus_roman_web/index.m3u8?token=8b85adea45d1eb8b4f6f88a6802081e9f00aada0-fb0694088830c8b283f32f221112e9f6-1747159705-1747148905&remote=212.231.121.4
+#EXTINF:-1 tvg-id="Первый канал" group-title="OnlineTV",Первый канал (81%)
+https://edge01d.mediavitrina.ru/hls-livef1/1tv/tracks-v3a1/mono.m3u8?token=v2.ApbQFY-Jb6SxlDy31TuAAAYBO2dlwPTrEavO70xWB1I.jrbuP1acm4j70rD3Mrb7aqEdhpgIPr3f3t5cONAePxY.1747754009.f7e6567379ea5869fd50fecdb992b319
+#EXTINF:-1 tvg-id="Русский детектив" group-title="OnlineTV",Русский детектив (90%)
+https://server.musical.uz/tv/rus_detektiv_web/index.m3u8?token=d767c4dd1752b714c8ad915d30146197399234b2-670b91f7e59699d76a913714b05d1d6d-1747159711-1747148911&remote=212.231.121.4
+#EXTINF:-1 tvg-id="ТНТ" group-title="OnlineTV",ТНТ (80%)
+https://edge02r.mediavitrina.ru/hls-livef8/tnt/tracks-v3a1/mono.m3u8?token=v2.wXI2x7nDEoQgOYFXJ27-bB9rxKT-PMVS8EaxFa6Y-yY.KgBBuxpUqwxgOaTr6Qh8_WNCz475lSese6jacnItT88.1747754016.e5533ab0139b9861af5d7e5c1b83ed11
+#EXTINF:-1 tvg-id="Домашний" group-title="OnlineTV",Домашний (81%)
+https://edge01r.mediavitrina.ru/hls-livef1/ctc-dom/tracks-v3a1/mono.m3u8?token=v2.v50Fm6BHg5sZnsVCHnnDq3oOq8TDSRyBYmBpvrdl1Wc.7ISbuFSyrtVJ1ogyhwPzhQxiQQmxmawMhgQ1pY8rM5s.1747754021.ca674bdbcfce5ec73a07f0f698997b64
+#EXTINF:-1 tvg-id="НТВ Хит" group-title="OnlineTV",НТВ Хит (80%)
+https://server.musical.uz/tv/ntvxit_web/index.m3u8?token=5eed108a6cd4a7a4ce597a50c77e2474fcbb770f-afc3c79fa73fdb496a548a28dccd88ff-1747159724-1747148924&remote=212.231.121.4
+#EXTINF:-1 tvg-id="Zo'r tv" group-title="OnlineTV",Zo'r tv (68%)
+https://server.musical.uz/tv/zor-tv-uz/index.m3u8?token=4f86519fe826849fbf6617949e161e2024658bec-6d127d6e07e7742fb017da21ccfbd641-1747159727-1747148927&remote=212.231.121.4
+#EXTINF:-1 tvg-id="Кино ТВ" group-title="OnlineTV",Кино ТВ (86%)
+https://server.musical.uz/tv/kinotv_web/index.m3u8?token=a6acc15d79f3051326b9eddc2b1ee133e5836a86-9883da5b0151e28c9d4d0bad6a6ee690-1747159730-1747148930&remote=212.231.121.4
+#EXTINF:-1 tvg-id="Россия 24" group-title="OnlineTV",Россия 24 (97%)
+https://edge02r.mediavitrina.ru/hls-livef1/russia24/tracks-v3a1/mono.m3u8?token=v2.gbsXusqkVrjGb8vb5eqVbiF7FN5_vqaE58a9bj1itMo.hpNkb2EKUTvr59W_BVf22lOjbWSpPDWaeHwXgpuLa9I.1747754032.aaed7f13dbad655d5adb5b6c427f2624
+#EXTINF:-1 tvg-id="Звезда" group-title="OnlineTV",Звезда (81%)
+https://tvchannelstream1.tvzvezda.ru/cdn/tvzvezda/playlist_sdhigh.m3u8
+#EXTINF:-1 tvg-id="Comedy Central" group-title="OnlineTV",Comedy Central (74%)
+https://server.musical.uz/tv/paramount_web/index.m3u8?token=3398953daeee173ff626c6f22608697906d5580a-a7b80919fe34d2afd54e8cc0897ea9e0-1747159738-1747148938&remote=212.231.121.4
+#EXTINF:-1 tvg-id="Русский бестселлер" group-title="OnlineTV",Русский бестселлер (83%)
+https://server.musical.uz/tv/rus_bestseller_web/index.m3u8?token=c973f7bb19e20465d4e9be4f98402a0206673460-e1c4780c8d294aaed0c68f1ed9766f4c-1747159744-1747148944&remote=212.231.121.4
+#EXTINF:-1 tvg-id="ТВ Центр" group-title="OnlineTV",ТВ Центр (76%)
+https://tvc-hls.cdnvideo.ru/tvc-res/smil:vd9221_2.smil/playlist.m3u8
+#EXTINF:-1 tvg-id="Фантастика HD" group-title="OnlineTV",Фантастика HD (86%)
+https://server.musical.uz/tv/fantastikahd/index.m3u8?token=b7439a3fc987098553de2b555f41e22081eb4c16-97e396160ceafecd65fb7ebc70e503c1-1747159750-1747148950&remote=212.231.121.4
+#EXTINF:-1 tvg-id="Discovery channel" group-title="OnlineTV",Discovery channel (80%)
+https://server.musical.uz/tv/discovery_web/index.m3u8?token=f708dbe4ca46eba368f0e2368a237875e5508f9e-b683a2e11353e19be739ced2d3d7c35c-1747159751-1747148951&remote=212.231.121.4
+#EXTINF:-1 tvg-id="Euronews" group-title="OnlineTV",Euronews (66%)
+https://server.musical.uz/tv/euronews/index.m3u8?token=1aaa78d618e2ba354a9c20a6f17f9da92ee06588-8a2cf77adfca53f8a80b3a9ade3a0c7f-1747159756-1747148956&remote=212.231.121.4
+#EXTINF:-1 tvg-id="Дом кино" group-title="OnlineTV",Дом кино (90%)
+https://server.musical.uz/tv/domkino_web/index.m3u8?token=6b5391bf0eb177eda561cb8b5c3456374b8e535b-e8b43ee4573421490d38ce2d2b8a3c7a-1747159758-1747148958&remote=212.231.121.4
+#EXTINF:-1 tvg-id="НСТ" group-title="OnlineTV",НСТ (67%)
+https://server.musical.uz/tv/nct_Web/index.m3u8?token=6ffb79d6eddb92503799275b2d7d36fedc7558a4-be10a466eb8c41169297aad10876ca4b-1747159761-1747148961&remote=212.231.121.4
+#EXTINF:-1 tvg-id="QazSport" group-title="OnlineTV",QazSport (70%)
+https://server.musical.uz/tv/qazsport/index.m3u8?token=ed9a0e2ef2d06bbae42fdb360d09fa9601057dd8-278e54096aba7576fc6bc470c73495a9-1747159768-1747148968&remote=212.231.121.4
+#EXTINF:-1 tvg-id="Пятый канал" group-title="OnlineTV",Пятый канал (85%)
+https://edge02d.mediavitrina.ru/hls-livef7/5tv/tracks-v3a1/mono.m3u8?token=v2.Z8157i1AytrwR_p4m5tDSnNLKoO6LeFpoi6FxjxEWSw.tfcyrRwC4uYo52S8uCKaUqwjB30aJQYkOHjTQC-HZHQ.1747754070.d17bc3e24a2e3f336901ae3bbc69d72f
+#EXTINF:-1 tvg-id="Disney channel" group-title="OnlineTV",Disney channel (78%)
+https://server.musical.uz/tv/dsn_web/index.m3u8?token=025855db946896dd5e27a4771011c9e4ec25665a-14172414056e2bd33ae19b3d041941d7-1747159773-1747148973&remote=212.231.121.4
+#EXTINF:-1 tvg-id="Звезда Плюс" group-title="OnlineTV",Звезда Плюс (77%)
+https://server.musical.uz/tv/zvezda_plus/index.m3u8?token=d16605ecb66f247c9aa5c44f8ecaad27c5d0f271-aa306906b89627279b703d17d9f0167d-1747159776-1747148976&remote=212.231.121.4
+#EXTINF:-1 tvg-id="National Geographic" group-title="OnlineTV",National Geographic (76%)
+https://server.musical.uz/tv/nat-geo_web/index.m3u8?token=8cd01fa135b9b8a1c317ace9aa0e733411351dd7-2a453a910553902da49ded80933dad49-1747159778-1747148978&remote=212.231.121.4
+#EXTINF:-1 tvg-id="Ретро тв" group-title="OnlineTV",Ретро тв (71%)
+https://server.musical.uz/tv/retrotv_web/index.m3u8?token=81113f86ea0d7dbb021979476463e18ee0f27121-19bedcfdb995399dae0f06e4daa180bf-1747159782-1747148982&remote=212.231.121.4
+#EXTINF:-1 tvg-id="Cinema" group-title="OnlineTV",Cinema (96%)
+https://server.musical.uz/tv/cinem_web/index.m3u8?token=a02aae8df8b967b6545e7f63c5c5db789b3114f6-4cc9d9b39fb30f7980a9056ca9272ccb-1747159785-1747148985&remote=212.231.121.4
+#EXTINF:-1 tvg-id="РТР-Планета" group-title="OnlineTV",РТР-Планета (81%)
+https://player.smotrim.ru/iframe/stream/live_id/d7fef212-df66-485d-9952-7eab82d7d51b.m3u8
+#EXTINF:-1 tvg-id="Беларусь 5" group-title="OnlineTV",Беларусь 5 (48%)
+https://server.musical.uz/tv/belarus5_web/index.m3u8?token=10764add835f3207209a53157f4b0a1689c21bfd-6680b1d02849275fc1c96a315a0f94a0-1747159791-1747148991&remote=212.231.121.4
+#EXTINF:-1 tvg-id="Nickelodeon" group-title="OnlineTV",Nickelodeon (79%)
+https://server.musical.uz/tv/nick_web/index.m3u8?token=c1fbc50f3c5a2bc31ccbf8b18ff94dd0f642e454-e814dd59844e5427b1b4c65963385060-1747159793-1747148993&remote=212.231.121.4
+#EXTINF:-1 tvg-id="СТС" group-title="OnlineTV",СТС (74%)
+https://server.musical.uz/tv/ctc_web/index.m3u8?token=c16d3f22b505254fce0c5533fada33c1e613151f-df1feefa7ea18425ffe7224ef9914de1-1747159797-1747148997&remote=212.231.121.4
+#EXTINF:-1 tvg-id="Viju Explore" group-title="OnlineTV",Viju Explore (86%)
+https://server.musical.uz/tv/viju-explore_web/index.m3u8?token=d9e5b8c3a87df714fd12c6d15c442a20acde2532-3039a85a5a8d060b7b7c6d3999fd5ec5-1747159798-1747148998&remote=212.231.121.4
+#EXTINF:-1 tvg-id="Дом кино Премиум" group-title="OnlineTV",Дом кино Премиум (69%)
+https://server.musical.uz/tv/dom-kino-premium_web/index.m3u8?token=90e102920de4634f543814c87116251dc7fe9b99-9fa53d9f697230902fe45c2b04e633b5-1747159802-1747149002&remote=212.231.121.4
+#EXTINF:-1 tvg-id="Соловьев Live" group-title="OnlineTV",Соловьев Live (80%)
+https://player.smotrim.ru/iframe/stream/live_id/985d5c7b-9727-4942-a4ba-a6e852caf0c1?e=1734034699.m3u8
+#EXTINF:-1 tvg-id="Удар" group-title="OnlineTV",Удар (39%)
+https://server.musical.uz/tv/udar/index.m3u8?token=4707de2c1cdebc33268e1ff0435004e796fffe9e-baae70197815253095d884346c5d8f5d-1747159808-1747149008&remote=212.231.121.4
+#EXTINF:-1 tvg-id="Сарафан" group-title="OnlineTV",Сарафан (72%)
+https://server.musical.uz/tv/sarafan_web/index.m3u8?token=44fa50dc971c3ba1a4daa42381987a75e392ac2c-7021eee7736059ed91b54eaf35dc68be-1747159811-1747149011&remote=212.231.121.4
+#EXTINF:-1 tvg-id="Viju History" group-title="OnlineTV",Viju History (83%)
+https://server.musical.uz/tv/viju_history_web/index.m3u8?token=6c664ec3452f892136a79a3990c75b7a6cc46332-e6d4c8916fd3ae7db16a7eff4da1bfda-1747159814-1747149014&remote=212.231.121.4
+#EXTINF:-1 tvg-id="Nat Geo Wild" group-title="OnlineTV",Nat Geo Wild (93%)
+https://server.musical.uz/tv/nat-geowild_web/index.m3u8?token=4d6b73d75b9626b54eaae616de780b340d4ab296-2930bb2ec0d4442bb4a8a3c51a10aefa-1747159816-1747149016&remote=212.231.121.4
+#EXTINF:-1 tvg-id="Москва Доверие" group-title="OnlineTV",Москва Доверие (56%)
+https://server.musical.uz/tv/moskva-doveria/index.m3u8?token=247e57157b4d9b08266a7a8e7f198ff7f54cda4c-2a275b0601671007eabcdfd2f2e940cf-1747159820-1747149020&remote=212.231.121.4
+#EXTINF:-1 tvg-id="Победа" group-title="OnlineTV",Победа (82%)
+https://server.musical.uz/tv/pobeda/index.m3u8?token=b6debbb6cf8f00023d1e247b2d40c5538e3d36fa-dfd048439890fc9dec05d5327ca73a98-1747159822-1747149022&remote=212.231.121.4
+#EXTINF:-1 tvg-id="Кинопоказ" group-title="OnlineTV",Кинопоказ (71%)
+https://server.musical.uz/tv/kino-pokaz_web/index.m3u8?token=29d11c8ebc879a9d304ee12fa49e17fc249f3ba1-b6fb81fd609da8e83049680d7f5714e0-1747159826-1747149026&remote=212.231.121.4
+#EXTINF:-1 tvg-id="Матч! Футбол 1" group-title="OnlineTV",Матч! Футбол 1 (74%)
+https://server.musical.uz/tv/futbol1/index.m3u8?token=ba912c7034caffda28747c7ec9051fafeb893007-a1bc9aaaa6af9e3d98db34ae5190a82c-1747159832-1747149032&remote=212.231.121.4
+#EXTINF:-1 tvg-id="Телекафе" group-title="OnlineTV",Телекафе (67%)
+https://server.musical.uz/tv/telekafe-web/index.m3u8?token=943181b3112bd43c60f34305db0fbb13abd7409a-65baf3774d647a07b934cfda6935bdb2-1747159834-1747149034&remote=212.231.121.4
+#EXTINF:-1 tvg-id="Матч! Футбол 2" group-title="OnlineTV",Матч! Футбол 2 (56%)
+https://server.musical.uz/tv/futbol2/index.m3u8?token=3fe6e35154eb529fb5ce60daa04d26f7cbf38f82-4b289c1664cb07e1734fca727e0e63f0-1747159837-1747149037&remote=212.231.121.4
+#EXTINF:-1 tvg-id="Мир" group-title="OnlineTV",Мир (71%)
+https://hls-mirtv.cdnvideo.ru/mirtv-parampublish/mirtv_2500/tracks-v1a1/mono.m3u8
+#EXTINF:-1 tvg-id="Че" group-title="OnlineTV",Че (87%)
+https://server.musical.uz/tv/che-web/index.m3u8?token=ae013c01b621c802b64e72283be6a800557035e6-9f8e7d762638766ed2c3222adce016f5-1747159848-1747149048&remote=212.231.121.4
+#EXTINF:-1 tvg-id="Viju Nature" group-title="OnlineTV",Viju Nature (88%)
+https://server.musical.uz/tv/viju_nature_web/index.m3u8?token=d3d038296ee6e66337a4732d1c370858624cad68-dd182d90ef6bbdab53cece9027a6fee0-1747159851-1747149051&remote=212.231.121.4
+#EXTINF:-1 tvg-id="НТВ Право" group-title="OnlineTV",НТВ Право (78%)
+https://server.musical.uz/tv/ntv_pravo/index.m3u8?token=1db5ba3790b02683386db628b97ed60fa141af7e-f17ef87eee65b5160213f0b0217cab5b-1747159856-1747149056&remote=212.231.121.4
+#EXTINF:-1 tvg-id="НТВ Сериал" group-title="OnlineTV",НТВ Сериал (77%)
+https://server.musical.uz/tv/ntv_serial_web/index.m3u8?token=b8abe178be609c9c2c06924fda56c6e8177b476e-4e847deaa18991dddbc8851407d27f72-1747159858-1747149058&remote=212.231.121.4
+#EXTINF:-1 tvg-id="Наука 2.0" group-title="OnlineTV",Наука 2.0 (76%)
+https://server.musical.uz/tv/nauka20_web/index.m3u8?token=93974cca9cf84461ae706009be417f141ed4278c-30d6089224c20d5d9b1ff9fca163bd48-1747159860-1747149060&remote=212.231.121.4
+#EXTINF:-1 tvg-id="Футбол" group-title="OnlineTV",Футбол (67%)
+https://server.musical.uz/tv/futbol_tv/index.m3u8?token=b6d8d8ecefda83118f65766ec3524641bc313a59-b275db05f76622e01546a30f00156b78-1747159863-1747149063&remote=212.231.121.4
+#EXTINF:-1 tvg-id=".Sci-Fi" group-title="OnlineTV",.Sci-Fi (79%)
+https://server.musical.uz/tv/scifi_web/index.m3u8?token=694270b996740f9a44f1a6406e94749dd5494e90-dc2bf83cad47f4139576878a6a91219a-1747159866-1747149066&remote=212.231.121.4
+#EXTINF:-1 tvg-id="FOX" group-title="OnlineTV",FOX (67%)
+https://server.musical.uz/tv/fox_web/index.m3u8?token=fcd86ea167f002ef1222ed8fa6d1ebe602d8ccc2-c7dd81d5337ce496b19f7b511254bae7-1747159869-1747149069&remote=212.231.121.4
+#EXTINF:-1 tvg-id="Sport tv" group-title="OnlineTV",Sport tv (72%)
+https://server.musical.uz/tv/sport-tv-uz/index.m3u8?token=3c0e74c6596e84a0a746c3550e6b8f82ce4e7ce9-476061f0ffdd9e72f7106581492b1b8d-1747159872-1747149072&remote=212.231.121.4
+#EXTINF:-1 tvg-id="viju+ Sport" group-title="OnlineTV",viju+ Sport (71%)
+https://server.musical.uz/tv/vijusport_web/index.m3u8?token=871af733714dfb4eed0cf90c06837f3327b075b8-2592efb339d3eb97a568791cfbba6990-1747159875-1747149075&remote=212.231.121.4
+#EXTINF:-1 tvg-id="ТНТ4" group-title="OnlineTV",ТНТ4 (70%)
+https://server.musical.uz/tv/tnt4/index.m3u8?token=b3564f393699468f2b284b5501082fcf1ce263f5-f43cc32441b5b921c871766bbc1a604e-1747159877-1747149077&remote=212.231.121.4
+#EXTINF:-1 tvg-id="Известия" group-title="OnlineTV",Известия (68%)
+https://hls-igi.cdnvideo.ru/igi/igi_sq/playlist.m3u8
+#EXTINF:-1 tvg-id="Мир сериала" group-title="OnlineTV",Мир сериала (80%)
+https://server.musical.uz/tv/mir-seriala_web/index.m3u8?token=f4a2515738258e8af879918f9f437deb06960eb6-dceb73e0cbe54d6714fdd23cdf2ae4fa-1747159882-1747149082&remote=212.231.121.4
+#EXTINF:-1 tvg-id="Hollywood" group-title="OnlineTV",Hollywood (78%)
+https://server.musical.uz/tv/hollywd_web/index.m3u8?token=7e7c9c508ad233567fa2fb65ce973c5ed518e775-d49409466c199bf99ba5bb45a024c3f3-1747159885-1747149085&remote=212.231.121.4
+#EXTINF:-1 tvg-id="Viju+ Planet" group-title="OnlineTV",Viju+ Planet (81%)
+https://server.musical.uz/tv/viasat_planet_web/index.m3u8?token=537c329818d0689a65a1c4259345ab8d9ad5f327-6c4d1a5ca65edd8405f2d54be65a25ae-1747159897-1747149097&remote=212.231.121.4
+#EXTINF:-1 tvg-id="Конный Мир" group-title="OnlineTV",Конный Мир (70%)
+https://server.musical.uz/tv/kon_mir_web/index.m3u8?token=de9af1eaa5ff76b218dedeb4933232868c2d0487-2c0330fcf7d80a13e47b0d95af5a032a-1747159899-1747149099&remote=212.231.121.4
+#EXTINF:-1 tvg-id="Арсенал" group-title="OnlineTV",Арсенал (88%)
+https://server.musical.uz/tv/arsenal/index.m3u8?token=0b78003830ada0eacd9588233650348622fd5c97-94e09095197f136e9c0bfdd0100a6c92-1747159902-1747149102&remote=212.231.121.4
+#EXTINF:-1 tvg-id="Дождь" group-title="OnlineTV",Дождь (53%)
+https://wl.tvrain.tv/transcode/ngrp:ses_all/chunklist_b2692000.m3u8
+#EXTINF:-1 tvg-id="Старт Триумф" group-title="OnlineTV",Старт Триумф (63%)
+https://server.musical.uz/tv/start_triumf_web/index.m3u8?token=8556ffe39a3b65511fa8ec346d92f4fda98aa3e0-ce44c0e3898f4e95a92fb9f2e63365b4-1747159907-1747149107&remote=212.231.121.4
+#EXTINF:-1 tvg-id="Матч! Арена" group-title="OnlineTV",Матч! Арена (60%)
+https://server.musical.uz/tv/match-arena/index.m3u8?token=600fdaf79bf6f17cfe60c28dc48d5923467c1b40-9404fcd21de4418afd72e0bcce0b2274-1747159911-1747149111&remote=212.231.121.4
+#EXTINF:-1 tvg-id="Fox Life" group-title="OnlineTV",Fox Life (60%)
+https://server.musical.uz/tv/fox_life_web/index.m3u8?token=910421bab003c499fd7298a1eed1f4faca6037a3-7493bcb217e4430609246c539bfc9ceb-1747159919-1747149119&remote=212.231.121.4
+#EXTINF:-1 tvg-id="Пятница" group-title="OnlineTV",Пятница (88%)
+https://server.musical.uz/tv/friday/index.m3u8?token=17f0ea592fce5c601b739fde5d06387d01bac95d-718c4aa1227bcf7f5198fcf9fa241bb6-1747159922-1747149122&remote=212.231.121.4
+#EXTINF:-1 tvg-id="Cartoon Network" group-title="OnlineTV",Cartoon Network (76%)
+https://server.musical.uz/tv/cartonnet_web/index.m3u8?token=7464f8f2cead9974b8002e3bad1638aa5094c01e-464f977f3c723872eeb39e69f5357af1-1747159924-1747149124&remote=212.231.121.4
+#EXTINF:-1 tvg-id="Страшное HD" group-title="OnlineTV",Страшное HD (60%)
+https://server.musical.uz/tv/strashnoe_hd/index.m3u8?token=aa8cb1966a4ecff8f6e6edce61f6d8cf729e5fb8-51da2abbcd3b787a3c21d7237be62664-1747159927-1747149127&remote=212.231.121.4
+#EXTINF:-1 tvg-id="Еврокино" group-title="OnlineTV",Еврокино (65%)
+https://server.musical.uz/tv/euro-kino_web/index.m3u8?token=7998499fe3fe714ec3fb2ae54988641dbf7c1679-eea6836a0d6612db83460062feb51fcf-1747159929-1747149129&remote=212.231.121.4
+#EXTINF:-1 tvg-id="СТС Love" group-title="OnlineTV",СТС Love (86%)
+https://server.musical.uz/tv/ctclove_web/index.m3u8?token=22643fe815237e48c49e7163e93cfff0dd825134-9c915e2390044be9155316e6513c5a28-1747159931-1747149131&remote=212.231.121.4
+#EXTINF:-1 tvg-id="Россия-Культура" group-title="OnlineTV",Россия-Культура (63%)
+https://server.musical.uz/tv/russia-k/index.m3u8?token=828f24fc4af04e32599b437c5c705b1cf3097215-6b562ee54e339c0a79afa19e415ef537-1747159934-1747149134&remote=212.231.121.4
+#EXTINF:-1 tvg-id="Galaxy TV" group-title="OnlineTV",Galaxy TV (68%)
+https://server.musical.uz/tv/galaxytv_Web/index.m3u8?token=27cca5c9812c5347849eb28f08ffb2c2611c6504-58f5ceb4134f1f14a3c6288528bfab44-1747159935-1747149135&remote=212.231.121.4
+#EXTINF:-1 tvg-id="КиноСат" group-title="OnlineTV",КиноСат (79%)
+https://server.musical.uz/tv/kinosat_web/index.m3u8?token=0a70d4a1e5cb0bf05c45fe1bb3bfadbb69d6c03a-c091c381e0060fecd1d28e391368eaac-1747159938-1747149138&remote=212.231.121.4
+#EXTINF:-1 tvg-id="Карусель" group-title="OnlineTV",Карусель (75%)
+https://server.musical.uz/tv/karusel_web/index.m3u8?token=6b44a3d7acf8cb6b8335773e6d7bb9feefeb4174-3871b486606bf8f864ec9641facafd66-1747159941-1747149141&remote=212.231.121.4
+#EXTINF:-1 tvg-id="Дорама" group-title="OnlineTV",Дорама (91%)
+https://server.musical.uz/tv/dorama/index.m3u8?token=4079c8d82fbbec7a0dc1137b7142dc768ad38d72-a256cde67b75dd302388d725ff592962-1747159943-1747149143&remote=212.231.121.4
+#EXTINF:-1 tvg-id="Красная линия" group-title="OnlineTV",Красная линия (56%)
+https://server.musical.uz/tv/red_line/index.m3u8?token=0ff83572678e3072d0c5816db9205fe30285df58-ee9af03c17e7594db32c3c08afde303d-1747159946-1747149146&remote=212.231.121.4
+#EXTINF:-1 tvg-id="Охота и рыбалка" group-title="OnlineTV",Охота и рыбалка (49%)
+https://server.musical.uz/tv/oxota_i_ribalka_web/index.m3u8?token=2eac6c5e5a29840c6b90d68b8d4b7b28fda43fd5-71801c8ea938e516ce0ffa9345192a3b-1747159950-1747149150&remote=212.231.121.4
+#EXTINF:-1 tvg-id="Русский иллюзион" group-title="OnlineTV",Русский иллюзион (67%)
+https://server.musical.uz/tv/rusiluzion_web/index.m3u8?token=93087c4c45ac626e33950cdf0bb7a5d433f6a1be-8ae4e6ceb3b0cf33ed993ed52e7d4b74-1747159953-1747149153&remote=212.231.121.4
+#EXTINF:-1 tvg-id=".Red" group-title="OnlineTV",.Red (68%)
+https://server.musical.uz/tv/red_web/index.m3u8?token=7778ba97b59d1b2a537942b55e927d3501d601ea-7aa6c7bd30b44fe8c8abb0d2256c1477-1747159955-1747149155&remote=212.231.121.4
+#EXTINF:-1 tvg-id="СТС Kids" group-title="OnlineTV",СТС Kids (89%)
+https://server.musical.uz/tv/ctck_web/index.m3u8?token=f49317be1073747b994bff826b9f9bc213298ddc-6711b36b976379aefb3cc518a9c8391b-1747159958-1747149158&remote=212.231.121.4
+#EXTINF:-1 tvg-id="Мужской" group-title="OnlineTV",Мужской (67%)
+https://server.musical.uz/tv/mujskotv_web/index.m3u8?token=4a7fe841f570ae8c588373218e617d18f85fc877-aa64b72e418caed138887d43d6d3b406-1747159964-1747149164&remote=212.231.121.4
+#EXTINF:-1 tvg-id="Gulli Girl" group-title="OnlineTV",Gulli Girl (86%)
+https://server.musical.uz/tv/gulli_girl_Web/index.m3u8?token=e43dc199591969c4e172c042f368316a722093b4-884990744da5d98ed9c30a8fc91e6c37-1747159966-1747149166&remote=212.231.121.4
+#EXTINF:-1 tvg-id="RTVi" group-title="OnlineTV",RTVi (83%)
+https://server.musical.uz/tv/rtvi/index.m3u8?token=352ef2b3c3aebe6c8dc1ea79992169188656ae51-2519e7b8fc1b194e941e409ad8ea1f1a-1747159969-1747149169&remote=212.231.121.4
+#EXTINF:-1 tvg-id="ОТР" group-title="OnlineTV",ОТР (72%)
+https://server.musical.uz/tv/otp/index.m3u8?token=0704268337d54777e4911409e9a14a8b11d98942-684672c58a776066dfdeda59c63e60f6-1747159974-1747149174&remote=212.231.121.4
