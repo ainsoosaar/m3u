@@ -22,23 +22,32 @@ jobs:
       with:
         node-version: '18'
     
-    - name: Install dependencies
-      run: |
-        npm install puppeteer
-        # Устанавливаем системные зависимости для Chrome
-        sudo apt-get update
-        sudo apt-get install -y \
-          chromium-browser \
-          libnss3 \
-          libatk-bridge2.0-0 \
-          libdrm2 \
-          libxkbcommon0 \
-          libgbm1 \
-          libasound2t64 \
-          xvfb
+    # 🔥 КЭШИРОВАНИЕ: системные пакеты (установятся один раз)
+    - name: Cache apt packages
+      uses: awalsh128/cache-apt-pkgs-action@latest
+      with:
+        packages: chromium-browser libnss3 libatk-bridge2.0-0 libdrm2 libxkbcommon0 libgbm1 libasound2t64
+        version: 1.0
     
-    - name: Build playlist with xvfb
-      run: xvfb-run --auto-servernum node src/build_pokaz.js
+    # 🔥 КЭШИРОВАНИЕ: node_modules
+    - name: Cache node modules
+      id: cache-npm
+      uses: actions/cache@v3
+      with:
+        path: |
+          node_modules
+          ~/.npm
+        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-node-
+    
+    - name: Install dependencies
+      if: steps.cache-npm.outputs.cache-hit != 'true'
+      run: npm install puppeteer
+    
+    # ✅ ПРОСТОЙ ЗАПУСК: без xvfb-run
+    - name: Build playlist
+      run: node src/build_pokaz.js
     
     - name: Check for changes
       id: git-check
