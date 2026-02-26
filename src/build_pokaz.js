@@ -6,7 +6,7 @@ const BASE = 'https://pokaz.me';
 const PLAYLIST_FILE = path.resolve('./playlists/pokaz_playlist.m3u8');
 const LOG_FILE = path.resolve('./playlists/error_log.txt');
 
-// Список каналов (ваш список)
+// Список каналов
 const channels = [
   '/336-tv_pervyy_kanal_online.html',
   '/385-kanal-rossiya-1-tv.html',
@@ -124,6 +124,7 @@ function parseChannelPage(html, channelUrl) {
       name = nameMatch[1]
         .replace(/смотреть онлайн/i, '')
         .replace(/телеканал/i, '')
+        .replace(/\s+/g, ' ')
         .trim();
     }
     
@@ -135,24 +136,42 @@ function parseChannelPage(html, channelUrl) {
       logo = logoMatch[1].startsWith('http') ? logoMatch[1] : 'https://pokaz.me' + logoMatch[1];
     }
     
-    // Поток (ищем video src или ссылку на .m3u8)
+    // 🔥 Ищем полный URL видео в pjsdiv или video теге
     let stream = '';
     
-    // Сначала ищем video тег
-    const videoMatch = html.match(/<video[^>]*src="([^"]*\.m3u8[^"]*)"[^>]*>/i);
-    if (videoMatch) {
-      stream = videoMatch[1];
+    // Сначала ищем в pjsdiv (как в вашем примере)
+    const pjsdivMatch = html.match(/<pjsdiv[^>]*><video[^>]*src="([^"]*\.m3u8\?k=[^"]*)"[^>]*><\/video><\/pjsdiv>/i);
+    if (pjsdivMatch) {
+      stream = pjsdivMatch[1];
+      console.log(`  ✅ Найден полный URL в pjsdiv`);
     } else {
-      // Ищем прямую ссылку на .m3u8
-      const m3u8Match = html.match(/"(https?:\/\/[^"]*\.m3u8[^"]*)"/i) ||
-                       html.match(/'([^']*\.m3u8[^']*)'/i);
-      if (m3u8Match) {
-        stream = m3u8Match[1];
+      // Если не нашли в pjsdiv, ищем просто video src с полным токеном
+      const videoMatch = html.match(/<video[^>]*src="([^"]*\.m3u8\?k=[^"]*)"[^>]*>/i);
+      if (videoMatch) {
+        stream = videoMatch[1];
+        console.log(`  ✅ Найден полный URL в video`);
+      } else {
+        // Если не нашли с полным токеном, ищем любой video src
+        const simpleVideoMatch = html.match(/<video[^>]*src="([^"]*\.m3u8[^"]*)"[^>]*>/i);
+        if (simpleVideoMatch) {
+          stream = simpleVideoMatch[1];
+          console.log(`  ⚠️ Найден URL без полного токена: ${stream}`);
+        }
       }
     }
     
+    // Проверяем, что нашли поток
+    if (!stream) {
+      console.warn(`  ❌ Не удалось найти URL потока`);
+      fs.appendFileSync(LOG_FILE, `${channelUrl} - поток не найден\n`);
+      return { name, logo, stream: '' };
+    }
+    
     return { name, logo, stream };
+    
   } catch (err) {
+    console.error(`  ❌ Ошибка парсинга: ${err.message}`);
+    fs.appendFileSync(LOG_FILE, `${channelUrl} - ошибка парсинга: ${err.message}\n`);
     return { name: '', logo: '', stream: '' };
   }
 }
@@ -160,9 +179,15 @@ function parseChannelPage(html, channelUrl) {
 // Главная функция
 async function build() {
   console.log('🚀 Запуск сборки плейлиста...');
+  console.log('='.repeat(50));
   
   let playlist = '#EXTM3U\n';
-  fs.writeFileSync(LOG_FILE, '');
+  // Очищаем лог файл
+  try {
+    fs.writeFileSync(LOG_FILE, '');
+  } catch (err) {
+    console.log(`⚠️ Не удалось очистить лог: ${err.message}`);
+  }
   
   let successCount = 0;
   let failCount = 0;
@@ -182,7 +207,6 @@ async function build() {
       
       if (!name || !stream) {
         console.warn(`  ❌ Не удалось найти название или поток`);
-        fs.appendFileSync(LOG_FILE, `${url} - данные не найдены\n`);
         failCount++;
         continue;
       }
@@ -203,13 +227,29 @@ async function build() {
   }
   
   // Сохраняем плейлист
-  fs.writeFileSync(PLAYLIST_FILE, playlist);
+  try {
+    fs.writeFileSync(PLAYLIST_FILE, playlist);
+    console.log('\n' + '='.repeat(50));
+    console.log(`📊 Статистика:`);
+    console.log(`   ✅ Успешно: ${successCount}`);
+    console.log(`   ❌ Ошибок: ${failCount}`);
+    console.log(`   📁 Плейлист сохранён: ${PLAYLIST_FILE}`);
+    
+    // Проверяем размер плейлиста
+    const stats = fs.statSync(PLAYLIST_FILE);
+    console.log(`   📦 Размер: ${(stats.size / 1024).toFixed(2)} KB`);
+    
+    // Показываем пример первой ссылки
+    const firstLine = playlist.split('\n').find(line => line.includes('http'));
+    if (firstLine) {
+      console.log(`\n🔍 Пример ссылки:`);
+      console.log(`   ${firstLine.substring(0, 100)}...`);
+    }
+    
+  } catch (err) {
+    console.error(`❌ Ошибка сохранения плейлиста: ${err.message}`);
+  }
   
-  console.log('\n' + '='.repeat(50));
-  console.log(`📊 Статистика:`);
-  console.log(`   ✅ Успешно: ${successCount}`);
-  console.log(`   ❌ Ошибок: ${failCount}`);
-  console.log(`   📁 Плейлист сохранён: ${PLAYLIST_FILE}`);
   console.log('='.repeat(50));
 }
 
