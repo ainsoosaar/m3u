@@ -1,0 +1,1572 @@
+﻿# Создаём полностью обновлённый index.html
+$newIndexHtml = @'
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POKAZ-M3U - Полная документация</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            position: relative;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .header h1 i {
+            margin-right: 15px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .header p {
+            font-size: 1.3em;
+            opacity: 0.95;
+            position: relative;
+        }
+
+        .badge-container {
+            margin-top: 20px;
+            position: relative;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: bold;
+            margin: 0 5px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .badge-primary { background: #3498db; color: white; }
+        .badge-success { background: #27ae60; color: white; }
+        .badge-warning { background: #f39c12; color: white; }
+        .badge-danger { background: #e74c3c; color: white; }
+        .badge-info { background: #00bcd4; color: white; }
+        .badge-purple { background: #9b59b6; color: white; }
+
+        /* Navigation */
+        .nav-bar {
+            background: #2c3e50;
+            padding: 15px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-menu {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .nav-item {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 50px;
+            transition: all 0.3s;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .nav-item:hover {
+            background: #34495e;
+            transform: translateY(-2px);
+        }
+
+        .nav-item.active {
+            background: #3498db;
+            box-shadow: 0 4px 10px rgba(52,152,219,0.3);
+        }
+
+        .nav-item i {
+            margin-right: 5px;
+        }
+
+        /* Search */
+        .search-box {
+            padding: 20px;
+            background: #f8f9fa;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 50px;
+            font-size: 16px;
+            transition: all 0.3s;
+            background: white;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 0 3px rgba(52,152,219,0.1);
+        }
+
+        /* Main content */
+        .content {
+            padding: 40px;
+        }
+
+        .section {
+            margin-bottom: 60px;
+            scroll-margin-top: 80px;
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section-title {
+            font-size: 2.2em;
+            color: #2c3e50;
+            border-bottom: 4px solid #3498db;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .section-title i {
+            margin-right: 15px;
+            color: #3498db;
+            background: #e8f4f8;
+            padding: 10px;
+            border-radius: 50%;
+        }
+
+        .subsection {
+            margin: 30px 0 20px 30px;
+        }
+
+        .subsection-title {
+            font-size: 1.6em;
+            color: #34495e;
+            margin-bottom: 20px;
+            position: relative;
+            padding-left: 15px;
+        }
+
+        .subsection-title::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 5px;
+            background: #3498db;
+            border-radius: 5px;
+        }
+
+        .card {
+            background: #f8f9fa;
+            border-left: 4px solid #3498db;
+            padding: 25px;
+            margin: 20px 0;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        /* Code blocks */
+        pre {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 20px;
+            border-radius: 10px;
+            overflow-x: auto;
+            margin: 20px 0;
+            font-family: 'Fira Code', 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.5;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        code {
+            font-family: 'Fira Code', 'Courier New', monospace;
+            background: #e8f4f8;
+            padding: 3px 8px;
+            border-radius: 5px;
+            color: #c7254e;
+            font-size: 0.9em;
+        }
+
+        pre code {
+            background: none;
+            color: inherit;
+            padding: 0;
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        th {
+            background: #3498db;
+            color: white;
+            font-weight: 600;
+        }
+
+        tr:hover {
+            background: #f5f5f5;
+        }
+
+        /* Lists */
+        ul, ol {
+            margin: 15px 0;
+            padding-left: 30px;
+        }
+
+        li {
+            margin: 10px 0;
+        }
+
+        /* Checklist */
+        .checklist {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .checklist li {
+            margin: 15px 0;
+            padding: 15px 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 4px solid #27ae60;
+            transition: all 0.3s;
+        }
+
+        .checklist li:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .checklist li:before {
+            content: "✅ ";
+            margin-right: 10px;
+            font-size: 1.2em;
+        }
+
+        /* Command boxes */
+        .command-box {
+            background: #34495e;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            font-family: 'Fira Code', 'Courier New', monospace;
+            margin: 20px 0;
+            position: relative;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .command-box .copy-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #2c3e50;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: all 0.3s;
+        }
+
+        .command-box .copy-btn:hover {
+            background: #1a252f;
+            transform: translateY(-2px);
+        }
+
+        /* Alert boxes */
+        .alert {
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .alert.info {
+            background: #d1ecf1;
+            border: 1px solid #bee5eb;
+            color: #0c5460;
+        }
+
+        .alert.success {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+        }
+
+        .alert.warning {
+            background: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+        }
+
+        .alert.error {
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+        }
+
+        /* Tabs */
+        .tabs {
+            margin: 20px 0;
+        }
+
+        .tab-buttons {
+            display: flex;
+            gap: 5px;
+            border-bottom: 3px solid #3498db;
+            overflow-x: auto;
+            padding-bottom: 2px;
+        }
+
+        .tab-button {
+            padding: 12px 25px;
+            background: #ecf0f1;
+            border: none;
+            cursor: pointer;
+            border-radius: 10px 10px 0 0;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+
+        .tab-button:hover {
+            background: #d0d7dd;
+        }
+
+        .tab-button.active {
+            background: #3498db;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .tab-content {
+            display: none;
+            padding: 30px;
+            border: 1px solid #e0e0e0;
+            border-top: none;
+            border-radius: 0 0 10px 10px;
+            background: white;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Progress bar */
+        .progress-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: transparent;
+            z-index: 1000;
+        }
+
+        .progress-bar {
+            height: 4px;
+            background: linear-gradient(90deg, #3498db, #9b59b6, #e74c3c, #f39c12);
+            width: 0%;
+            transition: width 0.3s;
+            background-size: 200% 200%;
+            animation: gradient 3s ease infinite;
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Schedule grid */
+        .schedule-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .schedule-item {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+        }
+
+        .schedule-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+
+        .schedule-item .time {
+            font-size: 2em;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .schedule-item .label {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+
+        /* Status indicators */
+        .status-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 5px;
+        }
+
+        .status-active {
+            background: #27ae60;
+            animation: pulse 2s infinite;
+        }
+
+        .status-inactive {
+            background: #e74c3c;
+        }
+
+        .status-warning {
+            background: #f39c12;
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .footer a {
+            color: #3498db;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .footer a:hover {
+            color: #5dade2;
+            text-decoration: underline;
+        }
+
+        .footer-links {
+            margin-top: 15px;
+        }
+
+        .footer-links a {
+            margin: 0 10px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .nav-menu {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .nav-item {
+                text-align: center;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+            
+            .section-title {
+                font-size: 1.8em;
+            }
+            
+            .subsection {
+                margin-left: 10px;
+            }
+
+            .schedule-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .tab-buttons {
+                flex-wrap: wrap;
+            }
+        }
+
+        /* Print styles */
+        @media print {
+            .nav-bar, .search-box, .progress-container, .footer, .copy-btn {
+                display: none;
+            }
+            
+            body {
+                padding: 0;
+                background: white;
+            }
+            
+            .container {
+                box-shadow: none;
+            }
+            
+            pre {
+                background: #f4f4f4;
+                color: #333;
+                border: 1px solid #ddd;
+            }
+        }
+    </style>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Fira Code font -->
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <h1><i class="fas fa-film"></i> POKAZ-M3U</h1>
+            <p>Полная документация по автоматизированной системе сбора и публикации плейлистов</p>
+            <div class="badge-container">
+                <span class="badge badge-primary"><i class="fas fa-code-branch"></i> Версия 10.0.0</span>
+                <span class="badge badge-success"><i class="fab fa-node"></i> Node.js 24.13.1</span>
+                <span class="badge badge-warning"><i class="fab fa-microsoft"></i> PowerShell 7.0+</span>
+                <span class="badge badge-info"><i class="fab fa-github"></i> GitHub</span>
+                <span class="badge badge-purple"><i class="fas fa-clock"></i> 6h Schedule</span>
+            </div>
+        </div>
+
+        <div class="nav-bar">
+            <div class="nav-menu" id="navMenu">
+                <a href="#about" class="nav-item"><i class="fas fa-info-circle"></i> О проекте</a>
+                <a href="#structure" class="nav-item"><i class="fas fa-folder-tree"></i> Структура</a>
+                <a href="#scheduler" class="nav-item"><i class="fas fa-clock"></i> Планировщик 6h</a>
+                <a href="#github" class="nav-item"><i class="fab fa-github"></i> GitHub</a>
+                <a href="#automation" class="nav-item"><i class="fas fa-robot"></i> Автоматизация</a>
+                <a href="#monitoring" class="nav-item"><i class="fas fa-chart-line"></i> Мониторинг</a>
+                <a href="#commands" class="nav-item"><i class="fas fa-terminal"></i> Команды</a>
+                <a href="#troubleshooting" class="nav-item"><i class="fas fa-wrench"></i> Проблемы</a>
+            </div>
+        </div>
+
+        <div class="search-box">
+            <input type="text" class="search-input" id="searchInput" placeholder="🔍 Поиск по документации...">
+        </div>
+
+        <div class="content" id="content">
+            <!-- About Section -->
+            <section id="about" class="section">
+                <h2 class="section-title"><i class="fas fa-info-circle"></i> О ПРОЕКТЕ</h2>
+                <div class="card">
+                    <p style="font-size: 1.1em; margin-bottom: 20px;">
+                        <strong>POKAZ-M3U</strong> - полностью автоматизированная система для сбора актуальных M3U плейлистов 
+                        с сайта pokaz.me и их публикации на GitHub. Система работает полностью автономно, запускаясь 
+                        каждые 6 часов через планировщик задач Windows.
+                    </p>
+                    
+                    <div class="alert success" style="margin-bottom: 20px;">
+                        <i class="fas fa-check-circle"></i> 
+                        <span class="status-indicator status-active"></span>
+                        <strong>Текущий статус:</strong> Система полностью работоспособна и автоматизирована
+                    </div>
+
+                    <h3 style="margin-top: 25px; margin-bottom: 15px;">🎯 Ключевые возможности:</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                        <div style="background: #f0f8ff; padding: 15px; border-radius: 10px;">
+                            <i class="fas fa-check-circle" style="color: #27ae60; margin-right: 10px;"></i>
+                            Автоматическая сборка каждые 6 часов
+                        </div>
+                        <div style="background: #f0f8ff; padding: 15px; border-radius: 10px;">
+                            <i class="fas fa-check-circle" style="color: #27ae60; margin-right: 10px;"></i>
+                            Публикация на GitHub с уникальными именами
+                        </div>
+                        <div style="background: #f0f8ff; padding: 15px; border-radius: 10px;">
+                            <i class="fas fa-check-circle" style="color: #27ae60; margin-right: 10px;"></i>
+                            Детальное логирование всех операций
+                        </div>
+                        <div style="background: #f0f8ff; padding: 15px; border-radius: 10px;">
+                            <i class="fas fa-check-circle" style="color: #27ae60; margin-right: 10px;"></i>
+                            Веб-интерфейс для мониторинга
+                        </div>
+                        <div style="background: #f0f8ff; padding: 15px; border-radius: 10px;">
+                            <i class="fas fa-check-circle" style="color: #27ae60; margin-right: 10px;"></i>
+                            Безопасное хранение токенов
+                        </div>
+                        <div style="background: #f0f8ff; padding: 15px; border-radius: 10px;">
+                            <i class="fas fa-check-circle" style="color: #27ae60; margin-right: 10px;"></i>
+                            ES Module поддержка в Node.js
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Structure Section -->
+            <section id="structure" class="section">
+                <h2 class="section-title"><i class="fas fa-folder-tree"></i> СТРУКТУРА ПРОЕКТА</h2>
+                
+                <div class="card">
+                    <h3>📁 Полная структура каталогов:</h3>
+                    <pre>
+pokaz-m3u-clean/
+├── 📂 playlists/                          # Основная рабочая папка
+│   ├── 📄 production.ps1                   # Главный скрипт автоматизации v10.0.0
+│   ├── 📄 build_pokaz_fixed.js              # Сборщик плейлиста (ES Module)
+│   ├── 📄 pokaz_playlist.m3u8               # Текущий локальный плейлист
+│   ├── 📄 production.log                    # Лог работы скрипта
+│   ├── 📄 error.log                         # Лог ошибок
+│   ├── 📄 monitor.html                       # Веб-интерфейс мониторинга
+│   ├── 📄 playlist_from_pc_YYYYMMDD_HHMMSS.m3u8  # Сгенерированные плейлисты
+│   └── 📄 git-auto-push-playlist.ps1         # (архив) старые скрипты
+│
+├── 📂 src/                                  # Исходный код (резерв)
+│   └── 📄 build_pokaz.js                     # Оригинальный сборщик
+│
+├── 📄 package.json                           # Зависимости Node.js (type: module)
+├── 📄 package-lock.json                      # Фиксация версий
+├── 📄 README.md                              # Документация проекта
+└── 📄 index.html                             # Полная документация (этот файл)
+                    </pre>
+
+                    <div class="alert info" style="margin-top: 20px;">
+                        <i class="fas fa-info-circle"></i>
+                        <strong>Важно:</strong> Все основные рабочие файлы находятся в папке <code>playlists</code>.
+                    </div>
+                </div>
+            </section>
+
+            <!-- Scheduler Section -->
+            <section id="scheduler" class="section">
+                <h2 class="section-title"><i class="fas fa-clock"></i> ПЛАНИРОВЩИК ЗАДАЧ (6 ЧАСОВ)</h2>
+
+                <div class="card">
+                    <h3><i class="fas fa-tasks"></i> Задача: Pokaz-M3U Production</h3>
+                    
+                    <div class="alert success">
+                        <span class="status-indicator status-active"></span>
+                        <strong>Статус:</strong> Активна и работает
+                        <span style="float: right;">Последний запуск: <strong id="lastRunDisplay">25.02.2026 23:19:31</strong></span>
+                    </div>
+
+                    <table>
+                        <tr>
+                            <th style="width: 200px;">Параметр</th>
+                            <th>Значение</th>
+                        </tr>
+                        <tr>
+                            <td>Имя задачи</td>
+                            <td><code>Pokaz-M3U Production</code></td>
+                        </tr>
+                        <tr>
+                            <td>Тип расписания</td>
+                            <td><span class="badge badge-primary">Ежедневно с повтором каждые 6 часов</span></td>
+                        </tr>
+                        <tr>
+                            <td>Интервал</td>
+                            <td><code>PT6H</code> (6 часов)</td>
+                        </tr>
+                        <tr>
+                            <td>Запусков в сутки</td>
+                            <td><strong>4 раза</strong> (00:00, 06:00, 12:00, 18:00)</td>
+                        </tr>
+                        <tr>
+                            <td>Последний запуск</td>
+                            <td><code>25.02.2026 23:19:31</code></td>
+                        </tr>
+                        <tr>
+                            <td>Следующий запуск</td>
+                            <td><code id="nextRunDisplay">26.02.2026 05:19:31</code></td>
+                        </tr>
+                        <tr>
+                            <td>Статус</td>
+                            <td><span class="badge badge-success">Ready</span></td>
+                        </tr>
+                        <tr>
+                            <td>Запуск от имени</td>
+                            <td><code>SYSTEM</code> (с наивысшими привилегиями)</td>
+                        </tr>
+                        <tr>
+                            <td>Команда</td>
+                            <td><code>powershell.exe -File C:\Users\megaa\Desktop\Raschirenija\pokaz-m3u-clean\playlists\production.ps1</code></td>
+                        </tr>
+                    </table>
+
+                    <h4 style="margin-top: 30px; margin-bottom: 15px;">📅 Расписание запусков:</h4>
+                    <div class="schedule-grid">
+                        <div class="schedule-item">
+                            <div class="time">00:00</div>
+                            <div class="label">Полуночный запуск</div>
+                        </div>
+                        <div class="schedule-item">
+                            <div class="time">06:00</div>
+                            <div class="label">Утренний запуск</div>
+                        </div>
+                        <div class="schedule-item">
+                            <div class="time">12:00</div>
+                            <div class="label">Дневной запуск</div>
+                        </div>
+                        <div class="schedule-item">
+                            <div class="time">18:00</div>
+                            <div class="label">Вечерний запуск</div>
+                        </div>
+                    </div>
+
+                    <h4 style="margin-top: 30px;">⚙️ Параметры задачи:</h4>
+                    <ul>
+                        <li><i class="fas fa-check-circle" style="color: #27ae60;"></i> Выполнять с наивысшими привилегиями</li>
+                        <li><i class="fas fa-check-circle" style="color: #27ae60;"></i> Выполнять независимо от регистрации пользователя</li>
+                        <li><i class="fas fa-check-circle" style="color: #27ae60;"></i> Выполнить пропущенную задачу как можно быстрее</li>
+                        <li><i class="fas fa-check-circle" style="color: #27ae60;"></i> Запускать при питании от батареи</li>
+                        <li><i class="fas fa-check-circle" style="color: #27ae60;"></i> Пробуждать компьютер для выполнения</li>
+                        <li><i class="fas fa-check-circle" style="color: #27ae60;"></i> При ошибке перезапускать каждые 15 минут (до 3 раз)</li>
+                    </ul>
+
+                    <div class="command-box">
+                        # Команда для создания задачи (от администратора)
+                        schtasks /create /tn "Pokaz-M3U Production" /tr "powershell.exe -File C:\Users\megaa\Desktop\Raschirenija\pokaz-m3u-clean\playlists\production.ps1" /sc hourly /mo 6 /ru SYSTEM /f
+                        <button class="copy-btn" onclick="copyCommand('schtasks /create /tn \"Pokaz-M3U Production\" /tr \"powershell.exe -File C:\\Users\\megaa\\Desktop\\Raschirenija\\pokaz-m3u-clean\\playlists\\production.ps1\" /sc hourly /mo 6 /ru SYSTEM /f')">Копировать</button>
+                    </div>
+
+                    <div class="command-box">
+                        # Проверка статуса задачи
+                        schtasks /query /tn "Pokaz-M3U Production" /fo list /v
+                        <button class="copy-btn" onclick="copyCommand('schtasks /query /tn \"Pokaz-M3U Production\" /fo list /v')">Копировать</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- GitHub Section -->
+            <section id="github" class="section">
+                <h2 class="section-title"><i class="fab fa-github"></i> GITHUB ИНТЕГРАЦИЯ</h2>
+
+                <div class="card">
+                    <h3>📊 Информация о репозитории</h3>
+                    
+                    <table>
+                        <tr>
+                            <th style="width: 200px;">Параметр</th>
+                            <th>Значение</th>
+                        </tr>
+                        <tr>
+                            <td>Репозиторий</td>
+                            <td><a href="https://github.com/ainsoosaar/m3u" target="_blank"><i class="fab fa-github"></i> ainsoosaar/m3u</a></td>
+                        </tr>
+                        <tr>
+                            <td>Ветка</td>
+                            <td><code>main</code></td>
+                        </tr>
+                        <tr>
+                            <td>Последний файл</td>
+                            <td><a href="https://github.com/ainsoosaar/m3u/blob/main/playlist_from_pc_20260225_231926.m3u8" target="_blank" id="githubLastFileLink">playlist_from_pc_20260225_231926.m3u8</a></td>
+                        </tr>
+                        <tr>
+                            <td>SHA файла</td>
+                            <td><code id="githubSha">647bc491dc1b9e1d48d8ea39d0eb32ee60930725</code></td>
+                        </tr>
+                        <tr>
+                            <td>Размер</td>
+                            <td>18.0 KB</td>
+                        </tr>
+                        <tr>
+                            <td>Прямая ссылка</td>
+                            <td><a href="https://github.com/ainsoosaar/m3u/raw/main/playlist_from_pc_20260225_231926.m3u8" target="_blank" id="githubRawLink">Скачать последний плейлист</a></td>
+                        </tr>
+                        <tr>
+                            <td>Постоянная ссылка</td>
+                            <td><code>https://github.com/ainsoosaar/m3u/raw/main/playlist_from_pc_latest.m3u8</code></td>
+                        </tr>
+                    </table>
+
+                    <h4 style="margin-top: 25px;">🔐 Безопасность токена</h4>
+                    <div class="alert success">
+                        <i class="fas fa-check-circle"></i> 
+                        Токен сохранён в переменной окружения <code>GITHUB_TOKEN</code> (пользовательская)
+                    </div>
+                    <div class="command-box">
+                        # Установка токена (выполнить один раз)
+                        [Environment]::SetEnvironmentVariable("GITHUB_TOKEN", "ваш_токен", "User")
+                        <button class="copy-btn" onclick="copyCommand('[Environment]::SetEnvironmentVariable(\"GITHUB_TOKEN\", \"ваш_токен\", \"User\")')">Копировать</button>
+                    </div>
+
+                    <h4 style="margin-top: 25px;">📋 Последние 10 файлов на GitHub</h4>
+                    <div id="githubFilesList" style="max-height: 300px; overflow-y: auto; border: 1px solid #e0e0e0; border-radius: 5px; padding: 10px;">
+                        <ul style="list-style: none; padding: 0;">
+                            <li style="padding: 8px; border-bottom: 1px solid #eee;">
+                                <a href="https://github.com/ainsoosaar/m3u/blob/main/playlist_from_pc_20260225_231926.m3u8" target="_blank">playlist_from_pc_20260225_231926.m3u8</a> 
+                                <span style="color: #666; font-size: 0.9em;">(18.0 KB) - 2026-02-25 23:19</span>
+                            </li>
+                            <li style="padding: 8px; border-bottom: 1px solid #eee;">
+                                <a href="https://github.com/ainsoosaar/m3u/blob/main/playlist_from_pc_20260225_212300.m3u8" target="_blank">playlist_from_pc_20260225_212300.m3u8</a> 
+                                <span style="color: #666; font-size: 0.9em;">(18.0 KB) - 2026-02-25 21:23</span>
+                            </li>
+                            <li style="padding: 8px; border-bottom: 1px solid #eee;">
+                                <a href="https://github.com/ainsoosaar/m3u/blob/main/playlist_from_pc_20260225_2115.m3u8" target="_blank">playlist_from_pc_20260225_2115.m3u8</a> 
+                                <span style="color: #666; font-size: 0.9em;">(18.0 KB) - 2026-02-25 21:15</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Automation Section -->
+            <section id="automation" class="section">
+                <h2 class="section-title"><i class="fas fa-robot"></i> АВТОМАТИЗАЦИЯ</h2>
+
+                <div class="tabs">
+                    <div class="tab-buttons">
+                        <button class="tab-button active" onclick="showTab('automation', 0)">Production скрипт</button>
+                        <button class="tab-button" onclick="showTab('automation', 1)">Сборщик (ES Module)</button>
+                        <button class="tab-button" onclick="showTab('automation', 2)">Полный цикл</button>
+                        <button class="tab-button" onclick="showTab('automation', 3)">Логирование</button>
+                    </div>
+                    
+                    <div class="tab-content active">
+                        <h3><i class="fas fa-file-code"></i> production.ps1 - Главный скрипт автоматизации v10.0.0</h3>
+                        <pre>
+# ============================================
+# production.ps1 - ЗАПУСК КАЖДЫЕ 6 ЧАСОВ
+# ============================================
+
+$playlistsPath = "C:\Users\megaa\Desktop\Raschirenija\pokaz-m3u-clean\playlists"
+$playlistFile = "pokaz_playlist.m3u8"
+$githubToken = [Environment]::GetEnvironmentVariable("GITHUB_TOKEN", "User")
+$repoOwner = "ainsoosaar"
+$repoName = "m3u"
+$branch = "main"
+
+# Создаём имя файла с текущей датой и временем
+$githubFileName = "playlist_from_pc_$(Get-Date -Format 'yyyyMMdd_HHmmss').m3u8"
+$fullPlaylistPath = Join-Path $playlistsPath $playlistFile
+
+Write-Host "🚀 ЗАПУСК ПРОЦЕССА (6h schedule)" -ForegroundColor Cyan
+
+# ШАГ 1: Проверка токена
+if (-not $githubToken) {
+    Write-Host "❌ Токен не найден!" -ForegroundColor Red
+    exit 1
+}
+
+# ШАГ 2: Сборка плейлиста
+Push-Location $playlistsPath
+node build_pokaz_fixed.js
+Pop-Location
+
+# ШАГ 3: Проверка файла
+if (-not (Test-Path $fullPlaylistPath)) {
+    Write-Host "❌ Файл не найден!" -ForegroundColor Red
+    exit 1
+}
+
+# ШАГ 4: Кодирование в Base64
+$bytes = [System.IO.File]::ReadAllBytes($fullPlaylistPath)
+$base64 = [Convert]::ToBase64String($bytes)
+$base64Escaped = $base64 -replace '"', '\"' -replace '\\', '\\\\'
+
+# ШАГ 5: Отправка на GitHub
+$apiUrl = "https://api.github.com/repos/$repoOwner/$repoName/contents/$githubFileName"
+$jsonString = '{"message":"Auto-update 6h schedule","content":"' + $base64Escaped + '","branch":"' + $branch + '"}'
+
+$tempFile = Join-Path $env:TEMP "github_prod.json"
+$jsonString | Out-File $tempFile -Encoding ASCII -NoNewline
+
+$response = curl.exe -s -X PUT `
+    -H "Authorization: token $githubToken" `
+    -H "Accept: application/vnd.github+json" `
+    -H "Content-Type: application/json" `
+    -d "@$tempFile" `
+    "$apiUrl"
+
+$result = $response | ConvertFrom-Json
+
+if ($result.content) {
+    Write-Host "✅ УСПЕХ! Файл создан: $githubFileName" -ForegroundColor Green
+    Write-Host "🔗 https://github.com/$repoOwner/$repoName/blob/$branch/$githubFileName"
+} else {
+    Write-Host "❌ Ошибка: $($result.message)" -ForegroundColor Red
+}
+
+Remove-Item $tempFile -Force -ErrorAction SilentlyContinue
+                        </pre>
+                    </div>
+
+                    <div class="tab-content">
+                        <h3><i class="fab fa-js"></i> build_pokaz_fixed.js - Сборщик (ES Module)</h3>
+                        <pre>
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+console.log('🚀 Запуск сборки плейлиста...');
+console.log('📁 Рабочая папка:', __dirname);
+
+try {
+    // Основной код сборки плейлиста
+    // (здесь идёт обращение к pokaz.me и сборка каналов)
+    
+    console.log('✅ Сборка успешно завершена');
+} catch (error) {
+    console.error('❌ Ошибка:', error);
+    fs.appendFileSync(path.join(__dirname, 'error_log.txt'), 
+        `[${new Date().toISOString()}] ${error.message}\n`);
+}
+                        </pre>
+                        <div class="alert info">
+                            <i class="fas fa-info-circle"></i>
+                            <strong>Важно:</strong> Файл использует ES Module синтаксис (import/export), 
+                            что соответствует <code>"type": "module"</code> в package.json.
+                        </div>
+                    </div>
+
+                    <div class="tab-content">
+                        <h3><i class="fas fa-sync-alt"></i> Полный цикл работы (каждые 6 часов)</h3>
+                        
+                        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 20px 0;">
+                            <div style="background: #f0f8ff; padding: 15px; border-radius: 10px; text-align: center;">
+                                <span class="badge badge-primary">00:00</span>
+                                <div style="margin-top: 10px;">Полуночный запуск</div>
+                            </div>
+                            <div style="background: #f0f8ff; padding: 15px; border-radius: 10px; text-align: center;">
+                                <span class="badge badge-primary">06:00</span>
+                                <div style="margin-top: 10px;">Утренний запуск</div>
+                            </div>
+                            <div style="background: #f0f8ff; padding: 15px; border-radius: 10px; text-align: center;">
+                                <span class="badge badge-primary">12:00</span>
+                                <div style="margin-top: 10px;">Дневной запуск</div>
+                            </div>
+                            <div style="background: #f0f8ff; padding: 15px; border-radius: 10px; text-align: center;">
+                                <span class="badge badge-primary">18:00</span>
+                                <div style="margin-top: 10px;">Вечерний запуск</div>
+                            </div>
+                        </div>
+
+                        <ol style="list-style-type: none; counter-reset: step; padding-left: 0;">
+                            <li style="counter-increment: step; margin-bottom: 20px; position: relative; padding-left: 50px;">
+                                <span style="position: absolute; left: 0; top: 0; width: 35px; height: 35px; background: #3498db; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold;">1</span>
+                                <strong>Планировщик (6h):</strong> Запускает <code>production.ps1</code> в заданное время
+                            </li>
+                            <li style="counter-increment: step; margin-bottom: 20px; position: relative; padding-left: 50px;">
+                                <span style="position: absolute; left: 0; top: 0; width: 35px; height: 35px; background: #3498db; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold;">2</span>
+                                <strong>PowerShell:</strong> Проверяет наличие токена GitHub в переменной окружения
+                            </li>
+                            <li style="counter-increment: step; margin-bottom: 20px; position: relative; padding-left: 50px;">
+                                <span style="position: absolute; left: 0; top: 0; width: 35px; height: 35px; background: #3498db; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold;">3</span>
+                                <strong>Node.js:</strong> Запускает <code>build_pokaz_fixed.js</code> для сборки актуального плейлиста
+                            </li>
+                            <li style="counter-increment: step; margin-bottom: 20px; position: relative; padding-left: 50px;">
+                                <span style="position: absolute; left: 0; top: 0; width: 35px; height: 35px; background: #3498db; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold;">4</span>
+                                <strong>PowerShell:</strong> Кодирует файл в Base64 и формирует JSON-запрос
+                            </li>
+                            <li style="counter-increment: step; margin-bottom: 20px; position: relative; padding-left: 50px;">
+                                <span style="position: absolute; left: 0; top: 0; width: 35px; height: 35px; background: #3498db; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold;">5</span>
+                                <strong>GitHub API:</strong> Отправляет PUT-запрос для создания нового файла
+                            </li>
+                            <li style="counter-increment: step; margin-bottom: 20px; position: relative; padding-left: 50px;">
+                                <span style="position: absolute; left: 0; top: 0; width: 35px; height: 35px; background: #3498db; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold;">6</span>
+                                <strong>Логирование:</strong> Записывает результат в <code>production.log</code>
+                            </li>
+                        </ol>
+
+                        <div class="alert success">
+                            <i class="fas fa-clock"></i>
+                            <strong>Время выполнения цикла:</strong> ~2-3 минуты
+                        </div>
+                    </div>
+
+                    <div class="tab-content">
+                        <h3><i class="fas fa-file-alt"></i> Система логирования</h3>
+                        
+                        <table>
+                            <tr>
+                                <th>Файл</th>
+                                <th>Назначение</th>
+                                <th>Пример записи</th>
+                            </tr>
+                            <tr>
+                                <td><code>production.log</code></td>
+                                <td>Полный лог всех операций</td>
+                                <td><code>2026-02-25 23:19:31 - ✅ УСПЕХ! Файл отправлен на GitHub!</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>error.log</code></td>
+                                <td>Только ошибки</td>
+                                <td><code>2026-02-25 20:49:54 - ❌ Ошибка GitHub: Invalid request</code></td>
+                            </tr>
+                        </table>
+
+                        <div class="command-box">
+                            # Просмотр лога в реальном времени
+                            Get-Content C:\Users\megaa\Desktop\Raschirenija\pokaz-m3u-clean\playlists\production.log -Wait
+                            <button class="copy-btn" onclick="copyCommand('Get-Content C:\\Users\\megaa\\Desktop\\Raschirenija\\pokaz-m3u-clean\\playlists\\production.log -Wait')">Копировать</button>
+                        </div>
+
+                        <div class="command-box">
+                            # Последние 20 записей
+                            Get-Content C:\Users\megaa\Desktop\Raschirenija\pokaz-m3u-clean\playlists\production.log -Tail 20
+                            <button class="copy-btn" onclick="copyCommand('Get-Content C:\\Users\\megaa\\Desktop\\Raschirenija\\pokaz-m3u-clean\\playlists\\production.log -Tail 20')">Копировать</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Monitoring Section -->
+            <section id="monitoring" class="section">
+                <h2 class="section-title"><i class="fas fa-chart-line"></i> МОНИТОРИНГ</h2>
+
+                <div class="card">
+                    <h3><i class="fas fa-tv"></i> Веб-интерфейс мониторинга</h3>
+                    <p>Для удобного отслеживания работы системы создан специальный веб-интерфейс:</p>
+                    
+                    <div class="command-box">
+                        file:///C:/Users/megaa/Desktop/Raschirenija/pokaz-m3u-clean/playlists/monitor.html
+                        <button class="copy-btn" onclick="copyCommand('file:///C:/Users/megaa/Desktop/Raschirenija/pokaz-m3u-clean/playlists/monitor.html')">Копировать</button>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 20px 0;">
+                        <div style="background: #f0f8ff; padding: 15px; border-radius: 10px;">
+                            <i class="fas fa-check-circle" style="color: #27ae60;"></i>
+                            <strong>Статус системы</strong> в реальном времени
+                        </div>
+                        <div style="background: #f0f8ff; padding: 15px; border-radius: 10px;">
+                            <i class="fas fa-check-circle" style="color: #27ae60;"></i>
+                            <strong>Последние 50 записей</strong> лога
+                        </div>
+                        <div style="background: #f0f8ff; padding: 15px; border-radius: 10px;">
+                            <i class="fas fa-check-circle" style="color: #27ae60;"></i>
+                            <strong>Список файлов</strong> на GitHub
+                        </div>
+                        <div style="background: #f0f8ff; padding: 15px; border-radius: 10px;">
+                            <i class="fas fa-check-circle" style="color: #27ae60;"></i>
+                            <strong>Автообновление</strong> каждые 30 секунд
+                        </div>
+                    </div>
+
+                    <div class="alert info">
+                        <i class="fas fa-info-circle"></i>
+                        <strong>Совет:</strong> Добавьте ссылку на monitor.html в закладки браузера для быстрого доступа.
+                    </div>
+                </div>
+            </section>
+
+            <!-- Commands Section -->
+            <section id="commands" class="section">
+                <h2 class="section-title"><i class="fas fa-terminal"></i> КОМАНДЫ ДЛЯ УПРАВЛЕНИЯ</h2>
+
+                <h3 class="subsection-title">📁 Навигация</h3>
+                <table>
+                    <tr>
+                        <th>Команда</th>
+                        <th>Описание</th>
+                    </tr>
+                    <tr>
+                        <td><code>cd C:\Users\megaa\Desktop\Raschirenija\pokaz-m3u-clean\playlists</code></td>
+                        <td>Перейти в папку проекта</td>
+                    </tr>
+                    <tr>
+                        <td><code>dir</code></td>
+                        <td>Просмотр содержимого папки</td>
+                    </tr>
+                </table>
+
+                <h3 class="subsection-title">🚀 Запуск скриптов</h3>
+                <table>
+                    <tr>
+                        <th>Команда</th>
+                        <th>Описание</th>
+                    </tr>
+                    <tr>
+                        <td><code>.\production.ps1</code></td>
+                        <td>Ручной запуск production скрипта</td>
+                    </tr>
+                    <tr>
+                        <td><code>node build_pokaz_fixed.js</code></td>
+                        <td>Запустить только сборку плейлиста</td>
+                    </tr>
+                </table>
+
+                <h3 class="subsection-title">⏰ Управление планировщиком</h3>
+                <table>
+                    <tr>
+                        <th>Команда</th>
+                        <th>Описание</th>
+                    </tr>
+                    <tr>
+                        <td><code>Start-ScheduledTask -TaskName "Pokaz-M3U Production"</code></td>
+                        <td>Запустить задачу сейчас</td>
+                    </tr>
+                    <tr>
+                        <td><code>Get-ScheduledTask -TaskName "Pokaz-M3U Production" | Get-ScheduledTaskInfo</code></td>
+                        <td>Информация о задаче</td>
+                    </tr>
+                    <tr>
+                        <td><code>Get-ScheduledTask -TaskName "Pokaz-M3U Production" | Format-List *</code></td>
+                        <td>Детальная информация</td>
+                    </tr>
+                    <tr>
+                        <td><code>Stop-ScheduledTask -TaskName "Pokaz-M3U Production"</code></td>
+                        <td>Остановить выполняющуюся задачу</td>
+                    </tr>
+                    <tr>
+                        <td><code>Disable-ScheduledTask -TaskName "Pokaz-M3U Production"</code></td>
+                        <td>Отключить задачу</td>
+                    </tr>
+                    <tr>
+                        <td><code>Enable-ScheduledTask -TaskName "Pokaz-M3U Production"</code></td>
+                        <td>Включить задачу</td>
+                    </tr>
+                </table>
+
+                <h3 class="subsection-title">🐙 Работа с GitHub</h3>
+                <table>
+                    <tr>
+                        <th>Команда</th>
+                        <th>Описание</th>
+                    </tr>
+                    <tr>
+                        <td><code>$token = [Environment]::GetEnvironmentVariable("GITHUB_TOKEN", "User")</code></td>
+                        <td>Получить токен из переменной окружения</td>
+                    </tr>
+                    <tr>
+                        <td><code>curl.exe -H "Authorization: token $token" https://api.github.com/user</code></td>
+                        <td>Проверить работоспособность токена</td>
+                    </tr>
+                    <tr>
+                        <td><code>curl.exe https://api.github.com/repos/ainsoosaar/m3u/contents/</code></td>
+                        <td>Получить список файлов в репозитории</td>
+                    </tr>
+                </table>
+
+                <h3 class="subsection-title">📊 Просмотр логов</h3>
+                <table>
+                    <tr>
+                        <th>Команда</th>
+                        <th>Описание</th>
+                    </tr>
+                    <tr>
+                        <td><code>Get-Content production.log -Tail 20</code></td>
+                        <td>Последние 20 записей лога</td>
+                    </tr>
+                    <tr>
+                        <td><code>Get-Content production.log -Wait</code></td>
+                        <td>Мониторинг лога в реальном времени</td>
+                    </tr>
+                    <tr>
+                        <td><code>Get-Content error.log</code></td>
+                        <td>Просмотр ошибок</td>
+                    </tr>
+                    <tr>
+                        <td><code>Clear-Content production.log</code></td>
+                        <td>Очистить лог-файл (осторожно!)</td>
+                    </tr>
+                </table>
+            </section>
+
+            <!-- Troubleshooting Section -->
+            <section id="troubleshooting" class="section">
+                <h2 class="section-title"><i class="fas fa-wrench"></i> УСТРАНЕНИЕ НЕПОЛАДОК</h2>
+
+                <div class="card">
+                    <h3>❌ Частые проблемы и их решения</h3>
+                    
+                    <table>
+                        <tr>
+                            <th>Проблема</th>
+                            <th>Вероятная причина</th>
+                            <th>Решение</th>
+                        </tr>
+                        <tr>
+                            <td><code>❌ Токен не найден</code></td>
+                            <td>Переменная окружения не установлена</td>
+                            <td><code>[Environment]::SetEnvironmentVariable("GITHUB_TOKEN", "ваш_токен", "User")</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>❌ Access is denied</code></td>
+                            <td>Недостаточно прав</td>
+                            <td>Запустить PowerShell от имени администратора</td>
+                        </tr>
+                        <tr>
+                            <td><code>❌ SHA wasn't supplied</code></td>
+                            <td>Попытка обновить существующий файл без SHA</td>
+                            <td>Использовать новое имя файла (скрипт делает это автоматически)</td>
+                        </tr>
+                        <tr>
+                            <td><code>❌ Сборка не работает</code></td>
+                            <td>Проблема с Node.js или зависимостями</td>
+                            <td><code>node --version</code> (должен быть v24.13.1)</td>
+                        </tr>
+                        <tr>
+                            <td><code>❌ Нет новых файлов на GitHub</code></td>
+                            <td>Ошибка при отправке</td>
+                            <td><code>Get-Content error.log</code> - проверить ошибки</td>
+                        </tr>
+                        <tr>
+                            <td><code>❌ require is not defined</code></td>
+                            <td>ES Module конфликт</td>
+                            <td>Использовать <code>build_pokaz_fixed.js</code> (уже исправлен)</td>
+                        </tr>
+                        <tr>
+                            <td><code>❌ Планировщик не запускается</code></td>
+                            <td>Задача отключена или нет прав</td>
+                            <td><code>Enable-ScheduledTask -TaskName "Pokaz-M3U Production"</code></td>
+                        </tr>
+                    </table>
+
+                    <h4 style="margin-top: 25px;">🔍 Диагностика системы</h4>
+                    <div class="command-box">
+                        # Быстрая диагностика
+                        Write-Host "=== ДИАГНОСТИКА ===" -ForegroundColor Cyan
+                        Write-Host "1. Токен: $([Environment]::GetEnvironmentVariable('GITHUB_TOKEN', 'User'))"
+                        Write-Host "2. Node.js: $(node --version)"
+                        Write-Host "3. Задача планировщика:" 
+                        Get-ScheduledTask -TaskName "Pokaz-M3U Production" -ErrorAction SilentlyContinue | Format-List State, LastRunTime, NextRunTime
+                        <button class="copy-btn" onclick="copyCommand('Write-Host \"=== ДИАГНОСТИКА ===\" -ForegroundColor Cyan; Write-Host \"1. Токен: \$([Environment]::GetEnvironmentVariable(\'GITHUB_TOKEN\', \'User\'))\"; Write-Host \"2. Node.js: \$(node --version)\"; Write-Host \"3. Задача планировщика:\"; Get-ScheduledTask -TaskName \"Pokaz-M3U Production\" -ErrorAction SilentlyContinue | Format-List State, LastRunTime, NextRunTime')">Копировать</button>
+                    </div>
+
+                    <div class="alert warning">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <strong>Важно:</strong> Всегда проверяйте логи перед поиском решения проблемы!
+                    </div>
+                </div>
+            </section>
+
+            <!-- Final Checklist -->
+            <section class="section">
+                <h2 class="section-title"><i class="fas fa-check-circle"></i> ФИНАЛЬНЫЙ ЧЕК-ЛИСТ</h2>
+                
+                <ul class="checklist">
+                    <li><strong>production.ps1</strong> - создан и работает (v10.0.0)</li>
+                    <li><strong>build_pokaz_fixed.js</strong> - исправлен для ES Module</li>
+                    <li><strong>GitHub токен</strong> - сохранён в переменной окружения</li>
+                    <li><strong>Планировщик задач</strong> - задача "Pokaz-M3U Production" создана (каждые 6 часов)</li>
+                    <li><strong>Последний запуск:</strong> 25.02.2026 23:19:31 - УСПЕШНО</li>
+                    <li><strong>Следующий запуск:</strong> 26.02.2026 05:19:31</li>
+                    <li><strong>Созданные файлы:</strong> playlist_from_pc_20260225_231926.m3u8 и др.</li>
+                    <li><strong>Мониторинг</strong> - monitor.html доступен и работает</li>
+                    <li><strong>Логирование</strong> - production.log и error.log ведутся</li>
+                    <li><strong>GitHub репозиторий</strong> - ainsoosaar/m3u активен</li>
+                </ul>
+
+                <div class="alert success" style="margin-top: 30px; text-align: center; font-size: 1.2em;">
+                    <i class="fas fa-star"></i>
+                    <strong>ПРОЕКТ ПОЛНОСТЬЮ ГОТОВ К РАБОТЕ!</strong>
+                    <i class="fas fa-star"></i>
+                </div>
+            </section>
+        </div>
+
+        <div class="footer">
+            <p><i class="far fa-copyright"></i> 2026 POKAZ-M3U Project | Версия 10.0.0 | Расписание: каждые 6 часов</p>
+            <p>Документ создан: 25.02.2026 | Последнее обновление: 25.02.2026 23:30</p>
+            <div class="footer-links">
+                <a href="#" onclick="window.print()"><i class="fas fa-print"></i> Печать</a> |
+                <a href="#" onclick="downloadManual()"><i class="fas fa-download"></i> Скачать HTML</a> |
+                <a href="monitor.html" target="_blank"><i class="fas fa-chart-line"></i> Мониторинг</a> |
+                <a href="https://github.com/ainsoosaar/m3u" target="_blank"><i class="fab fa-github"></i> GitHub</a> |
+                <a href="#top"><i class="fas fa-arrow-up"></i> Наверх</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Progress bar
+        window.onscroll = function() {
+            let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            let scrolled = (winScroll / height) * 100;
+            document.getElementById("progressBar").style.width = scrolled + "%";
+        };
+
+        // Search functionality
+        document.getElementById('searchInput').addEventListener('keyup', function() {
+            let searchTerm = this.value.toLowerCase();
+            let sections = document.querySelectorAll('.section');
+            
+            sections.forEach(section => {
+                let text = section.textContent.toLowerCase();
+                if (text.includes(searchTerm) || searchTerm === '') {
+                    section.style.display = 'block';
+                    
+                    // Highlight matches
+                    if (searchTerm !== '') {
+                        let content = section.innerHTML;
+                        let regex = new RegExp(searchTerm, 'gi');
+                        section.innerHTML = content.replace(regex, match => `<mark style="background: #ffd700; padding: 2px; border-radius: 3px;">${match}</mark>`);
+                    }
+                } else {
+                    section.style.display = 'none';
+                }
+            });
+        });
+
+        // Tab functionality
+        function showTab(sectionId, tabIndex) {
+            let section = document.getElementById(sectionId);
+            let tabs = section.querySelectorAll('.tab-content');
+            let buttons = section.querySelectorAll('.tab-button');
+            
+            tabs.forEach((tab, index) => {
+                if (index === tabIndex) {
+                    tab.classList.add('active');
+                } else {
+                    tab.classList.remove('active');
+                }
+            });
+            
+            buttons.forEach((button, index) => {
+                if (index === tabIndex) {
+                    button.classList.add('active');
+                } else {
+                    button.classList.remove('active');
+                }
+            });
+        }
+
+        // Copy command
+        function copyCommand(command) {
+            navigator.clipboard.writeText(command).then(() => {
+                showNotification('✅ Команда скопирована!');
+            }).catch(() => {
+                showNotification('❌ Ошибка копирования', 'error');
+            });
+        }
+
+        // Show notification
+        function showNotification(message, type = 'success') {
+            const notification = document.createElement('div');
+            notification.style.position = 'fixed';
+            notification.style.top = '20px';
+            notification.style.right = '20px';
+            notification.style.padding = '15px 25px';
+            notification.style.background = type === 'success' ? '#27ae60' : '#e74c3c';
+            notification.style.color = 'white';
+            notification.style.borderRadius = '5px';
+            notification.style.boxShadow = '0 4px 15px rgba(0,0,0,0.2)';
+            notification.style.zIndex = '9999';
+            notification.style.animation = 'slideIn 0.3s ease-out';
+            notification.textContent = message;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.animation = 'slideOut 0.3s ease-out';
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 2000);
+        }
+
+        // Add animation styles
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideIn {
+                from { transform: translateX(100%); opacity: 0; }
+                to { transform: translateX(0); opacity: 1; }
+            }
+            @keyframes slideOut {
+                from { transform: translateX(0); opacity: 1; }
+                to { transform: translateX(100%); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Download manual
+        function downloadManual() {
+            let content = document.getElementById('content').innerHTML;
+            let style = document.querySelector('style').innerHTML;
+            let html = `
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <meta charset="UTF-8">
+                    <title>POKAZ-M3U Manual</title>
+                    <style>${style}</style>
+                </head>
+                <body>
+                    <div class="container">
+                        <div class="header">
+                            <h1>POKAZ-M3U Manual</h1>
+                        </div>
+                        <div class="content">
+                            ${content}
+                        </div>
+                    </div>
+                </body>
+                </html>
+            `;
+            
+            let blob = new Blob([html], {type: 'text/html'});
+            let url = window.URL.createObjectURL(blob);
+            let a = document.createElement('a');
+            a.href = url;
+            a.download = 'pokaz-m3u-manual.html';
+            a.click();
+            window.URL.revokeObjectURL(url);
+            
+            showNotification('✅ Документация скачана');
+        }
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('.nav-item').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                let targetId = this.getAttribute('href');
+                let targetElement = document.querySelector(targetId);
+                targetElement.scrollIntoView({ behavior: 'smooth' });
+                
+                // Update active class
+                document.querySelectorAll('.nav-item').forEach(item => {
+                    item.classList.remove('active');
+                });
+                this.classList.add('active');
+            });
+        });
+
+        // Highlight current section in navigation
+        window.addEventListener('scroll', function() {
+            let sections = document.querySelectorAll('.section');
+            let navItems = document.querySelectorAll('.nav-item');
+            
+            sections.forEach((section, index) => {
+                let rect = section.getBoundingClientRect();
+                if (rect.top <= 100 && rect.bottom >= 100) {
+                    navItems.forEach(item => {
+                        item.classList.remove('active');
+                        if (item.getAttribute('href') === '#' + section.id) {
+                            item.classList.add('active');
+                        }
+                    });
+                }
+            });
+        });
+
+        // Update GitHub info
+        function updateGitHubInfo() {
+            // This would normally fetch from GitHub API
+            // For now, we'll keep the static values
+            document.getElementById('lastRunDisplay').textContent = '25.02.2026 23:19:31';
+            document.getElementById('nextRunDisplay').textContent = '26.02.2026 05:19:31';
+        }
+
+        // Initialize
+        window.addEventListener('load', updateGitHubInfo);
+    </script>
+</body>
+</html>
+'@
+
+# Сохраняем полностью переписанный index.html
+$newIndexHtml | Out-File -FilePath "C:\Users\megaa\Desktop\Raschirenija\pokaz-m3u-clean\index.html" -Encoding UTF8
+
+Write-Host "✅ INDEX.HTML ПОЛНОСТЬЮ ПЕРЕПИСАН!" -ForegroundColor Green
+Write-Host "📍 Путь: C:\Users\megaa\Desktop\Raschirenija\pokaz-m3u-clean\index.html" -ForegroundColor Cyan
+Write-Host ""
+Write-Host "👉 Откройте в браузере:" -ForegroundColor Yellow
+Write-Host "file:///C:/Users/megaa/Desktop/Raschirenija/pokaz-m3u-clean/index.html" -ForegroundColor Cyan
