@@ -1,76 +1,11 @@
-﻿name: Update Pokaz Playlist
-
-# Разрешаем запись в репозиторий
-permissions:
-  contents: write
-
-on:
-  schedule:
-    # Каждые 6 часов (в 00:00, 06:00, 12:00, 18:00 UTC)
-    - cron: '0 */6 * * *'
-  # Ручной запуск
-  workflow_dispatch:
-  # Запуск при изменениях в скриптах
-  push:
-    branches: [ main ]
-    paths:
-      - 'scripts/**'
-      - 'requirements.txt'
-
-jobs:
-  update-playlist:
-    runs-on: ubuntu-latest
-    
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
-      with:
-        fetch-depth: 0
-    
-    - name: Setup Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.10'
-    
-    - name: Cache pip packages
-      uses: actions/cache@v3
-      with:
-        path: ~/.cache/pip
-        key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
-        restore-keys: |
-          ${{ runner.os }}-pip-
-    
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        if [ -f requirements.txt ]; then
-          pip install -r requirements.txt
-        else
-          echo "⚠️ requirements.txt not found, installing basic packages"
-          pip install requests beautifulsoup4 lxml
-        fi
-    
-    - name: Run parser
-      run: |
-        python scripts/playlist_updater.py
-    
-    - name: Check for changes
-      id: git-check
-      run: |
-        git status --porcelain
-        echo "changed=$(git status --porcelain | wc -l)" >> $GITHUB_OUTPUT
-    
-    - name: Commit and push if changed
-      if: steps.git-check.outputs.changed != '0'
-      run: |
-        git config --global user.name 'github-actions[bot]'
-        git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-        git add playlist.m3u8 version.json
-        TIMESTAMP=$(date +'%Y-%m-%d %H:%M:%S')
-        git commit -m "Auto-update playlist $TIMESTAMP"
-        git push
-    
-    - name: No changes
-      if: steps.git-check.outputs.changed == '0'
-      run: |
-        echo "✅ No changes to commit"
+﻿- name: Install Puppeteer dependencies
+  run: |
+    sudo apt-get update
+    sudo apt-get install -y \
+      chromium-browser \
+      libnss3 \
+      libatk-bridge2.0-0 \
+      libdrm2 \
+      libxkbcommon0 \
+      libgbm1 \
+      libasound2
