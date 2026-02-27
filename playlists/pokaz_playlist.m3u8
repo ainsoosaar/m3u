@@ -1,1 +1,7 @@
 #EXTM3U
+#EXTINF:-1 tvg-id="Первый канал" tvg-name="Первый канал" tvg-logo="https://pokaz.me/posts/2017-11/1511429376_1463597059_pervyy-kanal.png",Первый канал
+https://s.pokaz.me/mZjkcOvzY91m4jmZiiWL5g/540/1772253880/index.m3u8|Referer=https://pokaz.me/|Cookie="_ga_XS6DKM9W0J=GS2.1.s1772235876$o1$g0$t1772235876$j60$l0$h0; _ga=GA1.1.917348747.1772235876"
+#EXTINF:-1 tvg-id="Россия 1" tvg-name="Россия 1" tvg-logo="https://pokaz.me/posts/2017-11/1511432255_rossiya-1.png",Россия 1
+https://s.pokaz.me/ZB1Tq7k5cBKVQL2fEoetZw/544/1772253883/index.m3u8|Referer=https://pokaz.me/|Cookie="_ga=GA1.1.917348747.1772235876; _ga_XS6DKM9W0J=GS2.1.s1772235876$o1$g1$t1772235881$j55$l0$h0"
+#EXTINF:-1 tvg-id="Россия 24" tvg-name="Россия 24" tvg-logo="https://pokaz.me/posts/2017-11/1511428941_1388683762_vesti.png",Россия 24
+https://s.pokaz.me/AaOWziK2TFLgLwS17_AZHQ/563/1772253886/index.m3u8|Referer=https://pokaz.me/|Cookie="_ga_XS6DKM9W0J=GS2.1.s1772235876$o1$g1$t1772235884$j52$l0$h0; _ga=GA1.1.917348747.1772235876"
