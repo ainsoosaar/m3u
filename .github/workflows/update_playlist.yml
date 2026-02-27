@@ -21,16 +21,20 @@ jobs:
         with:
           path: m3u
 
+      # Кэширование node_modules
       - name: Cache node modules
         id: cache-npm
         uses: actions/cache@v3
         with:
           path: m3u/node_modules
-          key: ${{ runner.os }}-node-puppeteer-${{ hashFiles('m3u/package.json') }}
+          key: ${{ runner.os }}-node-${{ hashFiles('m3u/package.json') }}
 
+      # Установка puppeteer (без скачивания браузера)
       - name: Install dependencies
         if: steps.cache-npm.outputs.cache-hit != 'true'
         working-directory: ./m3u
+        env:
+          PUPPETEER_SKIP_DOWNLOAD: true   # не скачивать Chromium (он уже есть в образе)
         run: npm install
 
       - name: Build playlist
