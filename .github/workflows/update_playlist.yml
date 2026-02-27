@@ -16,29 +16,22 @@ jobs:
       options: --pull always --user root
 
     steps:
-      # Полная очистка предыдущего вывода
-      - name: Clean workspace
-        run: rm -rf /__w/m3u/m3u/* || true
-
       - name: Checkout repository
         uses: actions/checkout@v3
         with:
           path: m3u
-          ref: master
-          fetch-depth: 1
 
-      # Диагностика: показываем структуру и содержимое файла
-      - name: Debug - list files and show build_pokaz.js
+      - name: Cache node modules
+        id: cache-npm
+        uses: actions/cache@v3
+        with:
+          path: m3u/node_modules
+          key: ${{ runner.os }}-node-puppeteer-${{ hashFiles('m3u/package.json') }}
+
+      - name: Install dependencies
+        if: steps.cache-npm.outputs.cache-hit != 'true'
         working-directory: ./m3u
-        run: |
-          echo "=== Current directory contents ==="
-          ls -la
-          echo "=== src directory contents ==="
-          ls -la src || echo "src not found"
-          echo "=== First 20 lines of build_pokaz.js ==="
-          cat src/build_pokaz.js | head -20
-          echo "=== Checking for puppeteer-core import ==="
-          grep -n "puppeteer-core" src/build_pokaz.js || echo "OK: no puppeteer-core found"
+        run: npm install
 
       - name: Build playlist
         working-directory: ./m3u
@@ -46,7 +39,7 @@ jobs:
 
       - name: Check for changes
         id: git-check
-        working-directory: ./mdu
+        working-directory: ./m3u
         run: |
           git status --porcelain
           echo "changed=$(git status --porcelain | wc -l)" >> $GITHUB_OUTPUT
