@@ -6,14 +6,6 @@ const BASE = 'https://pokaz.me';
 const PLAYLIST_FILE = path.resolve('./playlists/pokaz_playlist.m3u8');
 const LOG_FILE = path.resolve('./playlists/error_log.txt');
 
-// Определяем путь к браузеру
-const executablePath = process.env.PUPPETEER_EXECUTABLE_PATH || 
-                       (process.platform === 'win32' 
-                         ? 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe'
-                         : '/usr/bin/chromium-browser');
-
-console.log(`🔍 Используем браузер: ${executablePath}`);
-
 // Список каналов (полный)
 const channels = [
   '/336-tv_pervyy_kanal_online.html',
@@ -108,8 +100,8 @@ async function build() {
   console.log('🚀 Запуск сборки плейлиста...');
   console.log('='.repeat(50));
 
+  // Запускаем браузер с антидетект-аргументами
   const browser = await puppeteer.launch({
-    executablePath,
     headless: 'new',
     defaultViewport: null,
     args: [
@@ -118,15 +110,30 @@ async function build() {
       '--disable-dev-shm-usage',
       '--disable-accelerated-2d-canvas',
       '--disable-gpu',
-      '--window-size=1920,1080'
+      '--window-size=1920,1080',
+      '--disable-blink-features=AutomationControlled',
+      '--disable-features=IsolateOrigins,site-per-process'
     ]
   });
 
   const page = await browser.newPage();
+
+  // Устанавливаем заголовки как у реального браузера
   await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36');
+  await page.setExtraHTTPHeaders({
+    'Accept-Language': 'ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7',
+    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
+  });
+
+  // Убираем следы автоматизации
+  await page.evaluateOnNewDocument(() => {
+    delete navigator.__proto__.webdriver;
+    window.navigator.chrome = { runtime: {} };
+    Object.defineProperty(navigator, 'plugins', { get: () => [1,2,3] });
+  });
 
   let playlist = '#EXTM3U\n';
-  fs.writeFileSync(LOG_FILE, '');
+  fs.writeFileSync(LOG_FILE, ''); // очистка лога
 
   let successCount = 0, failCount = 0;
 
@@ -138,44 +145,20 @@ async function build() {
       await page.goto(url, { waitUntil: 'networkidle2', timeout: 30000 });
       console.log(`  ⏳ Ожидание загрузки плеера...`);
 
+      // Ждём появления кнопки плеера
       await page.waitForSelector('pjsdiv', { timeout: 15000 });
       console.log(`  🖱️ Клик по плееру...`);
       await page.click('pjsdiv');
 
-      // Перехватываем запрос к s.pokaz.me с индексным m3u8
-      const finalUrl = await new Promise((resolve) => {
-        const handler = (request) => {
-          const reqUrl = request.url();
-          if (reqUrl.includes('s.pokaz.me/') && reqUrl.includes('/index.m3u8')) {
-            page.off('request', handler);
-            resolve(reqUrl);
-          }
-        };
-        page.on('request', handler);
-        setTimeout(() => {
-          page.off('request', handler);
-          resolve(null);
-        }, 10000);
-      });
+      // Ждём ответа с m3u8 (именно ответ, а не запрос)
+      const response = await page.waitForResponse(
+        response => response.url().includes('s.pokaz.me/') && response.url().includes('/index.m3u8'),
+        { timeout: 15000 }
+      );
 
-      if (!finalUrl) {
-        console.log(`  ⚠️ Не удалось перехватить запрос, пробуем найти video.src...`);
-        await page.waitForFunction(
-          () => {
-            const video = document.querySelector('video');
-            return video && video.src && video.src.includes('blob:');
-          },
-          { timeout: 10000 }
-        );
-        await delay(2000);
-        const blobSrc = await page.$eval('video', video => video.src);
-        console.log(`  ⚠️ Получен blob: ${blobSrc.substring(0, 80)}...`);
-        fs.appendFileSync(LOG_FILE, `${url} - только blob\n`);
-        failCount++;
-        continue;
-      }
-
-      console.log(`  ✅ Реальный стрим: ${finalUrl.substring(0, 80)}...`);
+      const finalUrl = response.url();
+      console.log(`  ✅ Перехвачен ответ: ${finalUrl.substring(0, 80)}...`);
+      console.log(`  📊 Статус ответа: ${response.status()}`);
 
       // Получаем название канала
       let name = '';
@@ -194,7 +177,7 @@ async function build() {
         );
       } catch {}
 
-      // 🔥 Добавляем в плейлист БЕЗ |Referer (чистый URL)
+      // Сохраняем чистый URL
       playlist += `#EXTINF:-1 tvg-id="${name}" tvg-name="${name}" tvg-logo="${logo}",${name}\n${finalUrl}\n`;
       console.log(`  ✅ ${name}`);
       successCount++;
