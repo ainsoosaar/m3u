@@ -11,43 +11,30 @@ on:
 jobs:
   build-playlist:
     runs-on: ubuntu-latest
-    
+    container:
+      image: ghcr.io/puppeteer/puppeteer:latest
+      options: --pull always   # принудительное обновление образа
+
     steps:
     - name: Checkout repository
       uses: actions/checkout@v3
-    
-    - name: Setup Node.js
-      uses: actions/setup-node@v3
       with:
-        node-version: '18'
-    
-    # Устанавливаем ТОЛЬКО системный Chromium (без npm install puppeteer)
-    - name: Install Chromium
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y chromium-browser
-    
-    # Устанавливаем puppeteer-core (легковесная версия)
-    - name: Install puppeteer-core
-      run: |
-        npm install puppeteer-core
-    
-    # Настраиваем путь к Chromium
-    - name: Set Chromium path
-      run: |
-        echo "PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser" >> $GITHUB_ENV
-    
+        path: m3u   # клонируем в подпапку, чтобы не смешиваться с содержимым контейнера
+
     - name: Build playlist
+      working-directory: ./m3u
       run: node src/build_pokaz.js
-    
+
     - name: Check for changes
       id: git-check
+      working-directory: ./m3u
       run: |
         git status --porcelain
         echo "changed=$(git status --porcelain | wc -l)" >> $GITHUB_OUTPUT
-    
+
     - name: Commit and push if changed
       if: steps.git-check.outputs.changed != '0'
+      working-directory: ./m3u
       run: |
         git config --global user.name 'github-actions[bot]'
         git config --global user.email 'github-actions[bot]@users.noreply.github.com'
