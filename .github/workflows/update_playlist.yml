@@ -21,29 +21,29 @@ jobs:
       with:
         node-version: '18'
     
-    # Устанавливаем Chromium (уже есть в системе)
+    # Кэширование node_modules (ключ на основе package.json)
+    - name: Cache node modules
+      id: cache-npm
+      uses: actions/cache@v3
+      with:
+        path: node_modules
+        key: ${{ runner.os }}-node-${{ hashFiles('**/package.json') }}
+    
+    # Установка зависимостей только если нет кэша
+    - name: Install dependencies
+      if: steps.cache-npm.outputs.cache-hit != 'true'
+      run: npm install puppeteer-core
+    
+    # Установка системного Chromium (кэшируется автоматически)
     - name: Install Chromium
       run: |
         sudo apt-get update
         sudo apt-get install -y chromium-browser
     
-    # Используем готовый экшен для puppeteer (без npm install)
-    - name: Setup Puppeteer
-      uses: actions/checkout@v3
-      with:
-        repository: puppeteer/puppeteer
-        path: puppeteer
-    
-    # Настраиваем путь к Chromium
+    # Явно указываем путь к Chromium
     - name: Set Chromium path
       run: |
         echo "PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser" >> $GITHUB_ENV
-    
-    # Копируем необходимые файлы puppeteer
-    - name: Prepare puppeteer
-      run: |
-        mkdir -p node_modules
-        cp -r puppeteer/packages puppeteer-core node_modules/
     
     - name: Build playlist
       run: node src/build_pokaz.js
