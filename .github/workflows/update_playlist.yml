@@ -11,48 +11,30 @@ on:
 jobs:
   build-playlist:
     runs-on: ubuntu-latest
-    
+    container:
+      image: ghcr.io/puppeteer/puppeteer:latest
+      options: --pull always
+
     steps:
     - name: Checkout repository
       uses: actions/checkout@v3
-    
-    - name: Setup Node.js
-      uses: actions/setup-node@v3
       with:
-        node-version: '18'
-        cache: 'npm'                          # встроенное кэширование npm
-    
-    - name: Install Chromium (system)
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y chromium-browser
-    
-    - name: Set Chromium path
-      run: echo "PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser" >> $GITHUB_ENV
-    
-    - name: Cache node_modules
-      id: cache-npm
-      uses: actions/cache@v3
-      with:
-        path: node_modules
-        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-    
-    - name: Install dependencies
-      if: steps.cache-npm.outputs.cache-hit != 'true'
-      run: |
-        npm ci --no-audit --no-fund --maxsockets 1  # максимально надёжная установка
-    
+        path: m3u
+
     - name: Build playlist
+      working-directory: ./m3u
       run: node src/build_pokaz.js
-    
+
     - name: Check for changes
       id: git-check
+      working-directory: ./m3u
       run: |
         git status --porcelain
         echo "changed=$(git status --porcelain | wc -l)" >> $GITHUB_OUTPUT
-    
+
     - name: Commit and push if changed
       if: steps.git-check.outputs.changed != '0'
+      working-directory: ./m3u
       run: |
         git config --global user.name 'github-actions[bot]'
         git config --global user.email 'github-actions[bot]@users.noreply.github.com'
