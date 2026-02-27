@@ -6,10 +6,15 @@ const BASE = 'https://pokaz.me';
 const PLAYLIST_FILE = path.resolve('./playlists/pokaz_playlist.m3u8');
 const LOG_FILE = path.resolve('./playlists/error_log.txt');
 
-// Указываем путь к системному Chromium
-process.env.PUPPETEER_EXECUTABLE_PATH = process.env.PUPPETEER_EXECUTABLE_PATH || '/usr/bin/chromium-browser';
+// Определяем путь к браузеру
+const executablePath = process.env.PUPPETEER_EXECUTABLE_PATH || 
+                       (process.platform === 'win32' 
+                         ? 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe'
+                         : '/usr/bin/chromium-browser');
 
-// Список каналов
+console.log(`🔍 Используем браузер: ${executablePath}`);
+
+// Список каналов (полный)
 const channels = [
   '/336-tv_pervyy_kanal_online.html',
   '/385-kanal-rossiya-1-tv.html',
@@ -87,7 +92,6 @@ const channels = [
   '/62-kanal-rossiya-24.html'
 ];
 
-// Очистка названия канала
 function cleanName(name) {
   return name
     .replace(/смотреть онлайн/i, '')
@@ -98,22 +102,14 @@ function cleanName(name) {
     .trim();
 }
 
-// Задержка
 const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
 async function build() {
   console.log('🚀 Запуск сборки плейлиста...');
   console.log('='.repeat(50));
-  
-  // Проверяем наличие Chromium
-  try {
-    const execPath = process.env.PUPPETEER_EXECUTABLE_PATH;
-    console.log(`🔍 Используем Chromium: ${execPath}`);
-  } catch (e) {
-    console.warn('⚠️ Не удалось определить путь к Chromium');
-  }
-  
+
   const browser = await puppeteer.launch({
+    executablePath,
     headless: 'new',
     defaultViewport: null,
     args: [
@@ -125,57 +121,62 @@ async function build() {
       '--window-size=1920,1080'
     ]
   });
-  
+
   const page = await browser.newPage();
-  
-  // Устанавливаем правильные заголовки
   await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36');
-  
+
   let playlist = '#EXTM3U\n';
-  fs.writeFileSync(LOG_FILE, ''); // очистка лога
-  
-  let successCount = 0;
-  let failCount = 0;
-  
+  fs.writeFileSync(LOG_FILE, '');
+
+  let successCount = 0, failCount = 0;
+
   for (let i = 0; i < channels.length; i++) {
-    const channelPath = channels[i];
-    const url = BASE + channelPath;
-    
+    const url = BASE + channels[i];
     console.log(`📺 [${i + 1}/${channels.length}] ${url}`);
-    
+
     try {
-      // Переходим на страницу
-      await page.goto(url, { 
-        waitUntil: 'networkidle2', 
-        timeout: 30000 
-      });
-      
+      await page.goto(url, { waitUntil: 'networkidle2', timeout: 30000 });
       console.log(`  ⏳ Ожидание загрузки плеера...`);
-      
-      // Ждем появления pjsdiv (кнопка плеера)
+
       await page.waitForSelector('pjsdiv', { timeout: 15000 });
-      
-      // Имитируем клик по плееру для запуска видео
       console.log(`  🖱️ Клик по плееру...`);
       await page.click('pjsdiv');
-      
-      // Ждем появления видео с непустым src
-      await page.waitForFunction(
-        () => {
-          const video = document.querySelector('video');
-          return video && video.src && video.src !== '' && video.src.includes('.m3u8?k=');
-        },
-        { timeout: 15000 }
-      );
-      
-      // Даем дополнительное время для полной загрузки токена
-      await delay(2000);
-      
-      // Получаем src из видео
-      const stream = await page.$eval('video', video => video.src);
-      
-      console.log(`  ✅ Получен токен: ${stream.substring(0, 80)}...`);
-      
+
+      // Перехватываем запрос к s.pokaz.me с индексным m3u8
+      const finalUrl = await new Promise((resolve) => {
+        const handler = (request) => {
+          const reqUrl = request.url();
+          if (reqUrl.includes('s.pokaz.me/') && reqUrl.includes('/index.m3u8')) {
+            page.off('request', handler);
+            resolve(reqUrl);
+          }
+        };
+        page.on('request', handler);
+        setTimeout(() => {
+          page.off('request', handler);
+          resolve(null);
+        }, 10000);
+      });
+
+      if (!finalUrl) {
+        console.log(`  ⚠️ Не удалось перехватить запрос, пробуем найти video.src...`);
+        await page.waitForFunction(
+          () => {
+            const video = document.querySelector('video');
+            return video && video.src && video.src.includes('blob:');
+          },
+          { timeout: 10000 }
+        );
+        await delay(2000);
+        const blobSrc = await page.$eval('video', video => video.src);
+        console.log(`  ⚠️ Получен blob: ${blobSrc.substring(0, 80)}...`);
+        fs.appendFileSync(LOG_FILE, `${url} - только blob\n`);
+        failCount++;
+        continue;
+      }
+
+      console.log(`  ✅ Реальный стрим: ${finalUrl.substring(0, 80)}...`);
+
       // Получаем название канала
       let name = '';
       try {
@@ -184,45 +185,35 @@ async function build() {
         name = await page.$eval('title', el => el.textContent.split('—')[0].trim());
       }
       name = cleanName(name);
-      
-      // Получаем логотип (опционально)
+
+      // Получаем логотип
       let logo = '';
       try {
         logo = await page.$eval('article.block.story img', img =>
           img.src.startsWith('http') ? img.src : 'https://pokaz.me' + img.src
         );
-      } catch {
-        // Игнорируем
-      }
-      
-      // Добавляем в плейлист с Referer для работы в плеере
-      playlist += `#EXTINF:-1 tvg-id="${name}" tvg-name="${name}" tvg-logo="${logo}",${name}\n${stream}|Referer=https://pokaz.me/\n`;
+      } catch {}
+
+      // 🔥 Добавляем в плейлист БЕЗ |Referer (чистый URL)
+      playlist += `#EXTINF:-1 tvg-id="${name}" tvg-name="${name}" tvg-logo="${logo}",${name}\n${finalUrl}\n`;
       console.log(`  ✅ ${name}`);
       successCount++;
-      
+
     } catch (err) {
       console.error(`  ❌ Ошибка: ${err.message}`);
       fs.appendFileSync(LOG_FILE, `${url} - ${err.message}\n`);
       failCount++;
     }
-    
-    // Небольшая задержка между каналами
     await delay(1000);
   }
-  
-  // Сохраняем плейлист
+
   fs.writeFileSync(PLAYLIST_FILE, playlist);
-  
   console.log('\n' + '='.repeat(50));
-  console.log(`📊 Статистика:`);
-  console.log(`   ✅ Успешно: ${successCount}`);
-  console.log(`   ❌ Ошибок: ${failCount}`);
-  console.log(`   📁 Плейлист сохранён: ${PLAYLIST_FILE}`);
-  
+  console.log(`📊 Статистика: ✅ ${successCount} ❌ ${failCount}`);
+  console.log(`📁 Плейлист сохранён: ${PLAYLIST_FILE}`);
   await browser.close();
 }
 
-// Запуск
 build().catch(err => {
   console.error('❌ Критическая ошибка:', err);
   process.exit(1);
