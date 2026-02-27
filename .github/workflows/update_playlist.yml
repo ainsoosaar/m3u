@@ -11,15 +11,24 @@ on:
 jobs:
   build-playlist:
     runs-on: ubuntu-latest
-    container:
-      image: ghcr.io/puppeteer/puppeteer:24.15.0
-      options: --pull always --user root
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
         with:
           path: m3u
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          cache: 'npm'
+          cache-dependency-path: m3u/package-lock.json
+
+      - name: Install system Chromium
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y chromium-browser
 
       - name: Cache node modules
         id: cache-npm
@@ -28,13 +37,6 @@ jobs:
           path: m3u/node_modules
           key: ${{ runner.os }}-node-${{ hashFiles('m3u/package.json') }}
 
-      - name: Cache puppeteer browser
-        id: cache-browser
-        uses: actions/cache@v3
-        with:
-          path: /github/home/.cache/puppeteer
-          key: ${{ runner.os }}-puppeteer-chrome-121.0.6167.85
-
       - name: Install dependencies
         if: steps.cache-npm.outputs.cache-hit != 'true'
         working-directory: ./m3u
@@ -42,17 +44,11 @@ jobs:
           PUPPETEER_SKIP_DOWNLOAD: true
         run: npm install
 
-      - name: Install Chrome browser
-        if: steps.cache-browser.outputs.cache-hit != 'true'
-        working-directory: ./m3u
-        env:
-          PUPPETEER_CACHE_DIR: /github/home/.cache/puppeteer
-        run: npx puppeteer browsers install chrome
+      - name: Set Chromium path
+        run: echo "PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser" >> $GITHUB_ENV
 
       - name: Build playlist
         working-directory: ./m3u
-        env:
-          PUPPETEER_CACHE_DIR: /github/home/.cache/puppeteer
         run: node src/build_pokaz.js
 
       - name: Check for changes
