@@ -6,12 +6,10 @@ const BASE = 'https://pokaz.me';
 const PLAYLIST_FILE = path.resolve('./playlists/pokaz_playlist.m3u8');
 const LOG_FILE = path.resolve('./playlists/error_log.txt');
 
-// Список каналов (полный)
+// Полный список каналов
 const channels = [
   '/336-tv_pervyy_kanal_online.html',
   '/385-kanal-rossiya-1-tv.html',
-  '/6-kanal-ntv.html',
-  '/8-kanal-ren-tv.html',
   '/62-kanal-rossiya-24.html'
 ];
 
@@ -31,7 +29,7 @@ async function build() {
   console.log('🚀 Запуск сборки плейлиста...');
   console.log('='.repeat(50));
 
-  // Запускаем браузер с антидетект-аргументами
+  // 1. Запуск браузера с антидетект-аргументами
   const browser = await puppeteer.launch({
     headless: 'new',
     defaultViewport: null,
@@ -49,14 +47,14 @@ async function build() {
 
   const page = await browser.newPage();
 
-  // Устанавливаем заголовки как у реального браузера
+  // 2. Установка заголовков, как у реального браузера
   await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36');
   await page.setExtraHTTPHeaders({
     'Accept-Language': 'ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7',
     'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
   });
 
-  // Убираем следы автоматизации
+  // 3. Убираем следы автоматизации
   await page.evaluateOnNewDocument(() => {
     delete navigator.__proto__.webdriver;
     window.navigator.chrome = { runtime: {} };
@@ -64,7 +62,7 @@ async function build() {
   });
 
   let playlist = '#EXTM3U\n';
-  fs.writeFileSync(LOG_FILE, ''); // очистка лога
+  fs.writeFileSync(LOG_FILE, '');
 
   let successCount = 0, failCount = 0;
 
@@ -73,23 +71,36 @@ async function build() {
     console.log(`📺 [${i + 1}/${channels.length}] ${url}`);
 
     try {
+      // Переходим на страницу канала
       await page.goto(url, { waitUntil: 'networkidle2', timeout: 30000 });
       console.log(`  ⏳ Ожидание загрузки плеера...`);
 
-      // Ждём появления кнопки плеера
+      // Ждём кнопку плеера
       await page.waitForSelector('pjsdiv', { timeout: 15000 });
       console.log(`  🖱️ Клик по плееру...`);
       await page.click('pjsdiv');
 
-      // Ждём ответа с m3u8 (именно ответ, а не запрос)
+      // Перехватываем ответ с m3u8
       const response = await page.waitForResponse(
-        response => response.url().includes('s.pokaz.me/') && response.url().includes('/index.m3u8'),
+        resp => resp.url().includes('s.pokaz.me/') && resp.url().includes('/index.m3u8'),
         { timeout: 15000 }
       );
 
       const finalUrl = response.url();
-      console.log(`  ✅ Перехвачен ответ: ${finalUrl.substring(0, 80)}...`);
-      console.log(`  📊 Статус ответа: ${response.status()}`);
+      const status = response.status();
+      console.log(`  ✅ Перехвачен URL: ${finalUrl.substring(0, 80)}...`);
+      console.log(`  📊 Статус ответа: ${status}`);
+
+      if (status !== 200) {
+        console.log(`  ⚠️ Сервер вернул ${status}, пропускаем`);
+        fs.appendFileSync(LOG_FILE, `${url} - статус ${status}\n`);
+        failCount++;
+        continue;
+      }
+
+      // Получаем куки текущей сессии (важно для аутентификации запроса)
+      const cookies = await page.cookies();
+      const cookieString = cookies.map(c => `${c.name}=${c.value}`).join('; ');
 
       // Получаем название канала
       let name = '';
@@ -108,8 +119,10 @@ async function build() {
         );
       } catch {}
 
-      // Сохраняем чистый URL
-      playlist += `#EXTINF:-1 tvg-id="${name}" tvg-name="${name}" tvg-logo="${logo}",${name}\n${finalUrl}\n`;
+      // Формируем запись в плейлисте: добавляем Cookie и Referer
+      // Внимание: не все плееры поддерживают такой формат (поддерживают VLC и некоторые IPTV-плееры)
+      const streamLine = `${finalUrl}|Referer=https://pokaz.me/|Cookie="${cookieString}"`;
+      playlist += `#EXTINF:-1 tvg-id="${name}" tvg-name="${name}" tvg-logo="${logo}",${name}\n${streamLine}\n`;
       console.log(`  ✅ ${name}`);
       successCount++;
 
@@ -125,6 +138,7 @@ async function build() {
   console.log('\n' + '='.repeat(50));
   console.log(`📊 Статистика: ✅ ${successCount} ❌ ${failCount}`);
   console.log(`📁 Плейлист сохранён: ${PLAYLIST_FILE}`);
+
   await browser.close();
 }
 
