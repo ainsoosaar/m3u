@@ -1,12 +1,15 @@
 import fs from 'fs';
 import path from 'path';
-import puppeteer from 'puppeteer';
+import puppeteer from 'puppeteer-core';
 
 const BASE = 'https://pokaz.me';
 const PLAYLIST_FILE = path.resolve('./playlists/pokaz_playlist.m3u8');
 const LOG_FILE = path.resolve('./playlists/error_log.txt');
 
-// Список каналов (ваш полный список)
+// Указываем путь к системному Chromium
+process.env.PUPPETEER_EXECUTABLE_PATH = process.env.PUPPETEER_EXECUTABLE_PATH || '/usr/bin/chromium-browser';
+
+// Список каналов
 const channels = [
   '/336-tv_pervyy_kanal_online.html',
   '/385-kanal-rossiya-1-tv.html',
@@ -102,7 +105,14 @@ async function build() {
   console.log('🚀 Запуск сборки плейлиста...');
   console.log('='.repeat(50));
   
-  // Запускаем браузер
+  // Проверяем наличие Chromium
+  try {
+    const execPath = process.env.PUPPETEER_EXECUTABLE_PATH;
+    console.log(`🔍 Используем Chromium: ${execPath}`);
+  } catch (e) {
+    console.warn('⚠️ Не удалось определить путь к Chromium');
+  }
+  
   const browser = await puppeteer.launch({
     headless: 'new',
     defaultViewport: null,
@@ -145,8 +155,8 @@ async function build() {
       // Ждем появления pjsdiv (кнопка плеера)
       await page.waitForSelector('pjsdiv', { timeout: 15000 });
       
-      // 🔥 ИМИТИРУЕМ КЛИК ПО ПЛЕЕРУ ДЛЯ ЗАПУСКА ВИДЕО
-      console.log(`  🖱️ Клик по плееру для запуска видео...`);
+      // Имитируем клик по плееру для запуска видео
+      console.log(`  🖱️ Клик по плееру...`);
       await page.click('pjsdiv');
       
       // Ждем появления видео с непустым src
@@ -161,10 +171,10 @@ async function build() {
       // Даем дополнительное время для полной загрузки токена
       await delay(2000);
       
-      // 🔥 ПОЛУЧАЕМ SRC ИЗ ВИДЕО
+      // Получаем src из видео
       const stream = await page.$eval('video', video => video.src);
       
-      console.log(`  ✅ Получен полный токен: ${stream.substring(0, 80)}...`);
+      console.log(`  ✅ Получен токен: ${stream.substring(0, 80)}...`);
       
       // Получаем название канала
       let name = '';
