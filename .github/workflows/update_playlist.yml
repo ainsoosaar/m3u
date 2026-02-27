@@ -42,12 +42,18 @@ jobs:
           PUPPETEER_SKIP_DOWNLOAD: true
         run: npm install
 
-      - name: Install Chrome browser
-        if: steps.cache-browser.outputs.cache-hit != 'true'
+      # Устанавливаем браузер только если его нет в кэше и он отсутствует физически
+      - name: Install Chrome browser (if missing)
         working-directory: ./m3u
         env:
           PUPPETEER_CACHE_DIR: /github/home/.cache/puppeteer
-        run: npx puppeteer browsers install chrome
+        run: |
+          if [ ! -f "/github/home/.cache/puppeteer/chrome/linux-121.0.6167.85/chrome-linux64/chrome" ]; then
+            echo "Chrome not found, installing..."
+            npx puppeteer browsers install chrome
+          else
+            echo "Chrome already installed, skipping."
+          fi
 
       - name: Build playlist
         working-directory: ./m3u
