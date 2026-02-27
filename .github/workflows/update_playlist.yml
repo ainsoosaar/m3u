@@ -20,30 +20,27 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: '18'
+        cache: 'npm'                          # встроенное кэширование npm
     
-    # Кэширование node_modules (ключ на основе package.json)
-    - name: Cache node modules
-      id: cache-npm
-      uses: actions/cache@v3
-      with:
-        path: node_modules
-        key: ${{ runner.os }}-node-${{ hashFiles('**/package.json') }}
-    
-    # Установка зависимостей только если нет кэша
-    - name: Install dependencies
-      if: steps.cache-npm.outputs.cache-hit != 'true'
-      run: npm install puppeteer-core
-    
-    # Установка системного Chromium (кэшируется автоматически)
-    - name: Install Chromium
+    - name: Install Chromium (system)
       run: |
         sudo apt-get update
         sudo apt-get install -y chromium-browser
     
-    # Явно указываем путь к Chromium
     - name: Set Chromium path
+      run: echo "PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser" >> $GITHUB_ENV
+    
+    - name: Cache node_modules
+      id: cache-npm
+      uses: actions/cache@v3
+      with:
+        path: node_modules
+        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+    
+    - name: Install dependencies
+      if: steps.cache-npm.outputs.cache-hit != 'true'
       run: |
-        echo "PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser" >> $GITHUB_ENV
+        npm ci --no-audit --no-fund --maxsockets 1  # максимально надёжная установка
     
     - name: Build playlist
       run: node src/build_pokaz.js
