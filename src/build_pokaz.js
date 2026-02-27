@@ -1,20 +1,12 @@
 import fs from 'fs';
 import path from 'path';
-import puppeteer from 'puppeteer-core';
+import puppeteer from 'puppeteer';
 
 const BASE = 'https://pokaz.me';
 const PLAYLIST_FILE = path.resolve('./playlists/pokaz_playlist.m3u8');
 const LOG_FILE = path.resolve('./playlists/error_log.txt');
 
-// Определяем путь к браузеру
-const executablePath = process.env.PUPPETEER_EXECUTABLE_PATH || 
-                       (process.platform === 'win32' 
-                         ? 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe'
-                         : '/usr/bin/chromium-browser');
-
-console.log(`🔍 Используем браузер: ${executablePath}`);
-
-// Список каналов (ваш полный список)
+// Список каналов (полный, из вашего файла)
 const channels = [
   '/336-tv_pervyy_kanal_online.html',
   '/385-kanal-rossiya-1-tv.html',
@@ -108,8 +100,8 @@ async function build() {
   console.log('🚀 Запуск сборки плейлиста...');
   console.log('='.repeat(50));
 
+  // Запускаем браузер (executablePath не нужен – Puppeteer сам найдёт его внутри контейнера)
   const browser = await puppeteer.launch({
-    executablePath, // 👈 ЯВНО УКАЗЫВАЕМ ПУТЬ
     headless: 'new',
     defaultViewport: null,
     args: [
@@ -123,7 +115,7 @@ async function build() {
   });
 
   const page = await browser.newPage();
-  await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120.0.0.0 Safari/537.36');
+  await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36');
 
   let playlist = '#EXTM3U\n';
   fs.writeFileSync(LOG_FILE, '');
@@ -142,17 +134,39 @@ async function build() {
       console.log(`  🖱️ Клик по плееру...`);
       await page.click('pjsdiv');
 
-      await page.waitForFunction(
-        () => {
-          const video = document.querySelector('video');
-          return video && video.src && video.src.includes('.m3u8?k=');
-        },
-        { timeout: 15000 }
-      );
+      const finalUrl = await new Promise((resolve) => {
+        const handler = (request) => {
+          const reqUrl = request.url();
+          if (reqUrl.includes('s.pokaz.me/') && reqUrl.includes('/index.m3u8')) {
+            page.off('request', handler);
+            resolve(reqUrl);
+          }
+        };
+        page.on('request', handler);
+        setTimeout(() => {
+          page.off('request', handler);
+          resolve(null);
+        }, 10000);
+      });
 
-      await delay(2000);
-      const stream = await page.$eval('video', video => video.src);
-      console.log(`  ✅ Получен токен: ${stream.substring(0, 80)}...`);
+      if (!finalUrl) {
+        console.log(`  ⚠️ Не удалось перехватить запрос, пробуем найти video.src...`);
+        await page.waitForFunction(
+          () => {
+            const video = document.querySelector('video');
+            return video && video.src && video.src.includes('blob:');
+          },
+          { timeout: 10000 }
+        );
+        await delay(2000);
+        const blobSrc = await page.$eval('video', video => video.src);
+        console.log(`  ⚠️ Получен blob: ${blobSrc.substring(0, 80)}...`);
+        fs.appendFileSync(LOG_FILE, `${url} - только blob\n`);
+        failCount++;
+        continue;
+      }
+
+      console.log(`  ✅ Реальный стрим: ${finalUrl.substring(0, 80)}...`);
 
       let name = '';
       try {
@@ -169,9 +183,10 @@ async function build() {
         );
       } catch {}
 
-      playlist += `#EXTINF:-1 tvg-id="${name}" tvg-name="${name}" tvg-logo="${logo}",${name}\n${stream}|Referer=https://pokaz.me/\n`;
+      playlist += `#EXTINF:-1 tvg-id="${name}" tvg-name="${name}" tvg-logo="${logo}",${name}\n${finalUrl}\n`;
       console.log(`  ✅ ${name}`);
       successCount++;
+
     } catch (err) {
       console.error(`  ❌ Ошибка: ${err.message}`);
       fs.appendFileSync(LOG_FILE, `${url} - ${err.message}\n`);
