@@ -13,31 +13,31 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: ghcr.io/puppeteer/puppeteer:24.15.0
-      options: --pull always --user root   # добавлен --user root
+      options: --pull always --user root
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
-      with:
-        path: m3u
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          path: m3u
 
-    - name: Build playlist
-      working-directory: ./m3u
-      run: node src/build_pokaz.js
+      - name: Build playlist
+        working-directory: ./m3u
+        run: node src/build_pokaz.js
 
-    - name: Check for changes
-      id: git-check
-      working-directory: ./m3u
-      run: |
-        git status --porcelain
-        echo "changed=$(git status --porcelain | wc -l)" >> $GITHUB_OUTPUT
+      - name: Check for changes
+        id: git-check
+        working-directory: ./m3u
+        run: |
+          git status --porcelain
+          echo "changed=$(git status --porcelain | wc -l)" >> $GITHUB_OUTPUT
 
-    - name: Commit and push if changed
-      if: steps.git-check.outputs.changed != '0'
-      working-directory: ./m3u
-      run: |
-        git config --global user.name 'github-actions[bot]'
-        git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-        git add playlists/pokaz_playlist.m3u8 playlists/error_log.txt
-        git commit -m "Auto-update playlist $(date +'%Y-%m-%d %H:%M:%S')"
-        git push
+      - name: Commit and push if changed
+        if: steps.git-check.outputs.changed != '0'
+        working-directory: ./m3u
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add playlists/pokaz_playlist.m3u8 playlists/error_log.txt
+          git commit -m "Auto-update playlist $(date +'%Y-%m-%d %H:%M:%S')"
+          git push
