@@ -28,15 +28,22 @@ jobs:
           path: m3u/node_modules
           key: ${{ runner.os }}-node-${{ hashFiles('m3u/package.json') }}
 
+      - name: Cache puppeteer browser
+        id: cache-browser
+        uses: actions/cache@v3
+        with:
+          path: /github/home/.cache/puppeteer
+          key: ${{ runner.os }}-puppeteer-chrome-121.0.6167.85
+
       - name: Install dependencies
         if: steps.cache-npm.outputs.cache-hit != 'true'
         working-directory: ./m3u
         env:
-          PUPPETEER_SKIP_DOWNLOAD: true   # не скачивать браузер при npm install
+          PUPPETEER_SKIP_DOWNLOAD: true
         run: npm install
 
-      # Устанавливаем браузер Chrome через npx
       - name: Install Chrome browser
+        if: steps.cache-browser.outputs.cache-hit != 'true'
         working-directory: ./m3u
         env:
           PUPPETEER_CACHE_DIR: /github/home/.cache/puppeteer
