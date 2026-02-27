@@ -12,14 +12,14 @@ jobs:
   build-playlist:
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/puppeteer/puppeteer:latest
-      options: --pull always   # принудительное обновление образа
+      image: ghcr.io/puppeteer/puppeteer:24.15.0
+      options: --pull always --user root   # добавлен --user root
 
     steps:
     - name: Checkout repository
       uses: actions/checkout@v3
       with:
-        path: m3u   # клонируем в подпапку, чтобы не смешиваться с содержимым контейнера
+        path: m3u
 
     - name: Build playlist
       working-directory: ./m3u
