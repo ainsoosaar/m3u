@@ -12,32 +12,51 @@ jobs:
   build-playlist:
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/puppeteer/puppeteer:latest
-      options: --pull always
+      image: ghcr.io/puppeteer/puppeteer:24.15.0
+      options: --pull always --user root
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
-      with:
-        path: m3u
+      # Полная очистка предыдущего вывода
+      - name: Clean workspace
+        run: rm -rf /__w/m3u/m3u/* || true
 
-    - name: Build playlist
-      working-directory: ./m3u
-      run: node src/build_pokaz.js
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          path: m3u
+          ref: master
+          fetch-depth: 1
 
-    - name: Check for changes
-      id: git-check
-      working-directory: ./m3u
-      run: |
-        git status --porcelain
-        echo "changed=$(git status --porcelain | wc -l)" >> $GITHUB_OUTPUT
+      # Диагностика: показываем структуру и содержимое файла
+      - name: Debug - list files and show build_pokaz.js
+        working-directory: ./m3u
+        run: |
+          echo "=== Current directory contents ==="
+          ls -la
+          echo "=== src directory contents ==="
+          ls -la src || echo "src not found"
+          echo "=== First 20 lines of build_pokaz.js ==="
+          cat src/build_pokaz.js | head -20
+          echo "=== Checking for puppeteer-core import ==="
+          grep -n "puppeteer-core" src/build_pokaz.js || echo "OK: no puppeteer-core found"
 
-    - name: Commit and push if changed
-      if: steps.git-check.outputs.changed != '0'
-      working-directory: ./m3u
-      run: |
-        git config --global user.name 'github-actions[bot]'
-        git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-        git add playlists/pokaz_playlist.m3u8 playlists/error_log.txt
-        git commit -m "Auto-update playlist $(date +'%Y-%m-%d %H:%M:%S')"
-        git push
+      - name: Build playlist
+        working-directory: ./m3u
+        run: node src/build_pokaz.js
+
+      - name: Check for changes
+        id: git-check
+        working-directory: ./mdu
+        run: |
+          git status --porcelain
+          echo "changed=$(git status --porcelain | wc -l)" >> $GITHUB_OUTPUT
+
+      - name: Commit and push if changed
+        if: steps.git-check.outputs.changed != '0'
+        working-directory: ./m3u
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add playlists/pokaz_playlist.m3u8 playlists/error_log.txt
+          git commit -m "Auto-update playlist $(date +'%Y-%m-%d %H:%M:%S')"
+          git push
