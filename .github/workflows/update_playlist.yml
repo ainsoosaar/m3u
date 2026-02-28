@@ -1,15 +1,18 @@
-name: Update Playlist from pokaz.me
+name: Update Pokaz Playlist
+
+permissions:
+  contents: write
 
 on:
   schedule:
+    # каждые 6 часов (00:00, 06:00, 12:00, 18:00 UTC)
     - cron: '0 */6 * * *'
+  # возможность ручного запуска
   workflow_dispatch:
 
 jobs:
-  build:
+  build-playlist:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
 
     steps:
       - name: Checkout repository
@@ -21,21 +24,46 @@ jobs:
           node-version: '20'
           cache: 'npm'
 
+      - name: Install system dependencies for Puppeteer
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libgbm1 wget
+
+      - name: Install Chromium (system)
+        run: |
+          sudo apt-get install -y chromium-browser
+
+      - name: Set Chromium path
+        run: echo "PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser" >> $GITHUB_ENV
+
+      - name: Cache node_modules
+        id: cache-npm
+        uses: actions/cache@v4
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
       - name: Install dependencies
-        run: npm ci
+        if: steps.cache-npm.outputs.cache-hit != 'true'
+        run: npm install  # используем install вместо ci, так как lock-файл может быть не полностью синхронизирован
 
-      - name: Run playlist builder
-        run: node build_pokaz.js
+      - name: Build playlist
+        run: node src/build_pokaz.js
 
-      - name: Commit and push updated playlist
+      - name: Check for changes
+        id: git-check
+        run: |
+          git status --porcelain
+          echo "changed=$(git status --porcelain | wc -l)" >> $GITHUB_OUTPUT
+
+      - name: Commit and push if changed
+        if: steps.git-check.outputs.changed != '0'
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          git add playlists/pokaz_playlist.m3u8
-          if ! git diff --quiet && ! git diff --staged --quiet; then
-            git commit -m "Автоматическое обновление плейлиста $(date -u +'%Y-%m-%d %H:%M')"
-            git pull --rebase origin main
-            git push origin HEAD:main
-          else
-            echo "Нет изменений для коммита"
-          fi
+          git add playlists/pokaz_playlist.m3u8 playlists/error_log.txt
+          git commit -m "Auto-update playlist $(date +'%Y-%m-%d %H:%M:%S')"
+          git pull --rebase origin master
+          git push origin master
