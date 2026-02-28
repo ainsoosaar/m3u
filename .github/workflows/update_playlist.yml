@@ -14,56 +14,49 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
-        with:
-          path: m3u
+        uses: actions/checkout@v4
 
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: '20'
           cache: 'npm'
-          cache-dependency-path: m3u/package-lock.json
 
-      - name: Install system Chromium
+      - name: Install system dependencies for Puppeteer
         run: |
           sudo apt-get update
-          sudo apt-get install -y chromium-browser
-
-      - name: Cache node modules
-        id: cache-npm
-        uses: actions/cache@v3
-        with:
-          path: m3u/node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('m3u/package.json') }}
-
-      - name: Install dependencies
-        if: steps.cache-npm.outputs.cache-hit != 'true'
-        working-directory: ./m3u
-        env:
-          PUPPETEER_SKIP_DOWNLOAD: true
-        run: npm install
+          sudo apt-get install -y libgbm1 wget chromium-browser
 
       - name: Set Chromium path
         run: echo "PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser" >> $GITHUB_ENV
 
+      - name: Cache node_modules
+        id: cache-npm
+        uses: actions/cache@v4
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Install dependencies
+        if: steps.cache-npm.outputs.cache-hit != 'true'
+        run: npm ci  # теперь lock-файл должен быть стабильным
+
       - name: Build playlist
-        working-directory: ./m3u
         run: node src/build_pokaz.js
 
       - name: Check for changes
         id: git-check
-        working-directory: ./m3u
         run: |
           git status --porcelain
           echo "changed=$(git status --porcelain | wc -l)" >> $GITHUB_OUTPUT
 
       - name: Commit and push if changed
         if: steps.git-check.outputs.changed != '0'
-        working-directory: ./m3u
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
           git add playlists/pokaz_playlist.m3u8 playlists/error_log.txt
           git commit -m "Auto-update playlist $(date +'%Y-%m-%d %H:%M:%S')"
-          git push
+          git push origin master
