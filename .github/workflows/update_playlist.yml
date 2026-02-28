@@ -5,9 +5,7 @@ permissions:
 
 on:
   schedule:
-    # каждые 6 часов (00:00, 06:00, 12:00, 18:00 UTC)
     - cron: '0 */6 * * *'
-  # возможность ручного запуска
   workflow_dispatch:
 
 jobs:
@@ -27,11 +25,7 @@ jobs:
       - name: Install system dependencies for Puppeteer
         run: |
           sudo apt-get update
-          sudo apt-get install -y libgbm1 wget
-
-      - name: Install Chromium (system)
-        run: |
-          sudo apt-get install -y chromium-browser
+          sudo apt-get install -y libgbm1 wget chromium-browser
 
       - name: Set Chromium path
         run: echo "PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser" >> $GITHUB_ENV
@@ -47,7 +41,7 @@ jobs:
 
       - name: Install dependencies
         if: steps.cache-npm.outputs.cache-hit != 'true'
-        run: npm install  # используем install вместо ci, так как lock-файл может быть не полностью синхронизирован
+        run: npm ci  # теперь lock-файл должен быть стабильным
 
       - name: Build playlist
         run: node src/build_pokaz.js
@@ -65,5 +59,4 @@ jobs:
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
           git add playlists/pokaz_playlist.m3u8 playlists/error_log.txt
           git commit -m "Auto-update playlist $(date +'%Y-%m-%d %H:%M:%S')"
-          git pull --rebase origin master
           git push origin master
