@@ -40,8 +40,7 @@ jobs:
             ${{ runner.os }}-node-
 
       - name: Install dependencies
-        if: steps.cache-npm.outputs.cache-hit != 'true'
-        run: npm ci  # теперь lock-файл должен быть стабильным
+        run: npm install   # заменено с npm ci на npm install
 
       - name: Build playlist
         run: node src/build_pokaz.js
