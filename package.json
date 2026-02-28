@@ -18,7 +18,7 @@
   "author": "ainsoosaar",
   "license": "MIT",
   "dependencies": {
-    "puppeteer": "^21.0.0"
+    "puppeteer": "^24.37.5"
   },
   "engines": {
     "node": ">=18.0.0"
