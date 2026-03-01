@@ -18,6 +18,18 @@ const channels = [
 const OUTPUT_FILE = path.join(__dirname, '..', 'playlists', 'pokaz_playlist.m3u8');
 const ERROR_LOG = path.join(__dirname, '..', 'playlists', 'error_log.txt');
 
+// Функция для подключения к browserless
+async function connectBrowser() {
+  const apiKey = process.env.BROWSERLESS_API_KEY;
+  if (!apiKey) {
+    throw new Error('BROWSERLESS_API_KEY environment variable not set');
+  }
+  const browser = await puppeteer.connect({
+    browserWSEndpoint: `wss://chrome.browserless.io?token=${apiKey}`,
+  });
+  return browser;
+}
+
 async function emulateHumanActivity(page) {
   await page.mouse.move(100 + Math.random() * 500, 100 + Math.random() * 500);
   await page.mouse.move(200 + Math.random() * 500, 200 + Math.random() * 500);
@@ -65,33 +77,20 @@ async function getStreamUrl(page, channelUrl) {
 }
 
 async function buildPlaylist() {
-  console.log('🚀 Запуск сборки плейлиста...');
+  console.log('🚀 Запуск сборки плейлиста с browserless.io...');
   console.log('==================================================');
 
-  const browser = await puppeteer.launch({
-    headless: 'new',
-    args: [
-      '--no-sandbox',
-      '--disable-setuid-sandbox',
-      '--disable-web-security',
-      '--disable-features=IsolateOrigins,site-per-process',
-      '--window-size=1920,1080',
-      '--start-maximized',
-      '--disable-blink-features=AutomationControlled',
-      '--disable-gpu',
-      '--disable-dev-shm-usage'
-    ]
-  });
-
-  const errors = [];
-  const playlist = ['#EXTM3U'];
-
+  let browser;
   try {
+    browser = await connectBrowser();
     const page = await browser.newPage();
     await page.setViewport({ width: 1920, height: 1080 });
     await page.setExtraHTTPHeaders({
       'Accept-Language': 'ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7'
     });
+
+    const errors = [];
+    const playlist = ['#EXTM3U'];
 
     for (let i = 0; i < channels.length; i++) {
       const ch = channels[i];
@@ -110,21 +109,21 @@ async function buildPlaylist() {
     }
 
     await page.close();
+
+    fs.writeFileSync(OUTPUT_FILE, playlist.join('\n'), 'utf8');
+    console.log('==================================================');
+    console.log(`📊 Статистика:`);
+    console.log(`   ✅ Успешно: ${playlist.length - 1}`);
+    console.log(`   ❌ Ошибок: ${errors.length}`);
+    console.log(`   📁 Плейлист сохранён: ${OUTPUT_FILE}`);
+
+    if (errors.length > 0) {
+      fs.writeFileSync(ERROR_LOG, errors.join('\n'), 'utf8');
+    } else if (fs.existsSync(ERROR_LOG)) {
+      fs.unlinkSync(ERROR_LOG);
+    }
   } finally {
-    await browser.close();
-  }
-
-  fs.writeFileSync(OUTPUT_FILE, playlist.join('\n'), 'utf8');
-  console.log('==================================================');
-  console.log(`📊 Статистика:`);
-  console.log(`   ✅ Успешно: ${playlist.length - 1}`);
-  console.log(`   ❌ Ошибок: ${errors.length}`);
-  console.log(`   📁 Плейлист сохранён: ${OUTPUT_FILE}`);
-
-  if (errors.length > 0) {
-    fs.writeFileSync(ERROR_LOG, errors.join('\n'), 'utf8');
-  } else if (fs.existsSync(ERROR_LOG)) {
-    fs.unlinkSync(ERROR_LOG);
+    if (browser) await browser.close();
   }
 }
 
