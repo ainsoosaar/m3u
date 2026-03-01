@@ -30,43 +30,43 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y openvpn curl
 
-      # Создание auth-файла для VPN
       - name: Create auth file
         run: |
           echo "${{ secrets.PROTONVPN_USER }}" > auth.txt
           echo "${{ secrets.PROTONVPN_PASSWORD }}" >> auth.txt
           chmod 600 auth.txt
 
-      # Подготовка конфигурации OpenVPN из секретов
       - name: Prepare OpenVPN config
         run: |
           echo "${{ secrets.OPENVPN_CONFIG }}" > client.ovpn
+          chmod 600 client.ovpn
 
-      # Подключение к VPN
       - name: Connect to VPN
+        id: vpn
         run: |
-          sudo openvpn --config client.ovpn --daemon --log vpn.log
+          sudo openvpn --config client.ovpn --log vpn.log &
+          echo $! > vpn.pid
           sleep 15
           echo "Current IP:"
           curl -s ifconfig.me
 
-      # Сборка плейлиста
       - name: Build playlist
         run: node src/build_pokaz.js
 
-      # Отключение VPN
       - name: Disconnect VPN
         if: always()
-        run: sudo killall openvpn
+        run: |
+          if [ -f vpn.pid ]; then
+            sudo kill $(cat vpn.pid) || true
+            rm vpn.pid
+          fi
 
-      # Проверка изменений
       - name: Check for changes
         id: git-check
         run: |
           git status --porcelain
           echo "changed=$(git status --porcelain | wc -l)" >> $GITHUB_OUTPUT
 
-      # Коммит и push изменений
       - name: Commit and push if changed
         if: steps.git-check.outputs.changed != '0'
         run: |
