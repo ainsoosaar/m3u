@@ -1,10 +1,10 @@
 #EXTM3U
 #EXTINF:-1 tvg-id="Первый канал" tvg-name="Первый канал" tvg-logo="https://pokaz.me/posts/2017-11/1511429376_1463597059_pervyy-kanal.png",Первый канал
-<<<<<<< HEAD
+
 https://s.pokaz.me/540/index.m3u8?k=1772387752p071i061i42i821Sdb8d99613f0d3a8d42f30abca4ea03d2
 #EXTINF:-1 tvg-id="Россия 24" tvg-name="Россия 24" tvg-logo="https://pokaz.me/posts/2017-11/1511428941_1388683762_vesti.png",Россия 24
 https://s.pokaz.me/563/index.m3u8?k=1772387757p071i061i42i821See3e0f1b03ff0fdba7f8456e81125de4
-=======
+
 https://s.pokaz.me/540/index.m3u8?k=1772176758p532i99i921i19Se82a53e7b6964cd97886b90ec659b351
 #EXTINF:-1 tvg-id="Россия 1" tvg-name="Россия 1" tvg-logo="https://pokaz.me/posts/2017-11/1511432255_rossiya-1.png",Россия 1
 https://s.pokaz.me/544/index.m3u8?k=1772176762p532i99i921i19Sea91cf6ea1e6a0ef4be2c31642ada733
@@ -18,4 +18,4 @@ https://s.pokaz.me/548/index.m3u8?k=1772176770p532i99i921i19S8f0eac65f66ad16eadd
 https://s.pokaz.me/561/index.m3u8?k=1772176773p532i99i921i19S4c4a9b149d73236276390087bb1b3f04
 #EXTINF:-1 tvg-id="Россия 24" tvg-name="Россия 24" tvg-logo="https://pokaz.me/posts/2017-11/1511428941_1388683762_vesti.png",Россия 24
 https://s.pokaz.me/563/index.m3u8?k=1772176775p532i99i921i19S3c8d984c530fd27da2dcd665f8094899
->>>>>>> master
+
