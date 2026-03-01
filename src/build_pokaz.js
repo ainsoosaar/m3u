@@ -7,7 +7,6 @@ import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-// Подключаем плагины без дополнительной конфигурации
 puppeteer.use(StealthPlugin());
 puppeteer.use(AnonymizeUAPlugin());
 
@@ -23,7 +22,7 @@ async function emulateHumanActivity(page) {
   await page.mouse.move(100 + Math.random() * 500, 100 + Math.random() * 500);
   await page.mouse.move(200 + Math.random() * 500, 200 + Math.random() * 500);
   await page.evaluate(() => window.scrollBy(0, Math.random() * 200));
-  await page.waitForTimeout(1000 + Math.random() * 2000);
+  await new Promise(resolve => setTimeout(resolve, 1000 + Math.random() * 2000));
 }
 
 async function getStreamUrl(page, channelUrl) {
@@ -44,7 +43,6 @@ async function getStreamUrl(page, channelUrl) {
     const src = await page.$eval('video', el => el.src);
     console.log(`  ✅ Найден поток: ${src}`);
 
-    // Отладочная информация
     const userAgent = await page.evaluate(() => navigator.userAgent);
     console.log(`  🕵️ User-Agent: ${userAgent}`);
     const webglVendor = await page.evaluate(() => {
