@@ -1,4 +1,4 @@
-﻿name: Update Pokaz Playlist
+name: Update Pokaz Playlist
 
 permissions:
   contents: write
@@ -21,14 +21,6 @@ jobs:
         with:
           node-version: '20'
           cache: 'npm'
-
-      - name: Install system dependencies for Puppeteer
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y libgbm1 wget chromium-browser
-
-      - name: Set Chromium path
-        run: echo "PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser" >> $GITHUB_ENV
 
       - name: Cache node_modules
         id: cache-npm
