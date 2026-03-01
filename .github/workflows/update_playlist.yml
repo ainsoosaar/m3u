@@ -1,4 +1,4 @@
-﻿name: Update Pokaz Playlist
+name: Update Pokaz Playlist
 
 permissions:
   contents: write
@@ -34,10 +34,9 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Install Chrome for Puppeteer
-        run: npx puppeteer browsers install chrome
-
-      - name: Build playlist
+      - name: Build playlist with browserless.io
+        env:
+          BROWSERLESS_API_KEY: ${{ secrets.BROWSERLESS_API_KEY }}
         run: node src/build_pokaz.js
 
       - name: Check for changes
@@ -54,4 +53,3 @@ jobs:
           git add playlists/pokaz_playlist.m3u8 playlists/error_log.txt
           git commit -m "Auto-update playlist $(date +'%Y-%m-%d %H:%M:%S')"
           git push origin main
-
