@@ -30,42 +30,19 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y openvpn curl
 
+      # Создание auth-файла для VPN
       - name: Create auth file
         run: |
           echo "${{ secrets.PROTONVPN_USER }}" > auth.txt
           echo "${{ secrets.PROTONVPN_PASSWORD }}" >> auth.txt
           chmod 600 auth.txt
 
+      # Подготовка конфигурации OpenVPN из секретов
       - name: Prepare OpenVPN config
         run: |
-          cat > client.ovpn <<'EOF'
-client
-dev tun
-proto udp
-remote nl-free-01.protonvpn.com 1194
-resolv-retry infinite
-nobind
-remote-cert-tls server
-tls-version-min 1.2
-verify-x509-name nl-free-01.protonvpn.com name
-cipher AES-256-CBC
-auth SHA512
-auth-user-pass auth.txt
-verb 3
-<ca>
------BEGIN CERTIFICATE-----
-MIIFnTCCA4WgAwIBAgIUCI574SM3Lyh47GyNl0WAOYrqb5QwDQYJKoZIhvcNAQEL
-...
------END CERTIFICATE-----
-</ca>
-<tls-crypt>
------BEGIN OpenVPN Static key V1-----
-6acef03f62675b4b1bbd03e53b187727
-...
------END OpenVPN Static key V1-----
-</tls-crypt>
-EOF
+          echo "${{ secrets.OPENVPN_CONFIG }}" > client.ovpn
 
+      # Подключение к VPN
       - name: Connect to VPN
         run: |
           sudo openvpn --config client.ovpn --daemon --log vpn.log
@@ -73,19 +50,23 @@ EOF
           echo "Current IP:"
           curl -s ifconfig.me
 
+      # Сборка плейлиста
       - name: Build playlist
         run: node src/build_pokaz.js
 
+      # Отключение VPN
       - name: Disconnect VPN
         if: always()
         run: sudo killall openvpn
 
+      # Проверка изменений
       - name: Check for changes
         id: git-check
         run: |
           git status --porcelain
           echo "changed=$(git status --porcelain | wc -l)" >> $GITHUB_OUTPUT
 
+      # Коммит и push изменений
       - name: Commit and push if changed
         if: steps.git-check.outputs.changed != '0'
         run: |
