@@ -80,30 +80,7 @@ async function buildPlaylist() {
   console.log('🚀 Запуск сборки плейлиста с browserless.io...');
   console.log('==================================================');
 
-
-  const browser = await puppeteer.launch({
-    headless: 'new',
-    args: [
-      '--no-sandbox',
-      '--disable-setuid-sandbox',
-      '--disable-web-security',
-      '--disable-features=IsolateOrigins,site-per-process',
-      '--window-size=1920,1080',
-      '--start-maximized',
-      '--disable-blink-features=AutomationControlled',
-      '--use-gl=swiftshader',
-      '--enable-webgl',
-      '--ignore-gpu-blocklist',
-      '--disable-dev-shm-usage'
-    ]
-  });
-
-  const errors = [];
-  const playlist = ['#EXTM3U'];
-
-
   let browser;
-
   try {
     browser = await connectBrowser();
     const page = await browser.newPage();
