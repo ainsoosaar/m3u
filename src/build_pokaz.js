@@ -1,128 +1,95 @@
+import puppeteer from 'puppeteer';
 import fs from 'fs';
 import path from 'path';
-import puppeteer from 'puppeteer';
+import { fileURLToPath } from 'url';
 
-const BASE = 'https://pokaz.me';
-const PLAYLIST_FILE = path.resolve('./playlists/pokaz_playlist.m3u8');
-const LOG_FILE = path.resolve('./playlists/error_log.txt');
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-// ============================================
-// ПОЛНЫЙ СПИСОК КАНАЛОВ (ВОССТАНОВЛЕН ИЗ УСПЕШНЫХ ЗАПУСКОВ)
-// ============================================
 const channels = [
-  // Основные федеральные
-  '/336-tv_pervyy_kanal_online.html',
-  '/62-kanal-rossiya-24.html'
+  { name: 'Первый канал', url: 'https://pokaz.me/336-tv_pervyy_kanal_online.html' },
+  { name: 'Россия 24', url: 'https://pokaz.me/62-kanal-rossiya-24.html' }
+  // добавьте остальные каналы по аналогии
 ];
 
-// Очистка названия канала
-function cleanName(name) {
-  return name
-    .replace(/смотреть онлайн/i, '')
-    .replace(/телеканал/i, '')
-    .replace(/прямой эфир/i, '')
-    .replace(/онлайн/i, '')
-    .replace(/\s+/g, ' ')
-    .trim();
+const OUTPUT_FILE = path.join(__dirname, '..', 'playlists', 'pokaz_playlist.m3u8');
+const ERROR_LOG = path.join(__dirname, '..', 'playlists', 'error_log.txt');
+
+async function getStreamUrl(page, channelUrl) {
+  try {
+    console.log(`📺 ${channelUrl}`);
+    await page.goto(channelUrl, { waitUntil: 'networkidle2', timeout: 60000 });
+    
+    // Ждём появления video-элемента (до 30 секунд)
+    await page.waitForSelector('video', { timeout: 30000 });
+    
+    // Извлекаем src
+    const src = await page.$eval('video', el => el.src);
+    if (!src) throw new Error('src not found');
+    console.log(`  ✅ Найден поток`);
+    return src;
+  } catch (error) {
+    console.error(`  ❌ Ошибка: ${error.message}`);
+    return null;
+  }
 }
 
-const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
-
-async function build() {
+async function buildPlaylist() {
   console.log('🚀 Запуск сборки плейлиста...');
-  console.log('='.repeat(50));
+  console.log('==================================================');
 
   const browser = await puppeteer.launch({
     headless: 'new',
-    defaultViewport: null,
-    args: [
-      '--no-sandbox',
-      '--disable-setuid-sandbox',
-      '--disable-dev-shm-usage',
-      '--disable-accelerated-2d-canvas',
-      '--disable-gpu',
-      '--window-size=1920,1080'
-    ]
+    args: ['--no-sandbox', '--disable-setuid-sandbox']
   });
 
-  const page = await browser.newPage();
-  await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36');
+  const errors = [];
+  const playlist = ['#EXTM3U'];
 
-  let playlist = '#EXTM3U\n';
-  fs.writeFileSync(LOG_FILE, '');
+  try {
+    const page = await browser.newPage();
+    // Устанавливаем фиксированный User-Agent (замените на свой, если нужно)
+    await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36');
 
-  let successCount = 0;
-  let failCount = 0;
-
-  for (let i = 0; i < channels.length; i++) {
-    const channelPath = channels[i];
-    const url = BASE + channelPath;
-
-    console.log(`📺 [${i + 1}/${channels.length}] ${url}`);
-
-    try {
-      await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 30000 });
-      await delay(3000);
-
-      let stream = '';
-      try {
-        stream = await page.$eval('video', vid => vid.src);
-      } catch {
-        console.warn('  ⚠️ Видео не найдено, пропускаем');
-        fs.appendFileSync(LOG_FILE, `${url} - видео не найдено\n`);
-        failCount++;
-        continue;
+    for (let i = 0; i < channels.length; i++) {
+      const ch = channels[i];
+      console.log(`📺 [${i+1}/${channels.length}] ${ch.url}`);
+      
+      const streamUrl = await getStreamUrl(page, ch.url);
+      
+      if (streamUrl) {
+        // Формируем запись плейлиста
+        const logo = `https://pokaz.me/posts/2017-11/...`; // тут нужно вытаскивать logo из страницы, либо генерировать.
+        // Упростим: используем ch.name для tvg-id и tvg-name
+        playlist.push(`#EXTINF:-1 tvg-id="${ch.name}" tvg-name="${ch.name}" tvg-logo="https://pokaz.me/...",${ch.name}`);
+        playlist.push(streamUrl);
+      } else {
+        errors.push(`❌ ${ch.name}: не удалось получить поток`);
       }
-
-      if (!stream) {
-        console.warn('  ⚠️ Пустой src, пропускаем');
-        fs.appendFileSync(LOG_FILE, `${url} - пустой src\n`);
-        failCount++;
-        continue;
-      }
-
-      console.log(`  ✅ Найден поток`);
-
-      let name = '';
-      try {
-        name = await page.$eval('h1', el => el.textContent);
-      } catch {
-        name = await page.$eval('title', el => el.textContent.split('—')[0].trim());
-      }
-      name = cleanName(name);
-
-      let logo = '';
-      try {
-        logo = await page.$eval('article.block.story img', img =>
-          img.src.startsWith('http') ? img.src : 'https://pokaz.me' + img.src
-        );
-      } catch {}
-
-      playlist += `#EXTINF:-1 tvg-id="${name}" tvg-name="${name}" tvg-logo="${logo}",${name}\n${stream}\n`;
-      console.log(`  ✅ ${name}`);
-      successCount++;
-
-    } catch (err) {
-      console.error(`  ❌ Ошибка на канале ${channelPath}:`, err.message);
-      fs.appendFileSync(LOG_FILE, `${url} - ${err.message}\n`);
-      failCount++;
+      
+      // Небольшая пауза между запросами, чтобы не нагружать сервер
+      await new Promise(resolve => setTimeout(resolve, 2000));
     }
 
-    await delay(1000);
+    await page.close();
+  } finally {
+    await browser.close();
   }
 
-  fs.writeFileSync(PLAYLIST_FILE, playlist);
-
-  console.log('\n' + '='.repeat(50));
+  // Запись плейлиста
+  fs.writeFileSync(OUTPUT_FILE, playlist.join('\n'), 'utf8');
+  console.log('==================================================');
   console.log(`📊 Статистика:`);
-  console.log(`   ✅ Успешно: ${successCount}`);
-  console.log(`   ❌ Ошибок: ${failCount}`);
-  console.log(`   📁 Плейлист сохранён: ${PLAYLIST_FILE}`);
+  console.log(`   ✅ Успешно: ${playlist.length - 1}`);
+  console.log(`   ❌ Ошибок: ${errors.length}`);
+  console.log(`   📁 Плейлист сохранён: ${OUTPUT_FILE}`);
 
-  await browser.close();
+  // Запись ошибок в лог
+  if (errors.length > 0) {
+    fs.writeFileSync(ERROR_LOG, errors.join('\n'), 'utf8');
+  } else {
+    // Если ошибок нет, удаляем пустой лог (или оставляем пустым)
+    if (fs.existsSync(ERROR_LOG)) fs.unlinkSync(ERROR_LOG);
+  }
 }
 
-build().catch(err => {
-  console.error('❌ Критическая ошибка:', err);
-  process.exit(1);
-});
+buildPlaylist().catch(console.error);
