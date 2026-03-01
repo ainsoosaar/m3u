@@ -78,7 +78,9 @@ async function buildPlaylist() {
       '--window-size=1920,1080',
       '--start-maximized',
       '--disable-blink-features=AutomationControlled',
-      '--disable-gpu',
+      '--use-gl=swiftshader',
+      '--enable-webgl',
+      '--ignore-gpu-blocklist',
       '--disable-dev-shm-usage'
     ]
   });
