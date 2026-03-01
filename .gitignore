@@ -25,6 +25,11 @@ Thumbs.db
 # GitHub Actions
 !.github/workflows/*.yml
 
+auth.txt
+client.ovpn
+vpn.pid
+vpn.log
+
 # Сборка и кэш
 dist/
 build/
