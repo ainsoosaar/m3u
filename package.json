@@ -1,7 +1,7 @@
 {
   "name": "m3u",
   "version": "1.0.0",
-  "description": "Автоматический сборщик плейлистов для pokaz.me",
+  "description": "ÐÐ²Ñ‚Ð¾Ð¼Ð°Ñ‚Ð¸Ñ‡ÐµÑÐºÐ¸Ð¹ ÑÐ±Ð¾Ñ€Ñ‰Ð¸Ðº Ð¿Ð»ÐµÐ¹Ð»Ð¸ÑÑ‚Ð¾Ð² Ð´Ð»Ñ pokaz.me",
   "main": "src/build_pokaz.js",
   "type": "module",
   "scripts": {
@@ -18,8 +18,7 @@
   "author": "ainsoosaar",
   "license": "MIT",
   "dependencies": {
-<<<<<<< HEAD
-    "puppeteer": "^21.0.0"
+    "puppeteer": "^24.37.5"
   },
   "engines": {
     "node": ">=18.0.0"
@@ -32,11 +31,4 @@
     "url": "https://github.com/ainsoosaar/m3u/issues"
   },
   "homepage": "https://github.com/ainsoosaar/m3u#readme"
-=======
-    "puppeteer": "^24.37.5"
-  },
-  "engines": {
-    "node": ">=18.0.0"
-  }
->>>>>>> master
 }

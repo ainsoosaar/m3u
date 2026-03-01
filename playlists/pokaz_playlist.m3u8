@@ -1,26 +1,5 @@
 #EXTM3U
 #EXTINF:-1 tvg-id="Первый канал" tvg-name="Первый канал" tvg-logo="https://pokaz.me/posts/2017-11/1511429376_1463597059_pervyy-kanal.png",Первый канал
-
-
-https://s.pokaz.me/540/index.m3u8?k=1772387752p071i061i42i821Sdb8d99613f0d3a8d42f30abca4ea03d2
+https://s.pokaz.me/540/index.m3u8?k=1772407088p532i99i921i19Sc25c20addc8ae7c0038961b16159cb6b
 #EXTINF:-1 tvg-id="Россия 24" tvg-name="Россия 24" tvg-logo="https://pokaz.me/posts/2017-11/1511428941_1388683762_vesti.png",Россия 24
-https://s.pokaz.me/563/index.m3u8?k=1772387757p071i061i42i821See3e0f1b03ff0fdba7f8456e81125de4
-
-https://s.pokaz.me/540/index.m3u8?k=1772176758p532i99i921i19Se82a53e7b6964cd97886b90ec659b351
-#EXTINF:-1 tvg-id="Россия 1" tvg-name="Россия 1" tvg-logo="https://pokaz.me/posts/2017-11/1511432255_rossiya-1.png",Россия 1
-https://s.pokaz.me/544/index.m3u8?k=1772176762p532i99i921i19Sea91cf6ea1e6a0ef4be2c31642ada733
-#EXTINF:-1 tvg-id="НТВ" tvg-name="НТВ" tvg-logo="https://pokaz.me/posts/2017-11/1511428847_1381933138_ntv.png",НТВ
-https://s.pokaz.me/537/index.m3u8?k=1772176765p532i99i921i19Sc832bc3c802c45ebc35c3e8a6bc9f689
-#EXTINF:-1 tvg-id="Рен ТВ" tvg-name="Рен ТВ" tvg-logo="https://pokaz.me/posts/2018-12/1545320907_rentv.png",Рен ТВ
-https://s.pokaz.me/543/index.m3u8?k=1772176768p532i99i921i19S4adf4e9af2c862e6a248d095e62d9552
-#EXTINF:-1 tvg-id="ТВЦ" tvg-name="ТВЦ" tvg-logo="https://pokaz.me/posts/2018-05/1525937702_1525937690.png",ТВЦ
-https://s.pokaz.me/548/index.m3u8?k=1772176770p532i99i921i19S8f0eac65f66ad16eaddee0ac2ea41b19
-#EXTINF:-1 tvg-id="Домашний" tvg-name="Домашний" tvg-logo="https://pokaz.me/posts/2017-11/1511429092_1461686810_domashniy.png",Домашний
-https://s.pokaz.me/561/index.m3u8?k=1772176773p532i99i921i19S4c4a9b149d73236276390087bb1b3f04
-#EXTINF:-1 tvg-id="Россия 24" tvg-name="Россия 24" tvg-logo="https://pokaz.me/posts/2017-11/1511428941_1388683762_vesti.png",Россия 24
-https://s.pokaz.me/563/index.m3u8?k=1772176775p532i99i921i19S3c8d984c530fd27da2dcd665f8094899
-
-https://s.pokaz.me/540/index.m3u8?k=1772403838p312i251i802i271S09e6f425d313fac8168707b495cb3cac
-#EXTINF:-1 tvg-id="Россия 24" tvg-name="Россия 24" tvg-logo="https://pokaz.me/posts/2017-11/1511428941_1388683762_vesti.png",Россия 24
-https://s.pokaz.me/563/index.m3u8?k=1772403844p312i251i802i271S1b131160fe4b36d67099ae0190baddf7
-
+https://s.pokaz.me/563/index.m3u8?k=1772407099p532i99i921i19S2c4be86d1b33b04e1079eadb997a705f
