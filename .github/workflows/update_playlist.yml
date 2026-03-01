@@ -1,3 +1,42 @@
+name: Update Pokaz Playlist
+
+permissions:
+  contents: write
+
+on:
+  schedule:
+    - cron: '0 */6 * * *'
+  workflow_dispatch:
+
+jobs:
+  build-playlist:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm install
+
+      # Установка OpenVPN
+      - name: Install OpenVPN
+        run: sudo apt-get update && sudo apt-get install -y openvpn curl
+
+      # Создание файла с учётными данными
+      - name: Create auth file
+        run: |
+          echo "${{ secrets.PROTONVPN_USER }}" > auth.txt
+          echo "${{ secrets.PROTONVPN_PASSWORD }}" >> auth.txt
+          chmod 600 auth.txt
+
+      # Создание конфигурации OpenVPN (с исправленными отступами)
       - name: Prepare OpenVPN config
         run: |
           cat > client.ovpn <<'EOF'
@@ -70,3 +109,34 @@ aeb893d9a96d1f15519bb3c4dcb40ee3
 -----END OpenVPN Static key V1-----
 </tls-crypt>
 EOF
+
+      # Подключение к VPN
+      - name: Connect to VPN
+        run: |
+          sudo openvpn --config client.ovpn --daemon --log vpn.log
+          sleep 15
+          echo "Current IP:"
+          curl -s ifconfig.me
+
+      - name: Build playlist
+        run: node src/build_pokaz.js
+
+      - name: Disconnect VPN
+        if: always()
+        run: sudo killall openvpn
+
+      - name: Check for changes
+        id: git-check
+        run: |
+          git status --porcelain
+          echo "changed=$(git status --porcelain | wc -l)" >> $GITHUB_OUTPUT
+
+      - name: Commit and push if changed
+        if: steps.git-check.outputs.changed != '0'
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add playlists/pokaz_playlist.m3u8
+          if [ -f playlists/error_log.txt ]; then git add playlists/error_log.txt; fi
+          git commit -m "Auto-update playlist $(date +'%Y-%m-%d %H:%M:%S')"
+          git push origin main
