@@ -1,59 +1,20 @@
-name: Update Pokaz Playlist
-
-permissions:
-  contents: write
-
-on:
-  schedule:
-    - cron: '0 */6 * * *'
-  workflow_dispatch:
-
-jobs:
-  build-playlist:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: 'npm'
-
-      - name: Install dependencies
-        run: npm install
-
-      # Установка OpenVPN
-      - name: Install OpenVPN
-        run: sudo apt-get update && sudo apt-get install -y openvpn curl
-
-      # Создание файла с учётными данными
-      - name: Create auth file
-        run: |
-          echo "${{ secrets.PROTONVPN_USER }}" > auth.txt
-          echo "${{ secrets.PROTONVPN_PASSWORD }}" >> auth.txt
-          chmod 600 auth.txt
-
-      # Создание конфигурации OpenVPN (замените содержимое CA и tls-crypt на свои)
       - name: Prepare OpenVPN config
         run: |
-          cat > client.ovpn <<EOF
-          client
-          dev tun
-          proto udp
-          remote nl-free-01.protonvpn.com 1194
-          resolv-retry infinite
-          nobind
-          remote-cert-tls server
-          tls-version-min 1.2
-          verify-x509-name nl-free-01.protonvpn.com name
-          cipher AES-256-CBC
-          auth SHA512
-          auth-user-pass auth.txt
-          verb 3
-          <ca>
+          cat > client.ovpn <<'EOF'
+client
+dev tun
+proto udp
+remote nl-free-01.protonvpn.com 1194
+resolv-retry infinite
+nobind
+remote-cert-tls server
+tls-version-min 1.2
+verify-x509-name nl-free-01.protonvpn.com name
+cipher AES-256-CBC
+auth SHA512
+auth-user-pass auth.txt
+verb 3
+<ca>
 -----BEGIN CERTIFICATE-----
 MIIFnTCCA4WgAwIBAgIUCI574SM3Lyh47GyNl0WAOYrqb5QwDQYJKoZIhvcNAQEL
 BQAwXjELMAkGA1UEBhMCQ0gxHzAdBgNVBAoMFlByb3RvbiBUZWNobm9sb2dpZXMg
@@ -88,7 +49,7 @@ bjDuBwWS1/Vwp5AJ+QHsPXhJdl3qHc1szJZVJb3VyAWvG/bWApKfFuZX18tiI4N0
 EA==
 -----END CERTIFICATE-----
 </ca>
-          <tls-crypt>
+<tls-crypt>
 -----BEGIN OpenVPN Static key V1-----
 6acef03f62675b4b1bbd03e53b187727
 423cea742242106cb2916a8a4c829756
@@ -108,35 +69,4 @@ aeb893d9a96d1f15519bb3c4dcb40ee3
 16672ea16c012664f8a9f11255518deb
 -----END OpenVPN Static key V1-----
 </tls-crypt>
-          EOF
-
-      # Подключение к VPN
-      - name: Connect to VPN
-        run: |
-          sudo openvpn --config client.ovpn --daemon --log vpn.log
-          sleep 15
-          echo "Current IP:"
-          curl -s ifconfig.me
-
-      - name: Build playlist
-        run: node src/build_pokaz.js
-
-      - name: Disconnect VPN
-        if: always()
-        run: sudo killall openvpn
-
-      - name: Check for changes
-        id: git-check
-        run: |
-          git status --porcelain
-          echo "changed=$(git status --porcelain | wc -l)" >> $GITHUB_OUTPUT
-
-      - name: Commit and push if changed
-        if: steps.git-check.outputs.changed != '0'
-        run: |
-          git config --global user.name 'github-actions[bot]'
-          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          git add playlists/pokaz_playlist.m3u8
-          if [ -f playlists/error_log.txt ]; then git add playlists/error_log.txt; fi
-          git commit -m "Auto-update playlist $(date +'%Y-%m-%d %H:%M:%S')"
-          git push origin main
+EOF
