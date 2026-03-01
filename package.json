@@ -18,6 +18,7 @@
   "author": "ainsoosaar",
   "license": "MIT",
   "dependencies": {
+<<<<<<< HEAD
     "puppeteer": "^21.0.0"
   },
   "engines": {
@@ -31,4 +32,11 @@
     "url": "https://github.com/ainsoosaar/m3u/issues"
   },
   "homepage": "https://github.com/ainsoosaar/m3u#readme"
+=======
+    "puppeteer": "^24.37.5"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+>>>>>>> master
 }

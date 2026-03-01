@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 name: Update Pokaz Playlist
+=======
+﻿name: Update Pokaz Playlist
+>>>>>>> master
 
 permissions:
   contents: write
@@ -58,4 +62,8 @@ jobs:
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
           git add playlists/pokaz_playlist.m3u8 playlists/error_log.txt
           git commit -m "Auto-update playlist $(date +'%Y-%m-%d %H:%M:%S')"
+<<<<<<< HEAD
           git push origin main   # 👈 теперь push в main (соответствует ветке по умолчанию)
+=======
+          git push origin main   # 👈 теперь push в main (соответствует ветке по умолчанию)
+>>>>>>> master
