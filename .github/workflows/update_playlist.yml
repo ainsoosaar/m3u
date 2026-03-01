@@ -27,7 +27,9 @@ jobs:
 
       # Установка OpenVPN
       - name: Install OpenVPN
-        run: sudo apt-get update && sudo apt-get install -y openvpn curl
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y openvpn curl
 
       # Создание файла с учётными данными
       - name: Create auth file
@@ -36,7 +38,7 @@ jobs:
           echo "${{ secrets.PROTONVPN_PASSWORD }}" >> auth.txt
           chmod 600 auth.txt
 
-      # Создание конфигурации OpenVPN (с исправленными отступами)
+      # Создание конфигурации OpenVPN
       - name: Prepare OpenVPN config
         run: |
           cat > client.ovpn <<'EOF'
@@ -110,7 +112,6 @@ aeb893d9a96d1f15519bb3c4dcb40ee3
 </tls-crypt>
 EOF
 
-      # Подключение к VPN
       - name: Connect to VPN
         run: |
           sudo openvpn --config client.ovpn --daemon --log vpn.log
