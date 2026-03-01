@@ -1,12 +1,36 @@
 import puppeteer from 'puppeteer-extra';
 import StealthPlugin from 'puppeteer-extra-plugin-stealth';
+import AnonymizeUAPlugin from 'puppeteer-extra-plugin-anonymize-ua';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-puppeteer.use(StealthPlugin());
+// Настройка плагинов
+puppeteer.use(StealthPlugin({
+  enabledEvasions: new Set([
+    'chrome.app',
+    'chrome.csi',
+    'chrome.loadTimes',
+    'chrome.runtime',
+    'iframe.contentWindow',
+    'media.codecs',
+    'navigator.connection',
+    'navigator.hardwareConcurrency',
+    'navigator.languages',
+    'navigator.permissions',
+    'navigator.plugins',
+    'navigator.webdriver',
+    'webgl.vendor',
+    'window.outerdimensions',
+    // Добавляем ещё некоторые
+    'user-agent-override',
+  ])
+}));
+
+// Дополнительная анонимизация User-Agent
+puppeteer.use(AnonymizeUAPlugin());
 
 const channels = [
   { name: 'Первый канал', url: 'https://pokaz.me/336-tv_pervyy_kanal_online.html' },
@@ -16,11 +40,24 @@ const channels = [
 const OUTPUT_FILE = path.join(__dirname, '..', 'playlists', 'pokaz_playlist.m3u8');
 const ERROR_LOG = path.join(__dirname, '..', 'playlists', 'error_log.txt');
 
+async function emulateHumanActivity(page) {
+  // Случайные движения мыши
+  await page.mouse.move(100 + Math.random() * 500, 100 + Math.random() * 500);
+  await page.mouse.move(200 + Math.random() * 500, 200 + Math.random() * 500);
+  // Небольшая прокрутка
+  await page.evaluate(() => window.scrollBy(0, Math.random() * 200));
+  await page.waitForTimeout(1000 + Math.random() * 2000);
+}
+
 async function getStreamUrl(page, channelUrl) {
   try {
     console.log(`📺 ${channelUrl}`);
     await page.goto(channelUrl, { waitUntil: 'networkidle2', timeout: 60000 });
 
+    // Имитация человеческой активности
+    await emulateHumanActivity(page);
+
+    // Ждём появления video с src, начинающимся с https://s.pokaz.me/
     await page.waitForFunction(
       () => {
         const video = document.querySelector('video');
@@ -31,6 +68,18 @@ async function getStreamUrl(page, channelUrl) {
 
     const src = await page.$eval('video', el => el.src);
     console.log(`  ✅ Найден поток: ${src}`);
+
+    // Для отладки выводим дополнительную информацию
+    const userAgent = await page.evaluate(() => navigator.userAgent);
+    console.log(`  🕵️ User-Agent: ${userAgent}`);
+    const webglVendor = await page.evaluate(() => {
+      const canvas = document.createElement('canvas');
+      const gl = canvas.getContext('webgl');
+      if (!gl) return 'no webgl';
+      const debugInfo = gl.getExtension('WEBGL_debug_renderer_info');
+      return debugInfo ? gl.getParameter(debugInfo.UNMASKED_VENDOR_WEBGL) + ' ' + gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL) : 'unknown';
+    });
+    console.log(`  🖥️ WebGL: ${webglVendor}`);
 
     const outer = await page.$eval('video', el => el.outerHTML);
     console.log(`  📄 Video element: ${outer.substring(0, 200)}...`);
@@ -55,7 +104,9 @@ async function buildPlaylist() {
       '--disable-features=IsolateOrigins,site-per-process',
       '--window-size=1920,1080',
       '--start-maximized',
-      '--disable-blink-features=AutomationControlled'
+      '--disable-blink-features=AutomationControlled',
+      '--disable-gpu',
+      '--disable-dev-shm-usage'
     ]
   });
 
@@ -65,7 +116,6 @@ async function buildPlaylist() {
   try {
     const page = await browser.newPage();
     await page.setViewport({ width: 1920, height: 1080 });
-    await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36');
     await page.setExtraHTTPHeaders({
       'Accept-Language': 'ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7'
     });
@@ -83,7 +133,8 @@ async function buildPlaylist() {
         errors.push(`❌ ${ch.name}: не удалось получить поток`);
       }
 
-      await new Promise(resolve => setTimeout(resolve, 3000));
+      // Пауза между запросами
+      await new Promise(resolve => setTimeout(resolve, 5000));
     }
 
     await page.close();
