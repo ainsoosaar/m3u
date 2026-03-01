@@ -30,17 +30,20 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y openvpn curl
 
+      # Создание auth-файла для VPN
       - name: Create auth file
         run: |
           echo "${{ secrets.PROTONVPN_USER }}" > auth.txt
           echo "${{ secrets.PROTONVPN_PASSWORD }}" >> auth.txt
           chmod 600 auth.txt
 
+      # Подготовка конфигурации OpenVPN из секрета
       - name: Prepare OpenVPN config
         run: |
           echo "${{ secrets.OPENVPN_CONFIG }}" > client.ovpn
           chmod 600 client.ovpn
 
+      # Подключение к VPN в фоне
       - name: Connect to VPN
         id: vpn
         run: |
@@ -50,9 +53,13 @@ jobs:
           echo "Current IP:"
           curl -s ifconfig.me
 
+      # Сборка плейлиста с передачей Browserless API Key
       - name: Build playlist
+        env:
+          BROWSERLESS_API_KEY: ${{ secrets.BROWSERLESS_API_KEY }}
         run: node src/build_pokaz.js
 
+      # Отключение VPN
       - name: Disconnect VPN
         if: always()
         run: |
@@ -61,12 +68,14 @@ jobs:
             rm vpn.pid
           fi
 
+      # Проверка изменений в репозитории
       - name: Check for changes
         id: git-check
         run: |
           git status --porcelain
           echo "changed=$(git status --porcelain | wc -l)" >> $GITHUB_OUTPUT
 
+      # Коммит и push изменений (только плейлист и лог ошибок)
       - name: Commit and push if changed
         if: steps.git-check.outputs.changed != '0'
         run: |
