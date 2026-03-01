@@ -7,29 +7,8 @@ import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-// Настройка плагинов
-puppeteer.use(StealthPlugin({
-  enabledEvasions: new Set([
-    'chrome.app',
-    'chrome.csi',
-    'chrome.loadTimes',
-    'chrome.runtime',
-    'iframe.contentWindow',
-    'media.codecs',
-    'navigator.connection',
-    'navigator.hardwareConcurrency',
-    'navigator.languages',
-    'navigator.permissions',
-    'navigator.plugins',
-    'navigator.webdriver',
-    'webgl.vendor',
-    'window.outerdimensions',
-    // Добавляем ещё некоторые
-    'user-agent-override',
-  ])
-}));
-
-// Дополнительная анонимизация User-Agent
+// Подключаем плагины без дополнительной конфигурации
+puppeteer.use(StealthPlugin());
 puppeteer.use(AnonymizeUAPlugin());
 
 const channels = [
@@ -41,10 +20,8 @@ const OUTPUT_FILE = path.join(__dirname, '..', 'playlists', 'pokaz_playlist.m3u8
 const ERROR_LOG = path.join(__dirname, '..', 'playlists', 'error_log.txt');
 
 async function emulateHumanActivity(page) {
-  // Случайные движения мыши
   await page.mouse.move(100 + Math.random() * 500, 100 + Math.random() * 500);
   await page.mouse.move(200 + Math.random() * 500, 200 + Math.random() * 500);
-  // Небольшая прокрутка
   await page.evaluate(() => window.scrollBy(0, Math.random() * 200));
   await page.waitForTimeout(1000 + Math.random() * 2000);
 }
@@ -54,10 +31,8 @@ async function getStreamUrl(page, channelUrl) {
     console.log(`📺 ${channelUrl}`);
     await page.goto(channelUrl, { waitUntil: 'networkidle2', timeout: 60000 });
 
-    // Имитация человеческой активности
     await emulateHumanActivity(page);
 
-    // Ждём появления video с src, начинающимся с https://s.pokaz.me/
     await page.waitForFunction(
       () => {
         const video = document.querySelector('video');
@@ -69,7 +44,7 @@ async function getStreamUrl(page, channelUrl) {
     const src = await page.$eval('video', el => el.src);
     console.log(`  ✅ Найден поток: ${src}`);
 
-    // Для отладки выводим дополнительную информацию
+    // Отладочная информация
     const userAgent = await page.evaluate(() => navigator.userAgent);
     console.log(`  🕵️ User-Agent: ${userAgent}`);
     const webglVendor = await page.evaluate(() => {
@@ -133,7 +108,6 @@ async function buildPlaylist() {
         errors.push(`❌ ${ch.name}: не удалось получить поток`);
       }
 
-      // Пауза между запросами
       await new Promise(resolve => setTimeout(resolve, 5000));
     }
 
