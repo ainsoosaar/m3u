@@ -1,36 +1,20 @@
-﻿# Node.js
+﻿# Node modules
 node_modules/
-npm-debug.log
-yarn-error.log
-package-lock.json
-yarn.lock
 
-# Python (если есть)
-__pycache__/
-*.pyc
-*.pyo
-*.pyd
-.python-version
-env/
-venv/
-.env
-
-# Логи и временные файлы
-logs/
+# Logs
 *.log
-*.tmp
-.DS_Store
-Thumbs.db
 
-# GitHub Actions
-!.github/workflows/*.yml
+# Playlist errors
+playlists/error_log.txt
 
+# OpenVPN temporary files
 auth.txt
 client.ovpn
 vpn.pid
 vpn.log
 
-# Сборка и кэш
-dist/
-build/
-.cache/
+# OS/IDE
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
