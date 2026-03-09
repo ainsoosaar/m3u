@@ -1,0 +1,73 @@
+name: Trigger Local Build
+
+on:
+  schedule:
+    - cron: '0 */6 * * *'  # Каждые 6 часов
+  workflow_dispatch:  # Ручной запуск
+  push:
+    branches: [ main ]
+    paths:
+      - 'src/**'  # Запуск при изменениях в коде
+
+jobs:
+  trigger-local-build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+      
+    - name: Create trigger file
+      run: |
+        echo "BUILD_TIME=$(date -u +'%Y-%m-%dT%H:%M:%SZ')" > trigger.txt
+        echo "TRIGGER_ID=${{ github.run_id }}" >> trigger.txt
+        echo "TRIGGER_SOURCE=${{ github.event_name }}" >> trigger.txt
+        
+    - name: Commit and push trigger
+      run: |
+        git config --global user.name 'GitHub Actions Bot'
+        git config --global user.email 'actions@github.com'
+        git add trigger.txt
+        git commit -m "🔄 Trigger local build at $(date -u +'%Y-%m-%d %H:%M:%S UTC')"
+        git push
+      
+    - name: Wait for local build completion
+      run: |
+        echo "🚀 Сигнал отправлен на локальный компьютер"
+        echo "⏱️  Ожидание завершения локальной сборки..."
+        
+        # Ждем 5 минут (обычно сборка занимает ~3-4 минуты)
+        sleep 300
+        
+        # Проверяем, что плейлист обновился
+        git pull
+        
+        # Проверяем время последнего коммита плейлиста
+        LAST_UPDATE=$(git log -1 --format=%cd --date=iso playlists/pokaz_playlist.m3u8)
+        echo "📊 Последнее обновление плейлиста: $LAST_UPDATE"
+        
+    - name: Create build report
+      run: |
+        echo "## 🎬 Результаты сборки" > report.md
+        echo "" >> report.md
+        echo "- **Время триггера**: $(date -u +'%Y-%m-%d %H:%M:%S UTC')" >> report.md
+        echo "- **Запущено через**: ${{ github.event_name }}" >> report.md
+        echo "- **ID запуска**: ${{ github.run_id }}" >> report.md
+        
+        # Проверяем размер плейлиста
+        if [ -f "playlists/pokaz_playlist.m3u8" ]; then
+          SIZE=$(du -h playlists/pokaz_playlist.m3u8 | cut -f1)
+          LINES=$(wc -l < playlists/pokaz_playlist.m3u8)
+          CHANNELS=$(( (LINES - 1) / 2 ))
+          echo "- **Размер плейлиста**: $SIZE" >> report.md
+          echo "- **Каналов**: $CHANNELS" >> report.md
+          echo "✅ Плейлист успешно обновлен" >> report.md
+        else
+          echo "❌ Плейлист не найден" >> report.md
+        fi
+        
+    - name: Upload build report
+      uses: actions/upload-artifact@v3
+      with:
+        name: build-report
+        path: report.md
