@@ -1,0 +1,32 @@
+name: Trigger Local Build
+
+on:
+  schedule:
+    - cron: '0 */6 * * *'  # Каждые 6 часов
+  workflow_dispatch:  # Ручной запуск
+  push:
+    branches: [ main ]
+    paths:
+      - 'src/**'  # Запуск при изменениях в коде
+
+jobs:
+  trigger-local-build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+      
+    - name: Create trigger file
+      run: |
+        echo "Build triggered at $(date -u)" > trigger.txt
+        echo "Run ID: ${{ github.run_id }}" >> trigger.txt
+        echo "Event: ${{ github.event_name }}" >> trigger.txt
+        
+    - name: Commit and push trigger
+      run: |
+        git config --global user.name 'GitHub Actions Bot'
+        git config --global user.email 'actions@github.com'
+        git add trigger.txt
+        git commit -m "🔄 Trigger local build [skip ci]" || echo "No changes to commit"
+        git push
