@@ -1,0 +1,4 @@
+﻿# Игнорировать error_log.txt
+error_log.txt
+# Но не игнорировать плейлист
+!pokaz_playlist.m3u8
