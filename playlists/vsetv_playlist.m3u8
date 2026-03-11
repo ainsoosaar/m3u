@@ -1,10 +1,4 @@
 #EXTM3U
-#EXTINF:-1 tvg-id="2x2" tvg-name="2x2" tvg-logo="https://vsetv.click/uploads/2x2.jpg",2x2
-https://zabava-htlive.cdn.ngenix.net/hls/CH_2X2/variant.m3u8
-#EXTINF:-1 tvg-id="8 kanal" tvg-name="8 kanal" tvg-logo="https://vsetv.click/uploads/2x2.jpg",8 kanal
-http://185.91.179.12/8kanal/vintera/playlist.m3u8
-#EXTINF:-1 tvg-id="amedia 1" tvg-name="amedia 1" tvg-logo="https://vsetv.click/uploads/2x2.jpg",amedia 1
-http://188.225.31.197/bpk-tv/000000710/tve/index.m3u8
 #EXTINF:-1 tvg-id="amedia 2" tvg-name="amedia 2" tvg-logo="https://vsetv.click/uploads/2x2.jpg",amedia 2
 http://188.225.31.197/bpk-tv/000000351/tve/index.m3u8
 #EXTINF:-1 tvg-id="amedia hit" tvg-name="amedia hit" tvg-logo="https://vsetv.click/uploads/2x2.jpg",amedia hit
