@@ -225,7 +225,7 @@ https://stream8.cinerama.uz/1420/tracks-v1a1/mono.m3u8
 #EXTINF:-1 tvg-id="psihologiya" tvg-name="psihologiya" tvg-logo="https://vsetv.click/uploads/2x2.jpg",psihologiya
 http://cdn.kubteltv.workers.dev/?ID=65
 #EXTINF:-1 tvg-id="pyatnica" tvg-name="pyatnica" tvg-logo="https://vsetv.click/uploads/2x2.jpg",pyatnica
-http://zabava-htlive.cdn.ngenix.net/hls/CH_PYATNIZZA/variant.m3u8
+https://zabava-htlive.cdn.ngenix.net/hls/CH_PYATNIZZA/variant.m3u8
 #EXTINF:-1 tvg-id="pyatyy kanal" tvg-name="pyatyy kanal" tvg-logo="https://vsetv.click/uploads/2x2.jpg",pyatyy kanal
 https://zabava-htlive.cdn.ngenix.net/hls/CH_5TV/variant.m3u8
 #EXTINF:-1 tvg-id="radost moya" tvg-name="radost moya" tvg-logo="https://vsetv.click/uploads/2x2.jpg",radost moya
@@ -237,7 +237,7 @@ https://zabava-htlive.cdn.ngenix.net/hls/CH_RENTV/variant.m3u8
 #EXTINF:-1 tvg-id="retro tv" tvg-name="retro tv" tvg-logo="https://vsetv.click/uploads/2x2.jpg",retro tv
 https://stream8.cinerama.uz/1047/tracks-v1a1/mono.m3u8
 #EXTINF:-1 tvg-id="rossiya 1" tvg-name="rossiya 1" tvg-logo="https://vsetv.click/uploads/2x2.jpg",rossiya 1
-http://zabava-htlive.cdn.ngenix.net/hls/CH_RUSSIA1/variant.m3u8
+https://zabava-htlive.cdn.ngenix.net/hls/CH_RUSSIA1/variant.m3u8
 #EXTINF:-1 tvg-id="rossiya 24" tvg-name="rossiya 24" tvg-logo="https://vsetv.click/uploads/2x2.jpg",rossiya 24
 https://zabava-htlive.cdn.ngenix.net/hls/CH_RUSSIA24/variant.m3u8
 #EXTINF:-1 tvg-id="rossiya kultura" tvg-name="rossiya kultura" tvg-logo="https://vsetv.click/uploads/2x2.jpg",rossiya kultura
@@ -265,11 +265,11 @@ https://zabava-htlive.cdn.ngenix.net/hls/CH_STS/variant.m3u8
 #EXTINF:-1 tvg-id="sts kids" tvg-name="sts kids" tvg-logo="https://vsetv.click/uploads/2x2.jpg",sts kids
 https://minsk-cache07t.voka.tv/live/1448.m3u8
 #EXTINF:-1 tvg-id="sts love" tvg-name="sts love" tvg-logo="https://vsetv.click/uploads/2x2.jpg",sts love
-http://zabava-htlive.cdn.ngenix.net/hls/CH_STSLOVE/variant.m3u8
+https://zabava-htlive.cdn.ngenix.net/hls/CH_STSLOVE/variant.m3u8
 #EXTINF:-1 tvg-id="subbota" tvg-name="subbota" tvg-logo="https://vsetv.click/uploads/2x2.jpg",subbota
-http://zabava-htlive.cdn.ngenix.net/hls/CH_SUPER/variant.m3u8
+https://zabava-htlive.cdn.ngenix.net/hls/CH_SUPER/variant.m3u8
 #EXTINF:-1 tvg-id="tv3" tvg-name="tv3" tvg-logo="https://vsetv.click/uploads/2x2.jpg",tv3
-http://zabava-htlive.cdn.ngenix.net/hls/CH_TV3/variant.m3u8
+https://zabava-htlive.cdn.ngenix.net/hls/CH_TV3/variant.m3u8
 #EXTINF:-1 tvg-id="tv centr" tvg-name="tv centr" tvg-logo="https://vsetv.click/uploads/2x2.jpg",tv centr
 https://zabava-htlive.cdn.ngenix.net/hls/CH_TVC/variant.m3u8
 #EXTINF:-1 tvg-id="teatr" tvg-name="teatr" tvg-logo="https://vsetv.click/uploads/2x2.jpg",teatr
@@ -285,7 +285,7 @@ https://zabava-htlive.cdn.ngenix.net/hls/CH_TNT/variant.m3u8
 #EXTINF:-1 tvg-id="tnt music" tvg-name="tnt music" tvg-logo="https://vsetv.click/uploads/2x2.jpg",tnt music
 http://tntm.mediacdn.ru/cdn/tntmusic/tracks-v1a1/mono.ts.m3u8
 #EXTINF:-1 tvg-id="tnt4" tvg-name="tnt4" tvg-logo="https://vsetv.click/uploads/2x2.jpg",tnt4
-http://zabava-htlive.cdn.ngenix.net/hls/CH_TNT4/variant.m3u8
+https://zabava-htlive.cdn.ngenix.net/hls/CH_TNT4/variant.m3u8
 #EXTINF:-1 tvg-id="tochka tv" tvg-name="tochka tv" tvg-logo="https://vsetv.click/uploads/2x2.jpg",tochka tv
 http://31.148.48.15/Tochka_TV/index.m3u8
 #EXTINF:-1 tvg-id="unikum" tvg-name="unikum" tvg-logo="https://vsetv.click/uploads/2x2.jpg",unikum
