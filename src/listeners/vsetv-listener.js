@@ -15,7 +15,7 @@ const CONFIG = {
   buildScript: 'src/build_vsetv.js',
   pollInterval: 60000, // 1 минута
   backupDir: path.join(path.resolve(__dirname, '../..'), 'backups/vsetv'),
-  branch: 'feature/vsetv-click' // Явно указываем ветку
+  branch: 'feature/vsetv-click'
 };
 
 // Создаем необходимые папки
@@ -125,18 +125,18 @@ async function checkForTrigger() {
             const stats = fs.statSync(playlistPath);
             log(`📊 Размер плейлиста: ${stats.size} байт`);
             
-            // Отправляем изменения в правильную ветку
+            // Отправляем все изменения в правильную ветку
             log(`📤 Отправка в GitHub (ветка ${CONFIG.branch})...`);
             
-            // Добавляем файлы
-            await execPromise('git add playlists/vsetv_playlist.m3u8');
+            // Добавляем все изменения
+            await execPromise('git add .');
             
             // Проверяем есть ли изменения для коммита
             const statusResult = await execPromise('git status --porcelain');
             if (statusResult.stdout.trim()) {
               // Коммит с датой
               const date = new Date().toISOString();
-              await execPromise(`git commit -m "Авто-обновление плейлиста ${CONFIG.site} ${date}"`);
+              await execPromise(`git commit -m "Авто-обновление проекта ${CONFIG.site} ${date}"`);
               
               // Пуш в правильную ветку
               try {
