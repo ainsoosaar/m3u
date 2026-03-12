@@ -1,37 +1,11 @@
 {
-  "name": "m3u",
+  "name": "pokaz-player",
   "version": "1.0.0",
-  "description": "ÐÐ²Ñ‚Ð¾Ð¼Ð°Ñ‚Ð¸Ñ‡ÐµÑÐºÐ¸Ð¹ ÑÐ±Ð¾Ñ€Ñ‰Ð¸Ðº Ð¿Ð»ÐµÐ¹Ð»Ð¸ÑÑ‚Ð¾Ð² Ð´Ð»Ñ pokaz.me",
-  "main": "src/build_pokaz.js",
   "type": "module",
-  "scripts": {
-    "build": "node src/build_pokaz.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [
-    "iptv",
-    "playlist",
-    "m3u",
-    "pokaz",
-    "puppeteer"
-  ],
-  "author": "ainsoosaar",
-  "license": "MIT",
   "dependencies": {
-    "puppeteer": "^24.37.5",
-    "puppeteer-extra": "^3.3.6",
-    "puppeteer-extra-plugin-anonymize-ua": "^2.4.6",
-    "puppeteer-extra-plugin-stealth": "^2.11.2"
-  },
-  "engines": {
-    "node": ">=18.0.0"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ainsoosaar/m3u.git"
-  },
-  "bugs": {
-    "url": "https://github.com/ainsoosaar/m3u/issues"
-  },
-  "homepage": "https://github.com/ainsoosaar/m3u#readme"
+    "axios": "^1.6.0",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "puppeteer": "^21.11.0"
+  }
 }

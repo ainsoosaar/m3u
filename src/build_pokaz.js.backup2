@@ -1,0 +1,29 @@
+// Добавьте эту функцию в build_pokaz.js (после функции error)
+function cleanStreamUrl(url) {
+  try {
+    // Пробуем получить базовый URL без параметров
+    const urlObj = new URL(url);
+    
+    // Удаляем параметр 'k' если он есть
+    urlObj.searchParams.delete('k');
+    
+    // Также удаляем другие возможные временные параметры
+    urlObj.searchParams.delete('expires');
+    urlObj.searchParams.delete('signature');
+    urlObj.searchParams.delete('token');
+    
+    return urlObj.toString();
+  } catch (e) {
+    // Если URL некорректный, возвращаем как есть
+    return url;
+  }
+}
+
+// В функции captureStream, после получения stream, добавьте очистку:
+// Найти строку: return { name: cleanName(channel.name), logo, stream }
+// И заменить на:
+return {
+  name: cleanName(channel.name),
+  logo,
+  stream: cleanStreamUrl(stream) // Очищаем URL от временных параметров
+};

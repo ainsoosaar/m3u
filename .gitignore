@@ -18,3 +18,22 @@ vpn.log
 Thumbs.db
 .vscode/
 .idea/
+# Игнорировать error_log.txt в корне, но не в playlists
+/error_log.txt
+!playlists/error_log.txt
+
+
+
+
+# Добавьте в .gitignore
+@'
+# Логи и бэкапы
+logs/
+backups/
+*.log
+*.xml
+
+# Файлы с триггерами
+trigger-*.txt
+!trigger.txt.example
+'@ | Out-File -FilePath .gitignore -Append -Encoding UTF8

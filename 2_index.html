@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>m3u Project Manager - Документация</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.95;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 5px 10px;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border-radius: 20px;
+            font-size: 0.9em;
+            margin: 5px 5px 5px 0;
+        }
+
+        .project-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 30px;
+            background: #f8f9fa;
+        }
+
+        .info-card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .info-card h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        .info-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .stat-item {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+
+        .section {
+            padding: 30px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .section h2 {
+            color: #333;
+            margin-bottom: 25px;
+            font-size: 1.8em;
+            display: flex;
+            align-items: center;
+        }
+
+        .section h2:before {
+            content: '📌';
+            margin-right: 10px;
+            font-size: 1.2em;
+        }
+
+        /* Аккордеон стили */
+        .accordion {
+            margin-bottom: 20px;
+        }
+
+        .accordion-item {
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            overflow: hidden;
+        }
+
+        .accordion-header {
+            background: #f8f9fa;
+            padding: 15px 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.3s;
+        }
+
+        .accordion-header:hover {
+            background: #e9ecef;
+        }
+
+        .accordion-header h3 {
+            margin: 0;
+            font-size: 1.2em;
+            color: #333;
+        }
+
+        .accordion-header .arrow {
+            font-size: 1.2em;
+            transition: transform 0.3s;
+        }
+
+        .accordion-header.active .arrow {
+            transform: rotate(180deg);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            background: white;
+        }
+
+        .accordion-content.show {
+            max-height: 1000px;
+            transition: max-height 0.5s ease-in;
+        }
+
+        /* Таблицы команд */
+        .command-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+
+        .command-table th {
+            background: #667eea;
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .command-table td {
+            padding: 12px;
+            border-bottom: 1px solid #e0e0e0;
+            vertical-align: middle;
+        }
+
+        .command-table tr:hover {
+            background: #f8f9fa;
+        }
+
+        .command-text {
+            background: #f1f3f5;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95em;
+            color: #d63384;
+        }
+
+        .copy-btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9em;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            min-width: 100px;
+            justify-content: center;
+        }
+
+        .copy-btn:hover {
+            background: #5a67d8;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+
+        .copy-btn.copied {
+            background: #48bb78;
+        }
+
+        /* Вкладки */
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .tab {
+            padding: 10px 20px;
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .tab:hover {
+            background: #e9ecef;
+        }
+
+        .tab.active {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+
+        .tab-pane {
+            display: none;
+        }
+
+        .tab-pane.active {
+            display: block;
+        }
+
+        /* Заметки */
+        .note {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+
+        .success {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+
+        .footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .project-info {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats {
+                grid-template-columns: 1fr;
+            }
+            
+            .command-table td {
+                display: block;
+                padding: 10px;
+            }
+            
+            .copy-btn {
+                width: 100%;
+                margin-top: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎬 m3u Project Manager</h1>
+            <p>Управление проектами для сбора плейлистов с pokaz.me и vsetv.click</p>
+            <div style="margin-top: 20px;">
+                <span class="badge">✅ Работает</span>
+                <span class="badge">🚀 Автоматизация</span>
+                <span class="badge">💾 Бэкапы</span>
+                <span class="badge">🌐 GitHub</span>
+            </div>
+        </div>
+
+        <div class="project-info">
+            <div class="info-card">
+                <h3>📁 Структура проекта</h3>
+                <p><strong>Корень:</strong> C:\Users\megaa\Desktop\Raschirenija\Pokaz.me-Github\m3u</p>
+                <p><strong>Основная ветка:</strong> main (pokaz.me)</p>
+                <p><strong>Ветка vsetv:</strong> feature/vsetv-click</p>
+                <p><strong>Плейлисты:</strong> /playlists/</p>
+                <p><strong>Бэкапы:</strong> /backups/</p>
+                <p><strong>Логи:</strong> /logs/</p>
+            </div>
+            <div class="info-card">
+                <h3>📊 Статистика</h3>
+                <div class="stats">
+                    <div class="stat-item">
+                        <div class="stat-number">151</div>
+                        <div class="stat-label">каналов vsetv</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">74</div>
+                        <div class="stat-label">канала pokaz</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">2</div>
+                        <div class="stat-label">проекта</div>
+                    </div>
+                </div>
+            </div>
+            <div class="info-card">
+                <h3>🔄 Последние обновления</h3>
+                <p><strong>vsetv.click:</strong> 147/151 каналов</p>
+                <p><strong>pokaz.me:</strong> 74/74 канала</p>
+                <p><strong>Бэкапов:</strong> Создаются автоматически</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🚀 Быстрый старт</h2>
+            <div class="note">
+                <strong>📌 Важно:</strong> Все команды выполняются в PowerShell из корня проекта (C:\Users\megaa\Desktop\Raschirenija\Pokaz.me-Github\m3u)
+            </div>
+            <table class="command-table">
+                <tr>
+                    <th>Действие</th>
+                    <th>Команда</th>
+                    <th>Копировать</th>
+                </tr>
+                <tr>
+                    <td>Проверить статус</td>
+                    <td><code class="command-text">.\switch-project.ps1 -Target status</code></td>
+                    <td><button class="copy-btn" onclick="copyCommand('.\switch-project.ps1 -Target status', this)">📋 Копировать</button></td>
+                </tr>
+                <tr>
+                    <td>Переключиться на vsetv</td>
+                    <td><code class="command-text">.\switch-project.ps1 -Target vsetv</code></td>
+                    <td><button class="copy-btn" onclick="copyCommand('.\switch-project.ps1 -Target vsetv', this)">📋 Копировать</button></td>
+                </tr>
+                <tr>
+                    <td>Переключиться на pokaz</td>
+                    <td><code class="command-text">.\switch-project.ps1 -Target pokaz</code></td>
+                    <td><button class="copy-btn" onclick="copyCommand('.\switch-project.ps1 -Target pokaz', this)">📋 Копировать</button></td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2>📋 Полная документация</h2>
+            
+            <div class="tabs">
+                <div class="tab active" onclick="switchTab('commands')">📝 Команды</div>
+                <div class="tab" onclick="switchTab('projects')">🎬 Проекты</div>
+                <div class="tab" onclick="switchTab('backups')">💾 Бэкапы</div>
+                <div class="tab" onclick="switchTab('git')">🌿 Git</div>
+            </div>
+
+            <!-- Вкладка Команды -->
+            <div id="commands" class="tab-pane active">
+                <!-- Управление pokaz.me -->
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <h3>🎬 Управление слушателем pokaz.me</h3>
+                        <span class="arrow">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <table class="command-table">
+                            <tr>
+                                <th>Команда</th>
+                                <th>Описание</th>
+                                <th>Копировать</th>
+                            </tr>
+                            <tr>
+                                <td><code class="command-text">.\start-listener.ps1</code></td>
+                                <td>Запускает слушатель для pokaz.me</td>
+                                <td><button class="copy-btn" onclick="copyCommand('.\start-listener.ps1', this)">📋 Копировать</button></td>
+                            </tr>
+                            <tr>
+                                <td><code class="command-text">.\listener-control.ps1 -Command status</code></td>
+                                <td>Проверяет статус слушателя</td>
+                                <td><button class="copy-btn" onclick="copyCommand('.\listener-control.ps1 -Command status', this)">📋 Копировать</button></td>
+                            </tr>
+                            <tr>
+                                <td><code class="command-text">.\listener-control.ps1 -Command stop</code></td>
+                                <td>Останавливает слушатель</td>
+                                <td><button class="copy-btn" onclick="copyCommand('.\listener-control.ps1 -Command stop', this)">📋 Копировать</button></td>
+                            </tr>
+                            <tr>
+                                <td><code class="command-text">.\listener-control.ps1 -Command logs</code></td>
+                                <td>Показывает логи</td>
+                                <td><button class="copy-btn" onclick="copyCommand('.\listener-control.ps1 -Command logs', this)">📋 Копировать</button></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Управление vsetv.click -->
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <h3>📺 Управление слушателем vsetv.click</h3>
+                        <span class="arrow">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <table class="command-table">
+                            <tr>
+                                <th>Команда</th>
+                                <th>Описание</th>
+                                <th>Копировать</th>
+                            </tr>
+                            <tr>
+                                <td><code class="command-text">.\vsetv-control.ps1 -Command start</code></td>
+                                <td>Запускает слушатель для vsetv.click</td>
+                                <td><button class="copy-btn" onclick="copyCommand('.\vsetv-control.ps1 -Command start', this)">📋 Копировать</button></td>
+                            </tr>
+                            <tr>
+                                <td><code class="command-text">.\vsetv-control.ps1 -Command status</code></td>
+                                <td>Проверяет статус слушателя</td>
+                                <td><button class="copy-btn" onclick="copyCommand('.\vsetv-control.ps1 -Command status', this)">📋 Копировать</button></td>
+                            </tr>
+                            <tr>
+                                <td><code class="command-text">.\vsetv-control.ps1 -Command stop</code></td>
+                                <td>Останавливает слушатель</td>
+                                <td><button class="copy-btn" onclick="copyCommand('.\vsetv-control.ps1 -Command stop', this)">📋 Копировать</button></td>
+                            </tr>
+                            <tr>
+                                <td><code class="command-text">.\vsetv-control.ps1 -Command logs</code></td>
+                                <td>Показывает логи</td>
+                                <td><button class="copy-btn" onclick="copyCommand('.\vsetv-control.ps1 -Command logs', this)">📋 Копировать</button></td>
+                            </tr>
+                            <tr>
+                                <td><code class="command-text">.\vsetv-control.ps1 -Command backup</code></td>
+                                <td>Показывает бэкапы</td>
+                                <td><button class="copy-btn" onclick="copyCommand('.\vsetv-control.ps1 -Command backup', this)">📋 Копировать</button></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Просмотр логов -->
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <h3>📊 Просмотр логов с кириллицей</h3>
+                        <span class="arrow">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <table class="command-table">
+                            <tr>
+                                <th>Команда</th>
+                                <th>Описание</th>
+                                <th>Копировать</th>
+                            </tr>
+                            <tr>
+                                <td><code class="command-text">Show-VsetvLogs</code></td>
+                                <td>Показывает 30 строк лога vsetv</td>
+                                <td><button class="copy-btn" onclick="copyCommand('Show-VsetvLogs', this)">📋 Копировать</button></td>
+                            </tr>
+                            <tr>
+                                <td><code class="command-text">Show-VsetvLogs -Follow</code></td>
+                                <td>Следит за логом vsetv в реальном времени</td>
+                                <td><button class="copy-btn" onclick="copyCommand('Show-VsetvLogs -Follow', this)">📋 Копировать</button></td>
+                            </tr>
+                            <tr>
+                                <td><code class="command-text">Show-PokazLogs</code></td>
+                                <td>Показывает логи pokaz</td>
+                                <td><button class="copy-btn" onclick="copyCommand('Show-PokazLogs', this)">📋 Копировать</button></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Вкладка Проекты -->
+            <div id="projects" class="tab-pane">
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <h3>🎬 Проект pokaz.me</h3>
+                        <span class="arrow">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="success">
+                            <strong>✅ Статус:</strong> Работает, 74 канала
+                        </div>
+                        <p><strong>Ветка:</strong> main</p>
+                        <p><strong>Скрипт сборки:</strong> src/build_pokaz.js</p>
+                        <p><strong>Плейлист:</strong> playlists/pokaz_playlist.m3u8</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <h3>📺 Проект vsetv.click</h3>
+                        <span class="arrow">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="success">
+                            <strong>✅ Статус:</strong> Работает, 147/151 каналов
+                        </div>
+                        <p><strong>Ветка:</strong> feature/vsetv-click</p>
+                        <p><strong>Скрипт сборки:</strong> src/build_vsetv.js</p>
+                        <p><strong>Плейлист:</strong> playlists/vsetv_playlist.m3u8</p>
+                        <p><strong>Лог:</strong> logs/vsetv-listener.log</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Вкладка Бэкапы -->
+            <div id="backups" class="tab-pane">
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <h3>💾 Система бэкапов</h3>
+                        <span class="arrow">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="success">
+                            <strong>✅ Бэкапы создаются автоматически перед каждой сборкой!</strong>
+                        </div>
+                        <p><strong>Папка бэкапов vsetv:</strong> backups\vsetv\</p>
+                        <p><strong>Папка бэкапов pokaz:</strong> backups\main\</p>
+                        <button class="copy-btn" onclick="copyCommand('dir backups\\vsetv', this)">📋 Просмотр бэкапов vsetv</button>
+                        <button class="copy-btn" onclick="copyCommand('dir backups\\main', this)" style="margin-left: 10px;">📋 Просмотр бэкапов pokaz</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Вкладка Git -->
+            <div id="git" class="tab-pane">
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <h3>🌿 Работа с Git</h3>
+                        <span class="arrow">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <table class="command-table">
+                            <tr>
+                                <th>Команда</th>
+                                <th>Описание</th>
+                                <th>Копировать</th>
+                            </tr>
+                            <tr>
+                                <td><code class="command-text">git branch</code></td>
+                                <td>Показать локальные ветки</td>
+                                <td><button class="copy-btn" onclick="copyCommand('git branch', this)">📋 Копировать</button></td>
+                            </tr>
+                            <tr>
+                                <td><code class="command-text">git checkout main</code></td>
+                                <td>Переключиться на pokaz.me</td>
+                                <td><button class="copy-btn" onclick="copyCommand('git checkout main', this)">📋 Копировать</button></td>
+                            </tr>
+                            <tr>
+                                <td><code class="command-text">git checkout feature/vsetv-click</code></td>
+                                <td>Переключиться на vsetv.click</td>
+                                <td><button class="copy-btn" onclick="copyCommand('git checkout feature/vsetv-click', this)">📋 Копировать</button></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>📅 Последнее обновление: 11 марта 2026</p>
+            <p>🔗 GitHub: <a href="https://github.com/ainsoosaar/m3u" style="color: #fff;">github.com/ainsoosaar/m3u</a></p>
+        </div>
+    </div>
+
+    <script>
+        // Функция для копирования команд
+        function copyCommand(command, btn) {
+            navigator.clipboard.writeText(command).then(function() {
+                btn.textContent = '✅ Скопировано!';
+                btn.classList.add('copied');
+                
+                setTimeout(function() {
+                    btn.textContent = '📋 Копировать';
+                    btn.classList.remove('copied');
+                }, 2000);
+            });
+        }
+
+        // Функция для переключения вкладок
+        function switchTab(tabId) {
+            // Скрываем все вкладки
+            document.querySelectorAll('.tab-pane').forEach(pane => {
+                pane.classList.remove('active');
+            });
+            
+            // Убираем активный класс у всех табов
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Показываем выбранную вкладку
+            document.getElementById(tabId).classList.add('active');
+            
+            // Добавляем активный класс выбранному табу
+            event.target.classList.add('active');
+        }
+
+        // Функция для сворачивания/разворачивания аккордеона
+        function toggleAccordion(header) {
+            // Переключаем класс active у заголовка
+            header.classList.toggle('active');
+            
+            // Находим содержимое (следующий элемент после заголовка)
+            const content = header.nextElementSibling;
+            
+            // Переключаем класс show у содержимого
+            content.classList.toggle('show');
+            
+            // Меняем стрелку
+            const arrow = header.querySelector('.arrow');
+            if (content.classList.contains('show')) {
+                arrow.textContent = '▼';
+            } else {
+                arrow.textContent = '▶';
+            }
+        }
+
+        // Инициализация: сворачиваем все аккордеоны кроме первого
+        document.addEventListener('DOMContentLoaded', function() {
+            const accordionItems = document.querySelectorAll('.accordion-item');
+            
+            accordionItems.forEach((item, index) => {
+                const content = item.querySelector('.accordion-content');
+                const header = item.querySelector('.accordion-header');
+                const arrow = header.querySelector('.arrow');
+                
+                // Если это не первый элемент, сворачиваем его
+                if (index > 0) {
+                    content.classList.remove('show');
+                    header.classList.remove('active');
+                    arrow.textContent = '▶';
+                } else {
+                    // Первый элемент оставляем развернутым
+                    content.classList.add('show');
+                    header.classList.add('active');
+                    arrow.textContent = '▼';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

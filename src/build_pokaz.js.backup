@@ -1,0 +1,370 @@
+import fs from 'fs'
+import path from 'path'
+import puppeteer from 'puppeteer'
+import { execSync } from 'child_process'
+
+const BASE = 'https://pokaz.me'
+const START_PAGE = 'https://pokaz.me/russkie-tv-kanaly/'
+
+const PLAYLIST = './playlists/pokaz_playlist.m3u8'
+const LOG = './playlists/error_log.txt'
+
+const WORKERS = 6
+const RETRIES = 2
+
+function delay(ms){
+  return new Promise(r=>setTimeout(r,ms))
+}
+
+function ensureFolder(){
+  if(!fs.existsSync('./playlists')){
+    fs.mkdirSync('./playlists',{recursive:true})
+  }
+}
+
+function cleanName(name){
+  return name.replace(/^Телеканал\s+/i,'').trim()
+}
+
+function log(msg){
+  console.log(msg)
+}
+
+function error(msg){
+  fs.appendFileSync(LOG,msg+'\n')
+}
+
+function pushToGithub() {
+  try {
+    console.log('📤 Отправка изменений в GitHub...')
+    
+    // Добавляем все изменения
+    execSync('git add playlists/pokaz_playlist.m3u8', { stdio: 'inherit' })
+    execSync('git add playlists/error_log.txt', { stdio: 'inherit' })
+    
+    // Проверяем есть ли изменения
+    const status = execSync('git status --porcelain').toString()
+    if (status.trim()) {
+      // Коммит с датой
+      const date = new Date().toISOString()
+      execSync(`git commit -m "Авто-обновление плейлиста ${date}"`, { stdio: 'inherit' })
+      
+      // Пуш в удаленный репозиторий
+      execSync('git push origin main', { stdio: 'inherit' })
+      console.log('✅ Успешно отправлено в GitHub!')
+    } else {
+      console.log('📝 Нет изменений для отправки')
+    }
+  } catch (error) {
+    console.error('❌ Ошибка при отправке в GitHub:', error.message)
+    // Если ошибка из-за рассинхронизации, пробуем pull + push
+    try {
+      console.log('🔄 Пробуем pull + push...')
+      execSync('git pull origin main', { stdio: 'inherit' })
+      execSync('git push origin main', { stdio: 'inherit' })
+      console.log('✅ Успешно после pull!')
+    } catch (retryError) {
+      console.error('❌ Повторная попытка не удалась:', retryError.message)
+    }
+  }
+}
+
+//////////////////////////////////////////////////////////
+// CATEGORY SCAN
+//////////////////////////////////////////////////////////
+
+async function scanCategories(page){
+
+  await page.goto(START_PAGE,{waitUntil:'domcontentloaded'})
+
+  await page.waitForSelector('ul.dropdown-menu li a')
+
+  const cats = await page.evaluate(()=>{
+
+    return Array.from(document.querySelectorAll('ul.dropdown-menu li a'))
+      .map(a=>({
+        name:a.textContent.trim(),
+        url:a.getAttribute('href')
+      }))
+
+  })
+
+  if(!cats.find(c=>c.url==='/russkie-tv-kanaly/')){
+    cats.push({
+      name:'Общественные',
+      url:'/russkie-tv-kanaly/'
+    })
+  }
+
+  log(`✅ categories: ${cats.length}`)
+
+  return cats
+}
+
+//////////////////////////////////////////////////////////
+// CHANNEL SCAN
+//////////////////////////////////////////////////////////
+
+async function scanChannels(page,category){
+
+  const url = BASE + category.url
+
+  log(`🔎 ${category.name}`)
+
+  await page.goto(url,{waitUntil:'domcontentloaded'})
+
+  await page.waitForSelector('#dle-content a article')
+
+  const channels = await page.evaluate(()=>{
+
+    return Array.from(document.querySelectorAll('#dle-content a'))
+      .map(a=>{
+
+        const article = a.querySelector('article')
+        if(!article) return null
+
+        return{
+          name:article.getAttribute('title')||'unknown',
+          url:a.getAttribute('href')
+        }
+
+      }).filter(Boolean)
+
+  })
+
+  log(`   ${channels.length} channels`)
+
+  return channels.map(ch=>({
+    ...ch,
+    category:category.name
+  }))
+}
+
+//////////////////////////////////////////////////////////
+// STREAM CAPTURE
+//////////////////////////////////////////////////////////
+
+async function captureStream(browser,channel){
+
+  const page = await browser.newPage()
+
+  let stream=''
+  let logo=''
+
+  const client = await page.target().createCDPSession()
+
+  await client.send('Network.enable')
+
+  client.on('Network.requestWillBeSent',e=>{
+    if(e.request.url.includes('.m3u8')){
+      stream = e.request.url
+    }
+  })
+
+  try{
+
+    const url = BASE + channel.url
+
+    await page.goto(url,{waitUntil:'domcontentloaded'})
+
+    try{
+      logo = await page.$eval(
+        'article.block.story img',
+        img => img.src.startsWith('http')
+          ? img.src
+          : 'https://pokaz.me'+img.src
+      )
+    }catch{}
+
+    await page.waitForSelector('video',{timeout:10000})
+
+    await page.click('video').catch(()=>{})
+
+    for(let i=0;i<20;i++){
+      if(stream) break
+      await delay(400)
+    }
+
+    if(!stream) throw new Error('m3u8 not captured')
+
+    await page.close()
+
+    return{
+      name:cleanName(channel.name),
+      logo,
+      stream
+    }
+
+  }catch(err){
+
+    await page.close()
+
+    throw err
+  }
+
+}
+
+//////////////////////////////////////////////////////////
+// WORKER POOL
+//////////////////////////////////////////////////////////
+
+async function worker(browser,queue,results,progress){
+
+  while(queue.length){
+
+    const item = queue.shift()
+
+    try{
+
+      const data = await captureStream(browser,item)
+
+      const groups = Array.from(item.categories).join(';')
+
+      results.push({
+        ...data,
+        groups
+      })
+
+    }catch(e){
+
+      if(item.retry < RETRIES){
+
+        queue.push({
+          ...item,
+          retry:item.retry+1
+        })
+
+      }else{
+
+        error(item.url+' '+e.message)
+
+      }
+
+    }
+
+    progress.done++
+
+    process.stdout.write(
+      `\r📡 ${progress.done}/${progress.total}`
+    )
+
+  }
+
+}
+
+//////////////////////////////////////////////////////////
+// BUILD
+//////////////////////////////////////////////////////////
+
+async function build(){
+
+  ensureFolder()
+
+  fs.writeFileSync(LOG,'')
+
+  const browser = await puppeteer.launch({
+    headless:false,
+    args:[
+      '--no-sandbox',
+      '--disable-setuid-sandbox'
+    ]
+  })
+
+  const page = await browser.newPage()
+
+  const categories = await scanCategories(page)
+
+  let channels=[]
+
+  for(const cat of categories){
+
+    const list = await scanChannels(page,cat)
+
+    channels = channels.concat(list)
+
+  }
+
+//////////////////////////////////////////////////////////
+// MERGE CHANNELS
+//////////////////////////////////////////////////////////
+
+  const map = new Map()
+
+  for(const ch of channels){
+
+    const name = cleanName(ch.name)
+
+    if(!map.has(name)){
+
+      map.set(name,{
+        ...ch,
+        name,
+        categories:new Set([ch.category]),
+        retry:0
+      })
+
+    }else{
+
+      map.get(name).categories.add(ch.category)
+
+    }
+
+  }
+
+  const unique = Array.from(map.values())
+
+  log(`\n🎯 unique channels: ${unique.length}`)
+
+//////////////////////////////////////////////////////////
+// PARALLEL CAPTURE
+//////////////////////////////////////////////////////////
+
+  const queue = [...unique]
+
+  const results = []
+
+  const progress={
+    done:0,
+    total:queue.length
+  }
+
+  const workers=[]
+
+  for(let i=0;i<WORKERS;i++){
+    workers.push(worker(browser,queue,results,progress))
+  }
+
+  await Promise.all(workers)
+
+//////////////////////////////////////////////////////////
+// PLAYLIST
+//////////////////////////////////////////////////////////
+
+  let playlist = '#EXTM3U\n'
+
+  for(const ch of results){
+
+playlist+=
+`#EXTINF:-1 tvg-id="${ch.name}" tvg-name="${ch.name}" tvg-logo="${ch.logo}" group-title="${ch.groups}",${ch.name}
+${ch.stream}
+`
+
+  }
+
+  fs.writeFileSync(PLAYLIST,playlist)
+
+  console.log('\n\n🎉 PLAYLIST READY')
+  
+  // Отправляем изменения в GitHub
+  pushToGithub()
+
+  await browser.close()
+
+}
+
+// Запускаем сборку, если файл вызван напрямую
+if(process.argv[1].includes('build_pokaz.js')){
+  build()
+}
+
+export { build }
