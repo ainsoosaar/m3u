@@ -1,10 +1,16 @@
 #EXTM3U
+#EXTINF:-1 tvg-id="2x2" tvg-name="2x2" tvg-logo="https://vsetv.click/uploads/2x2.jpg",2x2
+https://zabava-htlive.cdn.ngenix.net/hls/CH_2X2/variant.m3u8
+#EXTINF:-1 tvg-id="8 kanal" tvg-name="8 kanal" tvg-logo="https://vsetv.click/uploads/2x2.jpg",8 kanal
+http://185.91.179.12/8kanal/vintera/playlist.m3u8
+#EXTINF:-1 tvg-id="amedia 1" tvg-name="amedia 1" tvg-logo="https://vsetv.click/uploads/2x2.jpg",amedia 1
+https://a3569457567-s70378.cdn.ngenix.net/amedia_1/2/index.m3u8
 #EXTINF:-1 tvg-id="amedia 2" tvg-name="amedia 2" tvg-logo="https://vsetv.click/uploads/2x2.jpg",amedia 2
-http://188.225.31.197/bpk-tv/000000351/tve/index.m3u8
+https://a3569457567-s70378.cdn.ngenix.net/amedia_2/2/index.m3u8
 #EXTINF:-1 tvg-id="amedia hit" tvg-name="amedia hit" tvg-logo="https://vsetv.click/uploads/2x2.jpg",amedia hit
-http://188.225.31.197/bpk-tv/000001662/tve/index.m3u8
+https://a3569457567-s70378.cdn.ngenix.net/amedia_hit/2/index.m3u8
 #EXTINF:-1 tvg-id="amedia premium" tvg-name="amedia premium" tvg-logo="https://vsetv.click/uploads/2x2.jpg",amedia premium
-http://188.225.31.197/bpk-tv/000000709/tve/index.m3u8
+https://a3569457567-s70378.cdn.ngenix.net/amedia_premium_hd/2/index.m3u8
 #EXTINF:-1 tvg-id="ani" tvg-name="ani" tvg-logo="https://vsetv.click/uploads/2x2.jpg",ani
 http://stv.mediacdn.ru/live/cdn/ani/playlist.m3u8
 #EXTINF:-1 tvg-id="black" tvg-name="black" tvg-logo="https://vsetv.click/uploads/2x2.jpg",black
@@ -98,7 +104,7 @@ https://edge50.dc.beltelecom.by/ngtrk/_definst_/smil:belarus24.smil/chunklist.m3
 #EXTINF:-1 tvg-id="belarus 5" tvg-name="belarus 5" tvg-logo="https://vsetv.click/uploads/2x2.jpg",belarus 5
 https://minsk-cache07t.voka.tv/live/9.m3u8
 #EXTINF:-1 tvg-id="bober tv" tvg-name="bober tv" tvg-logo="https://vsetv.click/uploads/2x2.jpg",bober tv
-http://176.118.197.125/Bober/index.m3u8
+http://176.96.241.40/Bober/index.m3u8
 #EXTINF:-1 tvg-id="v gostyah u skazki" tvg-name="v gostyah u skazki" tvg-logo="https://vsetv.click/uploads/2x2.jpg",v gostyah u skazki
 https://stream8.cinerama.uz/1270/tracks-v1a1/mono.m3u8
 #EXTINF:-1 tvg-id="v mire zhivotnyh hd" tvg-name="v mire zhivotnyh hd" tvg-logo="https://vsetv.click/uploads/2x2.jpg",v mire zhivotnyh hd
