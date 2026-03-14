@@ -1,7 +1,27 @@
-name: New Test
-on: [workflow_dispatch]
+name: Update New
+on:
+  push:
+    branches: [ feature/* ]
 jobs:
-  test:
+  update:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Hello"
+    - uses: actions/checkout@v3
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+    - name: Run build
+      run: |
+        if [[ "${{ github.ref_name }}" == "feature/vsetv-click" ]]; then
+          node src/build_vsetv.js
+        elif [[ "${{ github.ref_name }}" == "feature/ontivi" ]]; then
+          node src/build_ontivi.js
+        fi
+    - name: Commit and push
+      run: |
+        git config user.name 'GitHub Actions'
+        git config user.email 'actions@github.com'
+        git add playlists/
+        git diff --quiet && git diff --staged --quiet || git commit -m "Update playlist"
+        git push
