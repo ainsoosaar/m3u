@@ -1,302 +1,303 @@
 #EXTM3U
-#EXTINF:-1 tvg-id="2x2" tvg-name="2x2" tvg-logo="https://vsetv.click/uploads/2x2.jpg",2x2
+# Авто-обновление vsetv.click: 2026-03-14T23:34:59.353Z
+#EXTINF:-1 tvg-id="2x2" tvg-name="2x2",2x2
 https://zabava-htlive.cdn.ngenix.net/hls/CH_2X2/variant.m3u8
-#EXTINF:-1 tvg-id="8 kanal" tvg-name="8 kanal" tvg-logo="https://vsetv.click/uploads/2x2.jpg",8 kanal
+#EXTINF:-1 tvg-id="8 канал" tvg-name="8 канал",8 канал
 http://185.91.179.12/8kanal/vintera/playlist.m3u8
-#EXTINF:-1 tvg-id="amedia 1" tvg-name="amedia 1" tvg-logo="https://vsetv.click/uploads/2x2.jpg",amedia 1
+#EXTINF:-1 tvg-id="Amedia 1" tvg-name="Amedia 1",Amedia 1
 https://a3569457567-s70378.cdn.ngenix.net/amedia_1/2/index.m3u8
-#EXTINF:-1 tvg-id="amedia 2" tvg-name="amedia 2" tvg-logo="https://vsetv.click/uploads/2x2.jpg",amedia 2
+#EXTINF:-1 tvg-id="Amedia 2" tvg-name="Amedia 2",Amedia 2
 https://a3569457567-s70378.cdn.ngenix.net/amedia_2/2/index.m3u8
-#EXTINF:-1 tvg-id="amedia hit" tvg-name="amedia hit" tvg-logo="https://vsetv.click/uploads/2x2.jpg",amedia hit
+#EXTINF:-1 tvg-id="Amedia Hit" tvg-name="Amedia Hit",Amedia Hit
 https://a3569457567-s70378.cdn.ngenix.net/amedia_hit/2/index.m3u8
-#EXTINF:-1 tvg-id="amedia premium" tvg-name="amedia premium" tvg-logo="https://vsetv.click/uploads/2x2.jpg",amedia premium
+#EXTINF:-1 tvg-id="Amedia Premium" tvg-name="Amedia Premium",Amedia Premium
 https://a3569457567-s70378.cdn.ngenix.net/amedia_premium_hd/2/index.m3u8
-#EXTINF:-1 tvg-id="ani" tvg-name="ani" tvg-logo="https://vsetv.click/uploads/2x2.jpg",ani
+#EXTINF:-1 tvg-id="Ani" tvg-name="Ani",Ani
 http://stv.mediacdn.ru/live/cdn/ani/playlist.m3u8
-#EXTINF:-1 tvg-id="black" tvg-name="black" tvg-logo="https://vsetv.click/uploads/2x2.jpg",black
+#EXTINF:-1 tvg-id="Black" tvg-name="Black",Black
 https://minsk-cache07t.voka.tv/live/3001.m3u8
-#EXTINF:-1 tvg-id="bollywood" tvg-name="bollywood" tvg-logo="https://vsetv.click/uploads/2x2.jpg",bollywood
+#EXTINF:-1 tvg-id="Bollywood HD" tvg-name="Bollywood HD",Bollywood HD
 https://stream8.cinerama.uz/1444/tracks-v1a1/mono.m3u8
-#EXTINF:-1 tvg-id="bridge tv" tvg-name="bridge tv" tvg-logo="https://vsetv.click/uploads/2x2.jpg",bridge tv
+#EXTINF:-1 tvg-id="Bridge TV" tvg-name="Bridge TV",Bridge TV
 http://31.148.48.15/Bridge_TV/index.m3u8
-#EXTINF:-1 tvg-id="cinema" tvg-name="cinema" tvg-logo="https://vsetv.click/uploads/2x2.jpg",cinema
+#EXTINF:-1 tvg-id="Cinema" tvg-name="Cinema",Cinema
 https://stream8.cinerama.uz/1227/tracks-v1a1/mono.m3u8
-#EXTINF:-1 tvg-id="da vinci learning" tvg-name="da vinci learning" tvg-logo="https://vsetv.click/uploads/2x2.jpg",da vinci learning
+#EXTINF:-1 tvg-id="Da Vinci Learning" tvg-name="Da Vinci Learning",Da Vinci Learning
 https://stream8.cinerama.uz/1231/tracks-v1a1/mono.m3u8
-#EXTINF:-1 tvg-id="discovery science" tvg-name="discovery science" tvg-logo="https://vsetv.click/uploads/2x2.jpg",discovery science
+#EXTINF:-1 tvg-id="Discovery Science" tvg-name="Discovery Science",Discovery Science
 http://77.239.125.42:8070/discovry_discoveryscience/index.m3u8
-#EXTINF:-1 tvg-id="english club tv" tvg-name="english club tv" tvg-logo="https://vsetv.click/uploads/2x2.jpg",english club tv
+#EXTINF:-1 tvg-id="English Club TV" tvg-name="English Club TV",English Club TV
 https://stream8.cinerama.uz/1442/tracks-v1a1/mono.m3u8
-#EXTINF:-1 tvg-id="euronews" tvg-name="euronews" tvg-logo="https://vsetv.click/uploads/2x2.jpg",euronews
+#EXTINF:-1 tvg-id="EuroNews" tvg-name="EuroNews",EuroNews
 https://stream8.cinerama.uz/1024/index.m3u8
-#EXTINF:-1 tvg-id="europa plus tv" tvg-name="europa plus tv" tvg-logo="https://vsetv.click/uploads/2x2.jpg",europa plus tv
+#EXTINF:-1 tvg-id="Europa Plus TV" tvg-name="Europa Plus TV",Europa Plus TV
 https://minsk-cache07t.voka.tv/live/963.m3u8
-#EXTINF:-1 tvg-id="eurosport 1" tvg-name="eurosport 1" tvg-logo="https://vsetv.click/uploads/2x2.jpg",eurosport 1
+#EXTINF:-1 tvg-id="Eurosport 1" tvg-name="Eurosport 1",Eurosport 1
 http://188.225.31.197/bpk-tv/000002478/tve/index.m3u8
-#EXTINF:-1 tvg-id="fashion tv" tvg-name="fashion tv" tvg-logo="https://vsetv.click/uploads/2x2.jpg",fashion tv
+#EXTINF:-1 tvg-id="Fashion TV" tvg-name="Fashion TV",Fashion TV
 https://stream8.cinerama.uz/1053/tracks-v1a1/mono.m3u8
-#EXTINF:-1 tvg-id="food network" tvg-name="food network" tvg-logo="https://vsetv.click/uploads/2x2.jpg",food network
+#EXTINF:-1 tvg-id="Food Network" tvg-name="Food Network",Food Network
 http://178.217.72.72/food_network/index.m3u8
-#EXTINF:-1 tvg-id="fox hd" tvg-name="fox hd" tvg-logo="https://vsetv.click/uploads/2x2.jpg",fox hd
+#EXTINF:-1 tvg-id="Fox HD" tvg-name="Fox HD",Fox HD
 http://188.225.31.197/bpk-tv/000004472/tve/index.m3u8
-#EXTINF:-1 tvg-id="galaxy tv" tvg-name="galaxy tv" tvg-logo="https://vsetv.click/uploads/2x2.jpg",galaxy tv
+#EXTINF:-1 tvg-id="Galaxy TV" tvg-name="Galaxy TV",Galaxy TV
 http://188.225.31.197/bpk-tv/000000332/tve/index.m3u8
-#EXTINF:-1 tvg-id="gulli girl" tvg-name="gulli girl" tvg-logo="https://vsetv.click/uploads/2x2.jpg",gulli girl
+#EXTINF:-1 tvg-id="Gulli Girl" tvg-name="Gulli Girl",Gulli Girl
 https://stream8.cinerama.uz/1445/tracks-v1a1/mono.m3u8
-#EXTINF:-1 tvg-id="history" tvg-name="history" tvg-logo="https://vsetv.click/uploads/2x2.jpg",history
+#EXTINF:-1 tvg-id="History Channel" tvg-name="History Channel",History Channel
 http://188.225.31.197/bpk-tv/000001000/tve/index.m3u8
-#EXTINF:-1 tvg-id="mezzo" tvg-name="mezzo" tvg-logo="https://vsetv.click/uploads/2x2.jpg",mezzo
+#EXTINF:-1 tvg-id="Mezzo" tvg-name="Mezzo",Mezzo
 http://188.225.31.197/bpk-tv/000000030/tve/index.m3u8
-#EXTINF:-1 tvg-id="national geographic" tvg-name="national geographic" tvg-logo="https://vsetv.click/uploads/2x2.jpg",national geographic
+#EXTINF:-1 tvg-id="National Geographic" tvg-name="National Geographic",National Geographic
 https://stream8.cinerama.uz/1041/tracks-v1a1/mono.m3u8
-#EXTINF:-1 tvg-id="ocean tv" tvg-name="ocean tv" tvg-logo="https://vsetv.click/uploads/2x2.jpg",ocean tv
+#EXTINF:-1 tvg-id="Ocean-TV" tvg-name="Ocean-TV",Ocean-TV
 http://86.57.209.210/Ocean/index.m3u8
-#EXTINF:-1 tvg-id="red" tvg-name="red" tvg-logo="https://vsetv.click/uploads/2x2.jpg",red
+#EXTINF:-1 tvg-id="Red" tvg-name="Red",Red
 https://minsk-cache07t.voka.tv/live/1400.m3u8
-#EXTINF:-1 tvg-id="rtg hd" tvg-name="rtg hd" tvg-logo="https://vsetv.click/uploads/2x2.jpg",rtg hd
+#EXTINF:-1 tvg-id="RTG HD" tvg-name="RTG HD",RTG HD
 https://a3569457567-s70378.cdn.ngenix.net/rtg_hd/1/index.m3u8
-#EXTINF:-1 tvg-id="rtg tv" tvg-name="rtg tv" tvg-logo="https://vsetv.click/uploads/2x2.jpg",rtg tv
+#EXTINF:-1 tvg-id="RTG TV" tvg-name="RTG TV",RTG TV
 https://minsk-cache07t.voka.tv/live/131.m3u8
-#EXTINF:-1 tvg-id="ru tv" tvg-name="ru tv" tvg-logo="https://vsetv.click/uploads/2x2.jpg",ru tv
+#EXTINF:-1 tvg-id="RU TV" tvg-name="RU TV",RU TV
 https://stream8.cinerama.uz/1202/tracks-v1a1/mono.m3u8
-#EXTINF:-1 tvg-id="russia today" tvg-name="russia today" tvg-logo="https://vsetv.click/uploads/2x2.jpg",russia today
+#EXTINF:-1 tvg-id="Russia Today" tvg-name="Russia Today",Russia Today
 https://rt-glb.rttv.com/dvr/rtnews/playlist.m3u8
-#EXTINF:-1 tvg-id="russia today doc" tvg-name="russia today doc" tvg-logo="https://vsetv.click/uploads/2x2.jpg",russia today doc
+#EXTINF:-1 tvg-id="Russia Today Doc" tvg-name="Russia Today Doc",Russia Today Doc
 https://rt-doc.rttv.com/dvr/rtdru/playlist.m3u8
-#EXTINF:-1 tvg-id="sci fi" tvg-name="sci fi" tvg-logo="https://vsetv.click/uploads/2x2.jpg",sci fi
+#EXTINF:-1 tvg-id="Sci-Fi" tvg-name="Sci-Fi",Sci-Fi
 https://minsk-cache07t.voka.tv/live/207.m3u8
-#EXTINF:-1 tvg-id="shopping live" tvg-name="shopping live" tvg-logo="https://vsetv.click/uploads/2x2.jpg",shopping live
+#EXTINF:-1 tvg-id="Shopping Live" tvg-name="Shopping Live",Shopping Live
 https://shoppinglive.mediacdn.ru/cdn/shopping/playlist.m3u8
-#EXTINF:-1 tvg-id="tiji" tvg-name="tiji" tvg-logo="https://vsetv.click/uploads/2x2.jpg",tiji
+#EXTINF:-1 tvg-id="TiJi" tvg-name="TiJi",TiJi
 https://stream8.cinerama.uz/1441/tracks-v1a1/mono.m3u8
-#EXTINF:-1 tvg-id="travel adventure hd" tvg-name="travel adventure hd" tvg-logo="https://vsetv.click/uploads/2x2.jpg",travel adventure hd
+#EXTINF:-1 tvg-id="Travel + adventure HD" tvg-name="Travel + adventure HD",Travel + adventure HD
 https://minsk-cache07t.voka.tv/live/964.m3u8
-#EXTINF:-1 tvg-id="tv xxi" tvg-name="tv xxi" tvg-logo="https://vsetv.click/uploads/2x2.jpg",tv xxi
+#EXTINF:-1 tvg-id="TV XXI (TV21)" tvg-name="TV XXI (TV21)",TV XXI (TV21)
 https://minsk-cache07t.voka.tv/live/2018.m3u8
-#EXTINF:-1 tvg-id="viju explore" tvg-name="viju explore" tvg-logo="https://vsetv.click/uploads/2x2.jpg",viju explore
+#EXTINF:-1 tvg-id="viju Explore" tvg-name="viju Explore",viju Explore
 https://stream8.cinerama.uz/1045/tracks-v1a1/mono.m3u8
-#EXTINF:-1 tvg-id="viju history" tvg-name="viju history" tvg-logo="https://vsetv.click/uploads/2x2.jpg",viju history
+#EXTINF:-1 tvg-id="viju History" tvg-name="viju History",viju History
 https://stream8.cinerama.uz/1046/tracks-v1a1/mono.m3u8
-#EXTINF:-1 tvg-id="viju nature" tvg-name="viju nature" tvg-logo="https://vsetv.click/uploads/2x2.jpg",viju nature
+#EXTINF:-1 tvg-id="viju Nature" tvg-name="viju Nature",viju Nature
 https://stream8.cinerama.uz/1228/tracks-v1a1/mono.m3u8
-#EXTINF:-1 tvg-id="viju tv1000" tvg-name="viju tv1000" tvg-logo="https://vsetv.click/uploads/2x2.jpg",viju tv1000
+#EXTINF:-1 tvg-id="viju TV1000" tvg-name="viju TV1000",viju TV1000
 https://stream8.cinerama.uz/1058/tracks-v1a1/mono.m3u8
-#EXTINF:-1 tvg-id="viju tv1000 action" tvg-name="viju tv1000 action" tvg-logo="https://vsetv.click/uploads/2x2.jpg",viju tv1000 action
+#EXTINF:-1 tvg-id="viju TV1000 action" tvg-name="viju TV1000 action",viju TV1000 action
 https://stream8.cinerama.uz/1225/tracks-v1a1/mono.m3u8
-#EXTINF:-1 tvg-id="viju tv1000 russkoe kino" tvg-name="viju tv1000 russkoe kino" tvg-logo="https://vsetv.click/uploads/2x2.jpg",viju tv1000 russkoe kino
+#EXTINF:-1 tvg-id="viju TV1000 Русское кино" tvg-name="viju TV1000 Русское кино",viju TV1000 Русское кино
 https://stream8.cinerama.uz/1059/mono.m3u8
-#EXTINF:-1 tvg-id="viju comedy hd" tvg-name="viju comedy hd" tvg-logo="https://vsetv.click/uploads/2x2.jpg",viju comedy hd
+#EXTINF:-1 tvg-id="viju+ Comedy HD" tvg-name="viju+ Comedy HD",viju+ Comedy HD
 https://minsk-cache07t.voka.tv/live/6003.m3u8
-#EXTINF:-1 tvg-id="viju megahit hd" tvg-name="viju megahit hd" tvg-logo="https://vsetv.click/uploads/2x2.jpg",viju megahit hd
+#EXTINF:-1 tvg-id="viju+ Megahit HD" tvg-name="viju+ Megahit HD",viju+ Megahit HD
 https://minsk-cache07t.voka.tv/live/6002.m3u8
-#EXTINF:-1 tvg-id="viju premiere hd" tvg-name="viju premiere hd" tvg-logo="https://vsetv.click/uploads/2x2.jpg",viju premiere hd
+#EXTINF:-1 tvg-id="viju+ Premiere HD" tvg-name="viju+ Premiere HD",viju+ Premiere HD
 https://minsk-cache07t.voka.tv/live/6001.m3u8
-#EXTINF:-1 tvg-id="viju serial hd" tvg-name="viju serial hd" tvg-logo="https://vsetv.click/uploads/2x2.jpg",viju serial hd
+#EXTINF:-1 tvg-id="viju+ Serial HD" tvg-name="viju+ Serial HD",viju+ Serial HD
 https://minsk-cache07t.voka.tv/live/6004.m3u8
-#EXTINF:-1 tvg-id="viju sport" tvg-name="viju sport" tvg-logo="https://vsetv.click/uploads/2x2.jpg",viju sport
+#EXTINF:-1 tvg-id="viju+ Sport" tvg-name="viju+ Sport",viju+ Sport
 https://stream8.cinerama.uz/1229/tracks-v1a1/mono.m3u8
-#EXTINF:-1 tvg-id="zoopark tv" tvg-name="zoopark tv" tvg-logo="https://vsetv.click/uploads/2x2.jpg",zoopark tv
+#EXTINF:-1 tvg-id="ZooПарк" tvg-name="ZooПарк",ZooПарк
 https://stream8.cinerama.uz/1417/tracks-v1a1/mono.m3u8
-#EXTINF:-1 tvg-id="avto 24" tvg-name="avto 24" tvg-logo="https://vsetv.click/uploads/2x2.jpg",avto 24
+#EXTINF:-1 tvg-id="Авто 24" tvg-name="Авто 24",Авто 24
 https://stream8.cinerama.uz/1430/tracks-v1a1/mono.m3u8
-#EXTINF:-1 tvg-id="belarus 24" tvg-name="belarus 24" tvg-logo="https://vsetv.click/uploads/2x2.jpg",belarus 24
+#EXTINF:-1 tvg-id="Беларусь 24" tvg-name="Беларусь 24",Беларусь 24
 https://edge50.dc.beltelecom.by/ngtrk/_definst_/smil:belarus24.smil/chunklist.m3u8
-#EXTINF:-1 tvg-id="belarus 5" tvg-name="belarus 5" tvg-logo="https://vsetv.click/uploads/2x2.jpg",belarus 5
+#EXTINF:-1 tvg-id="Беларусь 5" tvg-name="Беларусь 5",Беларусь 5
 https://minsk-cache07t.voka.tv/live/9.m3u8
-#EXTINF:-1 tvg-id="bober tv" tvg-name="bober tv" tvg-logo="https://vsetv.click/uploads/2x2.jpg",bober tv
+#EXTINF:-1 tvg-id="Бобёр" tvg-name="Бобёр",Бобёр
 http://176.96.241.40/Bober/index.m3u8
-#EXTINF:-1 tvg-id="v gostyah u skazki" tvg-name="v gostyah u skazki" tvg-logo="https://vsetv.click/uploads/2x2.jpg",v gostyah u skazki
+#EXTINF:-1 tvg-id="В гостях у сказки" tvg-name="В гостях у сказки",В гостях у сказки
 https://stream8.cinerama.uz/1270/tracks-v1a1/mono.m3u8
-#EXTINF:-1 tvg-id="v mire zhivotnyh hd" tvg-name="v mire zhivotnyh hd" tvg-logo="https://vsetv.click/uploads/2x2.jpg",v mire zhivotnyh hd
+#EXTINF:-1 tvg-id="В мире животных HD" tvg-name="В мире животных HD",В мире животных HD
 https://stream8.cinerama.uz/1404/tracks-v1a1/mono.m3u8
-#EXTINF:-1 tvg-id="vmeste rf" tvg-name="vmeste rf" tvg-logo="https://vsetv.click/uploads/2x2.jpg",vmeste rf
+#EXTINF:-1 tvg-id="Вместе РФ" tvg-name="Вместе РФ",Вместе РФ
 https://cdn-01.bonus-tv.ru/vmesterf/index.m3u8
-#EXTINF:-1 tvg-id="voprosy i otvety" tvg-name="voprosy i otvety" tvg-logo="https://vsetv.click/uploads/2x2.jpg",voprosy i otvety
+#EXTINF:-1 tvg-id="Вопросы и ответы" tvg-name="Вопросы и ответы",Вопросы и ответы
 https://stream8.cinerama.uz/1429/tracks-v1a1/mono.m3u8
-#EXTINF:-1 tvg-id="vremya" tvg-name="vremya" tvg-logo="https://vsetv.click/uploads/2x2.jpg",vremya
+#EXTINF:-1 tvg-id="Время" tvg-name="Время",Время
 http://188.225.31.197/bpk-tv/000000205/tve/index.m3u8
-#EXTINF:-1 tvg-id="detskiy mir" tvg-name="detskiy mir" tvg-logo="https://vsetv.click/uploads/2x2.jpg",detskiy mir
+#EXTINF:-1 tvg-id="Детский мир" tvg-name="Детский мир",Детский мир
 http://176.96.241.40/DetskiyMir/index.m3u8
-#EXTINF:-1 tvg-id="dikaya rybalka hd" tvg-name="dikaya rybalka hd" tvg-logo="https://vsetv.click/uploads/2x2.jpg",dikaya rybalka hd
+#EXTINF:-1 tvg-id="Дикая Рыбалка HD" tvg-name="Дикая Рыбалка HD",Дикая Рыбалка HD
 https://minsk-cache07t.voka.tv/live/2324.m3u8
-#EXTINF:-1 tvg-id="doktor tv" tvg-name="doktor tv" tvg-logo="https://vsetv.click/uploads/2x2.jpg",doktor tv
+#EXTINF:-1 tvg-id="Доктор" tvg-name="Доктор",Доктор
 https://stream8.cinerama.uz/1409/tracks-v1a1/mono.m3u8
-#EXTINF:-1 tvg-id="dom kino" tvg-name="dom kino" tvg-logo="https://vsetv.click/uploads/2x2.jpg",dom kino
+#EXTINF:-1 tvg-id="Дом кино" tvg-name="Дом кино",Дом кино
 https://stream8.cinerama.uz/1054/tracks-v1a1/mono.m3u8
-#EXTINF:-1 tvg-id="domashnie zhivotnye" tvg-name="domashnie zhivotnye" tvg-logo="https://vsetv.click/uploads/2x2.jpg",domashnie zhivotnye
+#EXTINF:-1 tvg-id="Домашние животные" tvg-name="Домашние животные",Домашние животные
 https://stream8.cinerama.uz/1426/tracks-v1a1/mono.m3u8
-#EXTINF:-1 tvg-id="domashniy" tvg-name="domashniy" tvg-logo="https://vsetv.click/uploads/2x2.jpg",domashniy
+#EXTINF:-1 tvg-id="Домашний" tvg-name="Домашний",Домашний
 https://zabava-htlive.cdn.ngenix.net/hls/CH_DOMASHNIY/variant.m3u8
-#EXTINF:-1 tvg-id="dorama" tvg-name="dorama" tvg-logo="https://vsetv.click/uploads/2x2.jpg",dorama
+#EXTINF:-1 tvg-id="Дорама" tvg-name="Дорама",Дорама
 https://stream8.cinerama.uz/1273/tracks-v1a1/mono.m3u8
-#EXTINF:-1 tvg-id="drayv" tvg-name="drayv" tvg-logo="https://vsetv.click/uploads/2x2.jpg",drayv
+#EXTINF:-1 tvg-id="Драйв ТВ" tvg-name="Драйв ТВ",Драйв ТВ
 https://stream8.cinerama.uz/1421/tracks-v1a1/mono.m3u8
-#EXTINF:-1 tvg-id="evrokino" tvg-name="evrokino" tvg-logo="https://vsetv.click/uploads/2x2.jpg",evrokino
+#EXTINF:-1 tvg-id="Еврокино" tvg-name="Еврокино",Еврокино
 https://minsk-cache07t.voka.tv/live/903.m3u8
-#EXTINF:-1 tvg-id="zhara tv" tvg-name="zhara tv" tvg-logo="https://vsetv.click/uploads/2x2.jpg",zhara tv
+#EXTINF:-1 tvg-id="Жара" tvg-name="Жара",Жара
 http://31.148.48.15/Zhara/index.m3u8
-#EXTINF:-1 tvg-id="zhivaya planeta" tvg-name="zhivaya planeta" tvg-logo="https://vsetv.click/uploads/2x2.jpg",zhivaya planeta
+#EXTINF:-1 tvg-id="Живая Планета" tvg-name="Живая Планета",Живая Планета
 https://stream8.cinerama.uz/1250/tracks-v1a1/mono.m3u8
-#EXTINF:-1 tvg-id="zhivaya priroda" tvg-name="zhivaya priroda" tvg-logo="https://vsetv.click/uploads/2x2.jpg",zhivaya priroda
+#EXTINF:-1 tvg-id="Живая природа HD" tvg-name="Живая природа HD",Живая природа HD
 https://stream8.cinerama.uz/1411/tracks-v1a1/mono.m3u8
-#EXTINF:-1 tvg-id="zagorodnaya zhizn" tvg-name="zagorodnaya zhizn" tvg-logo="https://vsetv.click/uploads/2x2.jpg",zagorodnaya zhizn
+#EXTINF:-1 tvg-id="Загородная жизнь" tvg-name="Загородная жизнь",Загородная жизнь
 http://188.225.31.197/bpk-tv/000000289/tve/index.m3u8
-#EXTINF:-1 tvg-id="zagorodnyy" tvg-name="zagorodnyy" tvg-logo="https://vsetv.click/uploads/2x2.jpg",zagorodnyy
+#EXTINF:-1 tvg-id="Загородный" tvg-name="Загородный",Загородный
 https://stream8.cinerama.uz/1044/tracks-v1a1/mono.m3u8
-#EXTINF:-1 tvg-id="zvezda" tvg-name="zvezda" tvg-logo="https://vsetv.click/uploads/2x2.jpg",zvezda
+#EXTINF:-1 tvg-id="Звезда" tvg-name="Звезда",Звезда
 http://tvzvezda.bonus-tv.ru/cdn/tvzvezda/playlist_sdhigh.m3u8
-#EXTINF:-1 tvg-id="zdorovoe tv" tvg-name="zdorovoe tv" tvg-logo="https://vsetv.click/uploads/2x2.jpg",zdorovoe tv
+#EXTINF:-1 tvg-id="Здоровое ТВ" tvg-name="Здоровое ТВ",Здоровое ТВ
 https://stream8.cinerama.uz/1428/tracks-v1a1/mono.m3u8
-#EXTINF:-1 tvg-id="zoo tv" tvg-name="zoo tv" tvg-logo="https://vsetv.click/uploads/2x2.jpg",zoo tv
+#EXTINF:-1 tvg-id="Зоо ТВ" tvg-name="Зоо ТВ",Зоо ТВ
 http://31.148.48.15/Zoo_TV/index.m3u8
-#EXTINF:-1 tvg-id="izvestiya" tvg-name="izvestiya" tvg-logo="https://vsetv.click/uploads/2x2.jpg",izvestiya
+#EXTINF:-1 tvg-id="Известия" tvg-name="Известия",Известия
 https://hls-igi.cdnvideo.ru/igi/igi_hq/playlist.m3u8
-#EXTINF:-1 tvg-id="illyuzion" tvg-name="illyuzion" tvg-logo="https://vsetv.click/uploads/2x2.jpg",illyuzion
+#EXTINF:-1 tvg-id="Иллюзион+" tvg-name="Иллюзион+",Иллюзион+
 http://minsk-cache07t.voka.tv/live/603.m3u8
-#EXTINF:-1 tvg-id="istoriya" tvg-name="istoriya" tvg-logo="https://vsetv.click/uploads/2x2.jpg",istoriya
+#EXTINF:-1 tvg-id="История" tvg-name="История",История
 https://stream8.cinerama.uz/1266/tracks-v1a1/mono.m3u8
-#EXTINF:-1 tvg-id="kaleydoskop tv" tvg-name="kaleydoskop tv" tvg-logo="https://vsetv.click/uploads/2x2.jpg",kaleydoskop tv
+#EXTINF:-1 tvg-id="Калейдоскоп ТВ" tvg-name="Калейдоскоп ТВ",Калейдоскоп ТВ
 http://serv25.vintera.tv:8081/kaleidoscop/kaleidoscop_sd/playlist.m3u8
-#EXTINF:-1 tvg-id="karusel" tvg-name="karusel" tvg-logo="https://vsetv.click/uploads/2x2.jpg",karusel
+#EXTINF:-1 tvg-id="Карусель" tvg-name="Карусель",Карусель
 https://zabava-htlive.cdn.ngenix.net/hls/CH_KARUSEL/variant.m3u8
-#EXTINF:-1 tvg-id="kino tv" tvg-name="kino tv" tvg-logo="https://vsetv.click/uploads/2x2.jpg",kino tv
+#EXTINF:-1 tvg-id="Кино ТВ" tvg-name="Кино ТВ",Кино ТВ
 http://194.32.242.245/kinotv/index.m3u8
-#EXTINF:-1 tvg-id="kinopokaz" tvg-name="kinopokaz" tvg-logo="https://vsetv.click/uploads/2x2.jpg",kinopokaz
+#EXTINF:-1 tvg-id="Кинопоказ" tvg-name="Кинопоказ",Кинопоказ
 https://stream8.cinerama.uz/1057/tracks-v1a1/mono.m3u8
-#EXTINF:-1 tvg-id="mama" tvg-name="mama" tvg-logo="https://vsetv.click/uploads/2x2.jpg",mama
+#EXTINF:-1 tvg-id="Мама" tvg-name="Мама",Мама
 https://stream8.cinerama.uz/1244/tracks-v1a1/mono.m3u8
-#EXTINF:-1 tvg-id="mir" tvg-name="mir" tvg-logo="https://vsetv.click/uploads/2x2.jpg",mir
+#EXTINF:-1 tvg-id="Мир" tvg-name="Мир",Мир
 https://hls-mirtv.cdnvideo.ru/mirtv-parampublish/mirtv_2500/playlist.m3u8
-#EXTINF:-1 tvg-id="mir 24" tvg-name="mir 24" tvg-logo="https://vsetv.click/uploads/2x2.jpg",mir 24
+#EXTINF:-1 tvg-id="Мир 24" tvg-name="Мир 24",Мир 24
 
 https://hls-mirtv.cdnvideo.ru/mirtv-parampublish/mir24_2500/playlist.m3u8
-#EXTINF:-1 tvg-id="mir seriala" tvg-name="mir seriala" tvg-logo="https://vsetv.click/uploads/2x2.jpg",mir seriala
+#EXTINF:-1 tvg-id="Мир сериала" tvg-name="Мир сериала",Мир сериала
 http://94.236.201.114/MIR_SERIALA_SD/index.m3u8
-#EXTINF:-1 tvg-id="moskva 24" tvg-name="moskva 24" tvg-logo="https://vsetv.click/uploads/2x2.jpg",moskva 24
+#EXTINF:-1 tvg-id="Москва 24" tvg-name="Москва 24",Москва 24
 http://194.32.242.245/moskva24/index.m3u8
-#EXTINF:-1 tvg-id="moskva doverie" tvg-name="moskva doverie" tvg-logo="https://vsetv.click/uploads/2x2.jpg",moskva doverie
+#EXTINF:-1 tvg-id="Москва Доверие" tvg-name="Москва Доверие",Москва Доверие
 https://a775797544-rt-mos-htlive.cdn.ngenix.net/hls/CH_R04_DOVERIE/playlist.m3u8
-#EXTINF:-1 tvg-id="mosfilm zolotaya kollekciya" tvg-name="mosfilm zolotaya kollekciya" tvg-logo="https://vsetv.click/uploads/2x2.jpg",mosfilm zolotaya kollekciya
+#EXTINF:-1 tvg-id="Мосфильм. Золотая коллекция" tvg-name="Мосфильм. Золотая коллекция",Мосфильм. Золотая коллекция
 http://188.225.31.197/bpk-tv/000006365/tve/index.m3u8
-#EXTINF:-1 tvg-id="moya planeta" tvg-name="moya planeta" tvg-logo="https://vsetv.click/uploads/2x2.jpg",moya planeta
+#EXTINF:-1 tvg-id="Моя планета" tvg-name="Моя планета",Моя планета
 https://stream8.cinerama.uz/1247/tracks-v1a1/mono.m3u8
-#EXTINF:-1 tvg-id="muzhskoy" tvg-name="muzhskoy" tvg-logo="https://vsetv.click/uploads/2x2.jpg",muzhskoy
+#EXTINF:-1 tvg-id="Мужской" tvg-name="Мужской",Мужской
 http://188.225.31.197/bpk-tv/000000286/tve/index.m3u8
-#EXTINF:-1 tvg-id="muz tv" tvg-name="muz tv" tvg-logo="https://vsetv.click/uploads/2x2.jpg",muz tv
+#EXTINF:-1 tvg-id="Муз ТВ" tvg-name="Муз ТВ",Муз ТВ
 https://zabava-htlive.cdn.ngenix.net/hls/CH_MUZTV/variant.m3u8
-#EXTINF:-1 tvg-id="muzyka pervogo" tvg-name="muzyka pervogo" tvg-logo="https://vsetv.click/uploads/2x2.jpg",muzyka pervogo
+#EXTINF:-1 tvg-id="Музыка Первого" tvg-name="Музыка Первого",Музыка Первого
 https://stream8.cinerama.uz/1201/tracks-v1a1/mono.m3u8
-#EXTINF:-1 tvg-id="mult tv" tvg-name="mult tv" tvg-logo="https://vsetv.click/uploads/2x2.jpg",mult tv
+#EXTINF:-1 tvg-id="Мульт" tvg-name="Мульт",Мульт
 https://stream8.cinerama.uz/1246/tracks-v1a1/mono.m3u8
-#EXTINF:-1 tvg-id="multilandiya" tvg-name="multilandiya" tvg-logo="https://vsetv.click/uploads/2x2.jpg",multilandiya
+#EXTINF:-1 tvg-id="Мультиландия" tvg-name="Мультиландия",Мультиландия
 https://stream8.cinerama.uz/1440/tracks-v1a1/mono.m3u8
-#EXTINF:-1 tvg-id="multimuzyka" tvg-name="multimuzyka" tvg-logo="https://vsetv.click/uploads/2x2.jpg",multimuzyka
+#EXTINF:-1 tvg-id="Мультимузыка" tvg-name="Мультимузыка",Мультимузыка
 http://31.148.48.15/Multimuzika/index.m3u8
-#EXTINF:-1 tvg-id="nano tv" tvg-name="nano tv" tvg-logo="https://vsetv.click/uploads/2x2.jpg",nano tv
+#EXTINF:-1 tvg-id="Нано ТВ" tvg-name="Нано ТВ",Нано ТВ
 https://s1.tv-nano.com/Nano_rec/tracks-v1/index.fmp4.m3u8
-#EXTINF:-1 tvg-id="nauka 2 0" tvg-name="nauka 2 0" tvg-logo="https://vsetv.click/uploads/2x2.jpg",nauka 2 0
+#EXTINF:-1 tvg-id="Наука 2.0" tvg-name="Наука 2.0",Наука 2.0
 https://stream8.cinerama.uz/1248/tracks-v1a1/mono.m3u8
-#EXTINF:-1 tvg-id="lyubimoe kino" tvg-name="lyubimoe kino" tvg-logo="https://vsetv.click/uploads/2x2.jpg",lyubimoe kino
+#EXTINF:-1 tvg-id="Наше любимое кино" tvg-name="Наше любимое кино",Наше любимое кино
 http://188.225.31.197/bpk-tv/000000283/tve/index.m3u8
-#EXTINF:-1 tvg-id="nst" tvg-name="nst" tvg-logo="https://vsetv.click/uploads/2x2.jpg",nst
+#EXTINF:-1 tvg-id="НСТ" tvg-name="НСТ",НСТ
 https://minsk-cache07t.voka.tv/live/6008.m3u8
-#EXTINF:-1 tvg-id="ntv" tvg-name="ntv" tvg-logo="https://vsetv.click/uploads/2x2.jpg",ntv
+#EXTINF:-1 tvg-id="НТВ" tvg-name="НТВ",НТВ
 https://zabava-htlive.cdn.ngenix.net/hls/CH_NTV/variant.m3u8
-#EXTINF:-1 tvg-id="ntv pravo" tvg-name="ntv pravo" tvg-logo="https://vsetv.click/uploads/2x2.jpg",ntv pravo
+#EXTINF:-1 tvg-id="НТВ Право" tvg-name="НТВ Право",НТВ Право
 https://minsk-cache07t.voka.tv/live/992.m3u8
-#EXTINF:-1 tvg-id="ntv stil" tvg-name="ntv stil" tvg-logo="https://vsetv.click/uploads/2x2.jpg",ntv stil
+#EXTINF:-1 tvg-id="НТВ Стиль" tvg-name="НТВ Стиль",НТВ Стиль
 http://188.225.31.197/bpk-tv/000002761/tve/index.m3u8
-#EXTINF:-1 tvg-id="ntv hit" tvg-name="ntv hit" tvg-logo="https://vsetv.click/uploads/2x2.jpg",ntv hit
+#EXTINF:-1 tvg-id="НТВ Хит" tvg-name="НТВ Хит",НТВ Хит
 https://cdn.kubteltv.workers.dev/?ID=329
-#EXTINF:-1 tvg-id="otr" tvg-name="otr" tvg-logo="https://vsetv.click/uploads/2x2.jpg",otr
+#EXTINF:-1 tvg-id="ОТР" tvg-name="ОТР",ОТР
 https://zabava-htlive.cdn.ngenix.net/hls/CH_OTR/variant.m3u8
-#EXTINF:-1 tvg-id="ohota i rybalka" tvg-name="ohota i rybalka" tvg-logo="https://vsetv.click/uploads/2x2.jpg",ohota i rybalka
+#EXTINF:-1 tvg-id="Охота и рыбалка" tvg-name="Охота и рыбалка",Охота и рыбалка
 https://stream8.cinerama.uz/1038/tracks-v1a1/mono.m3u8
-#EXTINF:-1 tvg-id="ohotnik i rybolov" tvg-name="ohotnik i rybolov" tvg-logo="https://vsetv.click/uploads/2x2.jpg",ohotnik i rybolov
+#EXTINF:-1 tvg-id="Охотник и рыболов" tvg-name="Охотник и рыболов",Охотник и рыболов
 https://stream8.cinerama.uz/1413/tracks-v1a1/mono.m3u8
-#EXTINF:-1 tvg-id="pervyy kanal" tvg-name="pervyy kanal" tvg-logo="https://vsetv.click/uploads/2x2.jpg",pervyy kanal
+#EXTINF:-1 tvg-id="Первый канал" tvg-name="Первый канал",Первый канал
 https://zabava-htlive.cdn.ngenix.net/hls/CH_1TVSD/variant.m3u8
-#EXTINF:-1 tvg-id="pobeda" tvg-name="pobeda" tvg-logo="https://vsetv.click/uploads/2x2.jpg",pobeda
+#EXTINF:-1 tvg-id="Победа" tvg-name="Победа",Победа
 http://188.225.31.197/bpk-tv/000004534/tve/index.m3u8
-#EXTINF:-1 tvg-id="poehali" tvg-name="poehali" tvg-logo="https://vsetv.click/uploads/2x2.jpg",poehali
+#EXTINF:-1 tvg-id="Поехали!" tvg-name="Поехали!",Поехали!
 http://188.225.31.197/bpk-tv/000002991/tve/index.m3u8
-#EXTINF:-1 tvg-id="priklyucheniya hd" tvg-name="priklyucheniya hd" tvg-logo="https://vsetv.click/uploads/2x2.jpg",priklyucheniya hd
+#EXTINF:-1 tvg-id="Приключения HD" tvg-name="Приключения HD",Приключения HD
 https://stream8.cinerama.uz/1420/tracks-v1a1/mono.m3u8
-#EXTINF:-1 tvg-id="psihologiya" tvg-name="psihologiya" tvg-logo="https://vsetv.click/uploads/2x2.jpg",psihologiya
+#EXTINF:-1 tvg-id="Психология 21" tvg-name="Психология 21",Психология 21
 http://cdn.kubteltv.workers.dev/?ID=65
-#EXTINF:-1 tvg-id="pyatnica" tvg-name="pyatnica" tvg-logo="https://vsetv.click/uploads/2x2.jpg",pyatnica
+#EXTINF:-1 tvg-id="Пятница" tvg-name="Пятница",Пятница
 https://zabava-htlive.cdn.ngenix.net/hls/CH_PYATNIZZA/variant.m3u8
-#EXTINF:-1 tvg-id="pyatyy kanal" tvg-name="pyatyy kanal" tvg-logo="https://vsetv.click/uploads/2x2.jpg",pyatyy kanal
+#EXTINF:-1 tvg-id="Пятый канал" tvg-name="Пятый канал",Пятый канал
 https://zabava-htlive.cdn.ngenix.net/hls/CH_5TV/variant.m3u8
-#EXTINF:-1 tvg-id="radost moya" tvg-name="radost moya" tvg-logo="https://vsetv.click/uploads/2x2.jpg",radost moya
+#EXTINF:-1 tvg-id="Радость моя" tvg-name="Радость моя",Радость моя
 https://radm.mediacdn.ru/cdn/radost/playlist.m3u8
-#EXTINF:-1 tvg-id="rbk tv" tvg-name="rbk tv" tvg-logo="https://vsetv.click/uploads/2x2.jpg",rbk tv
+#EXTINF:-1 tvg-id="РБК" tvg-name="РБК",РБК
 http://online.video.rbc.ru/online2/rbctv_1080p/index.m3u8
-#EXTINF:-1 tvg-id="ren tv" tvg-name="ren tv" tvg-logo="https://vsetv.click/uploads/2x2.jpg",ren tv
+#EXTINF:-1 tvg-id="РЕН ТВ" tvg-name="РЕН ТВ",РЕН ТВ
 https://zabava-htlive.cdn.ngenix.net/hls/CH_RENTV/variant.m3u8
-#EXTINF:-1 tvg-id="retro tv" tvg-name="retro tv" tvg-logo="https://vsetv.click/uploads/2x2.jpg",retro tv
+#EXTINF:-1 tvg-id="Ретро-ТВ" tvg-name="Ретро-ТВ",Ретро-ТВ
 https://stream8.cinerama.uz/1047/tracks-v1a1/mono.m3u8
-#EXTINF:-1 tvg-id="rossiya 1" tvg-name="rossiya 1" tvg-logo="https://vsetv.click/uploads/2x2.jpg",rossiya 1
+#EXTINF:-1 tvg-id="Россия 1" tvg-name="Россия 1",Россия 1
 https://zabava-htlive.cdn.ngenix.net/hls/CH_RUSSIA1/variant.m3u8
-#EXTINF:-1 tvg-id="rossiya 24" tvg-name="rossiya 24" tvg-logo="https://vsetv.click/uploads/2x2.jpg",rossiya 24
+#EXTINF:-1 tvg-id="Россия 24" tvg-name="Россия 24",Россия 24
 https://zabava-htlive.cdn.ngenix.net/hls/CH_RUSSIA24/variant.m3u8
-#EXTINF:-1 tvg-id="rossiya kultura" tvg-name="rossiya kultura" tvg-logo="https://vsetv.click/uploads/2x2.jpg",rossiya kultura
+#EXTINF:-1 tvg-id="Россия К" tvg-name="Россия К",Россия К
 https://zabava-htlive.cdn.ngenix.net/hls/CH_RUSSIAK/variant.m3u8
-#EXTINF:-1 tvg-id="russkaya komediya" tvg-name="russkaya komediya" tvg-logo="https://vsetv.click/uploads/2x2.jpg",russkaya komediya
+#EXTINF:-1 tvg-id="Русская комедия" tvg-name="Русская комедия",Русская комедия
 http://194.32.242.245/Komediya/index.m3u8
-#EXTINF:-1 tvg-id="russkiy bestseller" tvg-name="russkiy bestseller" tvg-logo="https://vsetv.click/uploads/2x2.jpg",russkiy bestseller
+#EXTINF:-1 tvg-id="Русский бестселлер" tvg-name="Русский бестселлер",Русский бестселлер
 http://31.148.48.15/Russkiy_Bestseller/index.m3u8
-#EXTINF:-1 tvg-id="russkiy detektiv" tvg-name="russkiy detektiv" tvg-logo="https://vsetv.click/uploads/2x2.jpg",russkiy detektiv
+#EXTINF:-1 tvg-id="Русский детектив" tvg-name="Русский детектив",Русский детектив
 http://31.148.48.15/Russkiy_Detektiv/index.m3u8
-#EXTINF:-1 tvg-id="russkiy illyuzion" tvg-name="russkiy illyuzion" tvg-logo="https://vsetv.click/uploads/2x2.jpg",russkiy illyuzion
+#EXTINF:-1 tvg-id="Русский иллюзион" tvg-name="Русский иллюзион",Русский иллюзион
 https://minsk-cache07t.voka.tv/live/616.m3u8
-#EXTINF:-1 tvg-id="russkiy roman" tvg-name="russkiy roman" tvg-logo="https://vsetv.click/uploads/2x2.jpg",russkiy roman
+#EXTINF:-1 tvg-id="Русский роман" tvg-name="Русский роман",Русский роман
 http://31.148.48.15/Russkiy_Roman_HD/index.m3u8
-#EXTINF:-1 tvg-id="sarafan" tvg-name="sarafan" tvg-logo="https://vsetv.click/uploads/2x2.jpg",sarafan
+#EXTINF:-1 tvg-id="Сарафан ТВ" tvg-name="Сарафан ТВ",Сарафан ТВ
 https://stream8.cinerama.uz/1249/tracks-v1a1/mono.m3u8
-#EXTINF:-1 tvg-id="top secret" tvg-name="top secret" tvg-logo="https://vsetv.click/uploads/2x2.jpg",top secret
+#EXTINF:-1 tvg-id="Совершенно секретно" tvg-name="Совершенно секретно",Совершенно секретно
 http://185.234.59.200:8080/sovershenno_sekretno/index.m3u8
-#EXTINF:-1 tvg-id="soyuz tv" tvg-name="soyuz tv" tvg-logo="https://vsetv.click/uploads/2x2.jpg",soyuz tv
+#EXTINF:-1 tvg-id="Союз" tvg-name="Союз",Союз
 https://hls-tvsoyuz.cdnvideo.ru/tvsoyuz/soyuz/playlist.m3u8
-#EXTINF:-1 tvg-id="spas tv" tvg-name="spas tv" tvg-logo="https://vsetv.click/uploads/2x2.jpg",spas tv
+#EXTINF:-1 tvg-id="Спас ТВ" tvg-name="Спас ТВ",Спас ТВ
 https://zabava-htlive.cdn.ngenix.net/hls/CH_SPAS/variant.m3u8
-#EXTINF:-1 tvg-id="sts" tvg-name="sts" tvg-logo="https://vsetv.click/uploads/2x2.jpg",sts
+#EXTINF:-1 tvg-id="СТС" tvg-name="СТС",СТС
 https://zabava-htlive.cdn.ngenix.net/hls/CH_STS/variant.m3u8
-#EXTINF:-1 tvg-id="sts kids" tvg-name="sts kids" tvg-logo="https://vsetv.click/uploads/2x2.jpg",sts kids
+#EXTINF:-1 tvg-id="СТС Kids" tvg-name="СТС Kids",СТС Kids
 https://minsk-cache07t.voka.tv/live/1448.m3u8
-#EXTINF:-1 tvg-id="sts love" tvg-name="sts love" tvg-logo="https://vsetv.click/uploads/2x2.jpg",sts love
+#EXTINF:-1 tvg-id="СТС Love" tvg-name="СТС Love",СТС Love
 https://zabava-htlive.cdn.ngenix.net/hls/CH_STSLOVE/variant.m3u8
-#EXTINF:-1 tvg-id="subbota" tvg-name="subbota" tvg-logo="https://vsetv.click/uploads/2x2.jpg",subbota
+#EXTINF:-1 tvg-id="Суббота!" tvg-name="Суббота!",Суббота!
 https://zabava-htlive.cdn.ngenix.net/hls/CH_SUPER/variant.m3u8
-#EXTINF:-1 tvg-id="tv3" tvg-name="tv3" tvg-logo="https://vsetv.click/uploads/2x2.jpg",tv3
+#EXTINF:-1 tvg-id="ТВ 3" tvg-name="ТВ 3",ТВ 3
 https://zabava-htlive.cdn.ngenix.net/hls/CH_TV3/variant.m3u8
-#EXTINF:-1 tvg-id="tv centr" tvg-name="tv centr" tvg-logo="https://vsetv.click/uploads/2x2.jpg",tv centr
+#EXTINF:-1 tvg-id="ТВЦ" tvg-name="ТВЦ",ТВЦ
 https://zabava-htlive.cdn.ngenix.net/hls/CH_TVC/variant.m3u8
-#EXTINF:-1 tvg-id="teatr" tvg-name="teatr" tvg-logo="https://vsetv.click/uploads/2x2.jpg",teatr
+#EXTINF:-1 tvg-id="Театр" tvg-name="Театр",Театр
 http://176.118.197.101/Teatr/index.m3u8
-#EXTINF:-1 tvg-id="telekafe" tvg-name="telekafe" tvg-logo="https://vsetv.click/uploads/2x2.jpg",telekafe
+#EXTINF:-1 tvg-id="Телекафе" tvg-name="Телекафе",Телекафе
 https://stream8.cinerama.uz/1035/tracks-v1a1/mono.m3u8
-#EXTINF:-1 tvg-id="teleputeshestviya" tvg-name="teleputeshestviya" tvg-logo="https://vsetv.click/uploads/2x2.jpg",teleputeshestviya
+#EXTINF:-1 tvg-id="Телепутешествия" tvg-name="Телепутешествия",Телепутешествия
 http://iptv46.mcx-ix.ru:8077/teleputeshestviya/index.m3u8
-#EXTINF:-1 tvg-id="tehno 24" tvg-name="tehno 24" tvg-logo="https://vsetv.click/uploads/2x2.jpg",tehno 24
+#EXTINF:-1 tvg-id="Техно 24" tvg-name="Техно 24",Техно 24
 https://stream8.cinerama.uz/1037/tracks-v1a1/mono.m3u8
-#EXTINF:-1 tvg-id="tnt" tvg-name="tnt" tvg-logo="https://vsetv.click/uploads/2x2.jpg",tnt
+#EXTINF:-1 tvg-id="ТНТ" tvg-name="ТНТ",ТНТ
 https://zabava-htlive.cdn.ngenix.net/hls/CH_TNT/variant.m3u8
-#EXTINF:-1 tvg-id="tnt music" tvg-name="tnt music" tvg-logo="https://vsetv.click/uploads/2x2.jpg",tnt music
+#EXTINF:-1 tvg-id="ТНТ-Music" tvg-name="ТНТ-Music",ТНТ-Music
 http://tntm.mediacdn.ru/cdn/tntmusic/tracks-v1a1/mono.ts.m3u8
-#EXTINF:-1 tvg-id="tnt4" tvg-name="tnt4" tvg-logo="https://vsetv.click/uploads/2x2.jpg",tnt4
+#EXTINF:-1 tvg-id="ТНТ4" tvg-name="ТНТ4",ТНТ4
 https://zabava-htlive.cdn.ngenix.net/hls/CH_TNT4/variant.m3u8
-#EXTINF:-1 tvg-id="tochka tv" tvg-name="tochka tv" tvg-logo="https://vsetv.click/uploads/2x2.jpg",tochka tv
+#EXTINF:-1 tvg-id="Точка ТВ" tvg-name="Точка ТВ",Точка ТВ
 http://31.148.48.15/Tochka_TV/index.m3u8
-#EXTINF:-1 tvg-id="unikum" tvg-name="unikum" tvg-logo="https://vsetv.click/uploads/2x2.jpg",unikum
+#EXTINF:-1 tvg-id="Уникум" tvg-name="Уникум",Уникум
 https://stream8.cinerama.uz/1033/tracks-v1a1/mono.m3u8
-#EXTINF:-1 tvg-id="usadba tv" tvg-name="usadba tv" tvg-logo="https://vsetv.click/uploads/2x2.jpg",usadba tv
+#EXTINF:-1 tvg-id="Усадьба" tvg-name="Усадьба",Усадьба
 https://stream8.cinerama.uz/1427/index.m3u8
-#EXTINF:-1 tvg-id="futbol" tvg-name="futbol" tvg-logo="https://vsetv.click/uploads/2x2.jpg",futbol
+#EXTINF:-1 tvg-id="Футбол" tvg-name="Футбол",Футбол
 http://31.148.48.15/Futbol_HD/index.m3u8
-#EXTINF:-1 tvg-id="che" tvg-name="che" tvg-logo="https://vsetv.click/uploads/2x2.jpg",che
+#EXTINF:-1 tvg-id="Че" tvg-name="Че",Че
 https://zabava-htlive.cdn.ngenix.net/hls/CH_PERETZ/variant.m3u8
-#EXTINF:-1 tvg-id="shanson" tvg-name="shanson" tvg-logo="https://vsetv.click/uploads/2x2.jpg",shanson
+#EXTINF:-1 tvg-id="Шансон ТВ" tvg-name="Шансон ТВ",Шансон ТВ
 https://hls-shansontv.cdnvideo.ru/shansontv/shansontv-sd.smil/playlist.m3u8
-#EXTINF:-1 tvg-id="kanal yu" tvg-name="kanal yu" tvg-logo="https://vsetv.click/uploads/2x2.jpg",kanal yu
+#EXTINF:-1 tvg-id="Ю" tvg-name="Ю",Ю
 https://zabava-htlive.cdn.ngenix.net/hls/CH_U/variant.m3u8
