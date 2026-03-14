@@ -1,7 +1,21 @@
 name: Final Test
-on: [workflow_dispatch]
+on:
+  push:
+    branches: [ main, feature/* ]
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Success"
+    - uses: actions/checkout@v3
+    - name: Check playlists
+      run: |
+        ls -la playlists/
+        if [ -f "playlists/pokaz_playlist.m3u8" ]; then
+          echo "✅ Pokaz.me playlist exists"
+        fi
+        if [ -f "playlists/vsetv_playlist.m3u8" ]; then
+          echo "✅ Vsetv.click playlist exists"
+        fi
+        if [ -f "playlists/ontivi_playlist.m3u8" ]; then
+          echo "✅ Ontivi.net playlist exists"
+        fi
