@@ -1,0 +1,226 @@
+#EXTM3U
+# Авто-обновление ontivi: 2026-03-14T21:24:45.345Z
+#EXTINF:-1 tvg-id="Рен ТВ" tvg-name="Рен ТВ",Рен ТВ
+blob:https://ip.ontivi.net/63cdef6d-d9aa-4462-9220-4abd76c4b0ec
+#EXTINF:-1 tvg-id="Домашний" tvg-name="Домашний",Домашний
+blob:https://ip.ontivi.net/91d38d06-5796-46f6-941b-bbb9f799a495
+#EXTINF:-1 tvg-id="Че" tvg-name="Че",Че
+blob:https://ip.ontivi.net/3a64e083-b355-49eb-a872-0b15c4155d09
+#EXTINF:-1 tvg-id="НТВ" tvg-name="НТВ",НТВ
+blob:https://ip.ontivi.net/d2ed715e-c57d-4f23-855f-039bb1067f31
+#EXTINF:-1 tvg-id="ТВЦ" tvg-name="ТВЦ",ТВЦ
+blob:https://ip.ontivi.net/46540991-734c-4674-9684-da0a52594611
+#EXTINF:-1 tvg-id="Первый канал" tvg-name="Первый канал",Первый канал
+blob:https://ip.ontivi.net/a344fdee-b098-47e6-8733-d00ac05b9f16
+#EXTINF:-1 tvg-id="Россия 1" tvg-name="Россия 1",Россия 1
+blob:https://ip.ontivi.net/0846389b-8651-4ac2-a947-5b17ad098935
+#EXTINF:-1 tvg-id="Пятый канал" tvg-name="Пятый канал",Пятый канал
+blob:https://ip.ontivi.net/8ded145d-efe9-4911-bc2f-6cea6eed99fa
+#EXTINF:-1 tvg-id="Звезда" tvg-name="Звезда",Звезда
+blob:https://ip.ontivi.net/ef6862c4-ad3d-46f7-ad22-3460fbb3ee26
+#EXTINF:-1 tvg-id="Крым 1" tvg-name="Крым 1",Крым 1
+blob:https://ip.ontivi.net/b6cf8fd7-b001-4087-b337-31b22a44adc9
+#EXTINF:-1 tvg-id="9 канал Израиль" tvg-name="9 канал Израиль",9 канал Израиль
+blob:https://ip.ontivi.net/f9245c57-2600-414f-97c3-2fdb577443bc
+#EXTINF:-1 tvg-id="360" tvg-name="360",360
+blob:https://ip.ontivi.net/30ac4eb9-0943-45b3-92ea-d59662b5c919
+#EXTINF:-1 tvg-id="Дом кино" tvg-name="Дом кино",Дом кино
+blob:https://ip.ontivi.net/2606af33-a644-45b3-a03e-48ca789db00d
+#EXTINF:-1 tvg-id="Дом кино Премиум" tvg-name="Дом кино Премиум",Дом кино Премиум
+blob:https://ip.ontivi.net/5a72ea69-df66-41c2-b23a-fe065b81c830
+#EXTINF:-1 tvg-id="Душевное HD" tvg-name="Душевное HD",Душевное HD
+blob:https://ip.ontivi.net/e66008bf-f07a-4461-ba91-6ee3103cb462
+#EXTINF:-1 tvg-id="Русский роман" tvg-name="Русский роман",Русский роман
+blob:https://ip.ontivi.net/086510f0-1022-4b0b-ad30-3752a29855fe
+#EXTINF:-1 tvg-id="Романтичное HD" tvg-name="Романтичное HD",Романтичное HD
+blob:https://ip.ontivi.net/dca42bb5-9c2f-4960-9557-f9a799cac856
+#EXTINF:-1 tvg-id="Турецкие сериалы" tvg-name="Турецкие сериалы",Турецкие сериалы
+blob:https://ip.ontivi.net/1bb1aa74-c817-4b01-8f28-ad41bcaf5a88
+#EXTINF:-1 tvg-id="Русский иллюзион" tvg-name="Русский иллюзион",Русский иллюзион
+blob:https://ip.ontivi.net/7618628c-4416-4bad-91d9-ac4e6957a7ef
+#EXTINF:-1 tvg-id="Иллюзион+" tvg-name="Иллюзион+",Иллюзион+
+blob:https://ip.ontivi.net/49317458-3fe3-4004-be23-907fddbf71fb
+#EXTINF:-1 tvg-id="Остросюжетное HD" tvg-name="Остросюжетное HD",Остросюжетное HD
+blob:https://ip.ontivi.net/edd80452-3f63-4229-92c0-f95e014796c0
+#EXTINF:-1 tvg-id="Блокбастер HD" tvg-name="Блокбастер HD",Блокбастер HD
+blob:https://ip.ontivi.net/7e1671e2-0d83-420e-b370-8dd55b50fe9a
+#EXTINF:-1 tvg-id="Страшное HD" tvg-name="Страшное HD",Страшное HD
+blob:https://ip.ontivi.net/aad18d49-33b3-457f-8f37-be711e14de94
+#EXTINF:-1 tvg-id="Комедийное HD" tvg-name="Комедийное HD",Комедийное HD
+blob:https://ip.ontivi.net/0c6ccd57-4735-4445-836c-7a39a4151a90
+#EXTINF:-1 tvg-id="Премиальное HD" tvg-name="Премиальное HD",Премиальное HD
+blob:https://ip.ontivi.net/fb3aba22-be7e-44a4-b5f1-c70d27c0fce5
+#EXTINF:-1 tvg-id="Хит HD" tvg-name="Хит HD",Хит HD
+blob:https://ip.ontivi.net/92ce54f1-112f-45ea-bb68-9edb93f0db1c
+#EXTINF:-1 tvg-id="Мосфильм. Золотая коллекция" tvg-name="Мосфильм. Золотая коллекция",Мосфильм. Золотая коллекция
+blob:https://ip.ontivi.net/44104b4a-0584-4b8f-b421-1363e46f0491
+#EXTINF:-1 tvg-id="Советское кино" tvg-name="Советское кино",Советское кино
+blob:https://ip.ontivi.net/8e40cebe-a1ce-427e-8c0c-fe6674dac1e6
+#EXTINF:-1 tvg-id="Любимое HD" tvg-name="Любимое HD",Любимое HD
+blob:https://ip.ontivi.net/b23c5a18-6b8d-4785-8921-0bf5e1a333b5
+#EXTINF:-1 tvg-id="Красная линия" tvg-name="Красная линия",Красная линия
+blob:https://ip.ontivi.net/9624a2a8-a538-4e33-a833-5df99f5bdb85
+#EXTINF:-1 tvg-id="Победа" tvg-name="Победа",Победа
+blob:https://ip.ontivi.net/a5c4e11f-4918-4635-8bae-86c6d0e1a20b
+#EXTINF:-1 tvg-id="КиноСат" tvg-name="КиноСат",КиноСат
+blob:https://ip.ontivi.net/6a7b3b4d-0a18-4f95-981a-d951861f6b2d
+#EXTINF:-1 tvg-id="КиноСезон" tvg-name="КиноСезон",КиноСезон
+blob:https://ip.ontivi.net/ca45b311-ddbe-4cf7-a330-40e9b637b025
+#EXTINF:-1 tvg-id="Кинопоказ" tvg-name="Кинопоказ",Кинопоказ
+blob:https://ip.ontivi.net/e49569de-08fe-4cec-b189-8616c04d3e31
+#EXTINF:-1 tvg-id="FilmBox" tvg-name="FilmBox",FilmBox
+blob:https://ip.ontivi.net/8654cdf8-362d-43a8-934b-f87f4ef5f34c
+#EXTINF:-1 tvg-id="Шокирующее HD" tvg-name="Шокирующее HD",Шокирующее HD
+blob:https://ip.ontivi.net/7be5c52d-dd3c-41da-842d-1b25a8e0e247
+#EXTINF:-1 tvg-id="Horror" tvg-name="Horror",Horror
+blob:https://ip.ontivi.net/7c756c3b-b1b3-4bc5-a414-e763d75c5dfb
+#EXTINF:-1 tvg-id="Наше любимое кино" tvg-name="Наше любимое кино",Наше любимое кино
+blob:https://ip.ontivi.net/241b6869-f260-4b02-872c-dc3ca24c5b32
+#EXTINF:-1 tvg-id="Hollywood" tvg-name="Hollywood",Hollywood
+blob:https://ip.ontivi.net/3c9cb8a3-04de-4fc2-b9a8-c50249ca4307
+#EXTINF:-1 tvg-id="Hollywood HD" tvg-name="Hollywood HD",Hollywood HD
+blob:https://ip.ontivi.net/062f0193-ba31-4791-a0e7-988bd266c1b9
+#EXTINF:-1 tvg-id="НТВ Хит" tvg-name="НТВ Хит",НТВ Хит
+blob:https://ip.ontivi.net/d6753721-7791-4770-88cc-a724ba62788f
+#EXTINF:-1 tvg-id="Мир сериала" tvg-name="Мир сериала",Мир сериала
+blob:https://ip.ontivi.net/e0ac77d1-4091-4766-a6d3-e3df8cf97be3
+#EXTINF:-1 tvg-id="Дорама" tvg-name="Дорама",Дорама
+blob:https://ip.ontivi.net/7de18e89-83f9-4745-b83c-2f947a6325f6
+#EXTINF:-1 tvg-id="Bollywood" tvg-name="Bollywood",Bollywood
+blob:https://ip.ontivi.net/46a5e30b-fe44-4a53-8c40-89fa98462c3b
+#EXTINF:-1 tvg-id="Enter-фильм" tvg-name="Enter-фильм",Enter-фильм
+blob:https://ip.ontivi.net/cd3d400e-328e-4fdb-8e7d-3d7117b9d91f
+#EXTINF:-1 tvg-id="ЕвроКино" tvg-name="ЕвроКино",ЕвроКино
+blob:https://ip.ontivi.net/6c56ffe0-a9aa-4fdd-8f54-1f57ed1445e4
+#EXTINF:-1 tvg-id="FX" tvg-name="FX",FX
+blob:https://ip.ontivi.net/5d77bd58-aed0-4486-815e-cacd35faaea9
+#EXTINF:-1 tvg-id="Red" tvg-name="Red",Red
+blob:https://ip.ontivi.net/41a25775-f4b9-4aa6-8824-db9ea6390134
+#EXTINF:-1 tvg-id="Black" tvg-name="Black",Black
+blob:https://ip.ontivi.net/99e3740e-ebad-44e3-9197-cf90a786d49b
+#EXTINF:-1 tvg-id="Sci-Fi" tvg-name="Sci-Fi",Sci-Fi
+blob:https://ip.ontivi.net/dc2b995d-8617-47ba-a8ee-2591073d230c
+#EXTINF:-1 tvg-id="History" tvg-name="History",History
+blob:https://ip.ontivi.net/ea3cf683-9b11-44c7-be1a-831a65d0f882
+#EXTINF:-1 tvg-id="History 2" tvg-name="History 2",History 2
+blob:https://ip.ontivi.net/a0a002ac-3d6e-40cc-b5ea-256d37f192a5
+#EXTINF:-1 tvg-id="Трофей" tvg-name="Трофей",Трофей
+blob:https://ip.ontivi.net/f88044f5-5bd3-4c91-a7de-1fe11515a530
+#EXTINF:-1 tvg-id="National Geographic" tvg-name="National Geographic",National Geographic
+blob:https://ip.ontivi.net/969d98d7-f992-4d70-8fc1-310907302da1
+#EXTINF:-1 tvg-id="Nat Geo Wild" tvg-name="Nat Geo Wild",Nat Geo Wild
+blob:https://ip.ontivi.net/e9a3f08d-9019-4ebe-a4a0-46fdac7aebcb
+#EXTINF:-1 tvg-id="Animal Planet" tvg-name="Animal Planet",Animal Planet
+blob:https://ip.ontivi.net/35c85580-89d7-4c74-9e9c-db5d0d59e190
+#EXTINF:-1 tvg-id="Моя стихия" tvg-name="Моя стихия",Моя стихия
+blob:https://ip.ontivi.net/810d2a8d-cc77-4b63-a78f-547e5a30ac19
+#EXTINF:-1 tvg-id="Охота и рыбалка" tvg-name="Охота и рыбалка",Охота и рыбалка
+blob:https://ip.ontivi.net/e7f44290-d0ee-43ec-90d8-5e1256e116aa
+#EXTINF:-1 tvg-id="Охотник и рыболов" tvg-name="Охотник и рыболов",Охотник и рыболов
+blob:https://ip.ontivi.net/ece89a5d-044a-40f5-85a0-9f88b9d3003d
+#EXTINF:-1 tvg-id="Приключения HD" tvg-name="Приключения HD",Приключения HD
+blob:https://ip.ontivi.net/0511ef04-c2cb-4ef2-9b59-650519f35d15
+#EXTINF:-1 tvg-id="В мире животных" tvg-name="В мире животных",В мире животных
+blob:https://ip.ontivi.net/7677e0ba-252d-49ab-b5d6-3f6d674be1dc
+#EXTINF:-1 tvg-id="Galaxy TV" tvg-name="Galaxy TV",Galaxy TV
+blob:https://ip.ontivi.net/02c9be06-a376-4e1d-8c3a-8163572ae04f
+#EXTINF:-1 tvg-id="Загородная жизнь" tvg-name="Загородная жизнь",Загородная жизнь
+blob:https://ip.ontivi.net/9c0b4cef-9984-4b3b-9228-4a5f9b88feef
+#EXTINF:-1 tvg-id="Nature" tvg-name="Nature",Nature
+blob:https://ip.ontivi.net/5724c823-1c0b-476f-8028-1896a92b8694
+#EXTINF:-1 tvg-id="RTG TV" tvg-name="RTG TV",RTG TV
+blob:https://ip.ontivi.net/0e070ea8-4345-4a44-9ed1-75786b5713ce
+#EXTINF:-1 tvg-id="Travel Channel" tvg-name="Travel Channel",Travel Channel
+blob:https://ip.ontivi.net/f3ee1b8e-1070-4da0-ba36-d34f43c0da50
+#EXTINF:-1 tvg-id="Драйв" tvg-name="Драйв",Драйв
+blob:https://ip.ontivi.net/3df0df1d-c0d4-4553-a268-1ce255f6c8c1
+#EXTINF:-1 tvg-id="Совершенно секретно" tvg-name="Совершенно секретно",Совершенно секретно
+blob:https://ip.ontivi.net/9a35f005-f27f-451f-9817-30f48622a9b5
+#EXTINF:-1 tvg-id="Наука 2.0" tvg-name="Наука 2.0",Наука 2.0
+blob:https://ip.ontivi.net/5613ca32-d18c-4e33-8208-ee561e4a042f
+#EXTINF:-1 tvg-id="МЕГА" tvg-name="МЕГА",МЕГА
+blob:https://ip.ontivi.net/7d75a1c7-4a36-4337-b129-01e6f7d269c9
+#EXTINF:-1 tvg-id="ZOOM" tvg-name="ZOOM",ZOOM
+blob:https://ip.ontivi.net/fd86465f-362e-47a6-a56c-0e780fb8e336
+#EXTINF:-1 tvg-id="Евроспорт 1" tvg-name="Евроспорт 1",Евроспорт 1
+blob:https://ip.ontivi.net/7e88f715-9cd2-45fd-a2dc-9c530090e910
+#EXTINF:-1 tvg-id="Евроспорт 2" tvg-name="Евроспорт 2",Евроспорт 2
+blob:https://ip.ontivi.net/18e00cc4-44dd-493e-a21b-7dc5c27d43a2
+#EXTINF:-1 tvg-id="Xsport" tvg-name="Xsport",Xsport
+blob:https://ip.ontivi.net/ef2a21e2-eee4-407a-b5aa-87d625ce9aef
+#EXTINF:-1 tvg-id="Sport UZ" tvg-name="Sport UZ",Sport UZ
+blob:https://ip.ontivi.net/c10a9bac-0da7-4309-ab44-eed26782181d
+#EXTINF:-1 tvg-id="Точка отрыва" tvg-name="Точка отрыва",Точка отрыва
+blob:https://ip.ontivi.net/63a1fcca-d902-4e3f-91b4-7788017cfcc6
+#EXTINF:-1 tvg-id="Мир баскетбола" tvg-name="Мир баскетбола",Мир баскетбола
+blob:https://ip.ontivi.net/fbb35666-f118-45d2-bfe1-917955034271
+#EXTINF:-1 tvg-id="KazSport" tvg-name="KazSport",KazSport
+blob:https://ip.ontivi.net/0aa1f039-d256-4483-9d05-f7b56fdb7525
+#EXTINF:-1 tvg-id="Уникум" tvg-name="Уникум",Уникум
+blob:https://ip.ontivi.net/d1637a0c-8982-4413-af97-aefae9eab39f
+#EXTINF:-1 tvg-id="Пиксель" tvg-name="Пиксель",Пиксель
+blob:https://ip.ontivi.net/f93008c9-598b-4bd1-b424-13098657bca8
+#EXTINF:-1 tvg-id="Капитан Фантастика" tvg-name="Капитан Фантастика",Капитан Фантастика
+blob:https://ip.ontivi.net/7c28d9dd-438e-4ff8-bf37-e6901beb6596
+#EXTINF:-1 tvg-id="Мультиландия" tvg-name="Мультиландия",Мультиландия
+blob:https://ip.ontivi.net/4d24d3d3-5343-4c79-8bfb-a4f384587b87
+#EXTINF:-1 tvg-id="Карусель" tvg-name="Карусель",Карусель
+blob:https://ip.ontivi.net/9f749d67-150d-421a-88f1-03cb0da35a96
+#EXTINF:-1 tvg-id="Tiji" tvg-name="Tiji",Tiji
+blob:https://ip.ontivi.net/78e36f48-eb2a-4c51-959f-12079d79b88d
+#EXTINF:-1 tvg-id="Nickelodeon" tvg-name="Nickelodeon",Nickelodeon
+blob:https://ip.ontivi.net/fc770639-3308-4915-b6e6-dbff1f9d163c
+#EXTINF:-1 tvg-id="Nick Jr" tvg-name="Nick Jr",Nick Jr
+blob:https://ip.ontivi.net/8104e8c4-c242-468d-a135-c0613ec0aff0
+#EXTINF:-1 tvg-id="Солнце" tvg-name="Солнце",Солнце
+blob:https://ip.ontivi.net/57e8b8ed-9810-40fa-acab-84fd9e5091ae
+#EXTINF:-1 tvg-id="Gulli" tvg-name="Gulli",Gulli
+blob:https://ip.ontivi.net/ef4e39d3-fd63-402d-a617-59c07274711f
+#EXTINF:-1 tvg-id="СоюзМультфильм" tvg-name="СоюзМультфильм",СоюзМультфильм
+blob:https://ip.ontivi.net/aaaf48e3-59ed-4b0f-b5fe-ff1d6c905cdf
+#EXTINF:-1 tvg-id="Советские мультфильмы" tvg-name="Советские мультфильмы",Советские мультфильмы
+blob:https://ip.ontivi.net/b6d22c86-71db-4f56-9164-1993c39a666b
+#EXTINF:-1 tvg-id="Детское кино" tvg-name="Детское кино",Детское кино
+blob:https://ip.ontivi.net/4edf8853-7000-47df-857d-4655d7d8449b
+#EXTINF:-1 tvg-id="Мультмузыка" tvg-name="Мультмузыка",Мультмузыка
+blob:https://ip.ontivi.net/59e0ff65-cdc5-40ba-8756-527bcd183627
+#EXTINF:-1 tvg-id="В гостях у сказки" tvg-name="В гостях у сказки",В гостях у сказки
+blob:https://ip.ontivi.net/0496f492-b4e0-49ea-8d5f-ffbdbf2364ed
+#EXTINF:-1 tvg-id="Радость моя" tvg-name="Радость моя",Радость моя
+blob:https://ip.ontivi.net/252b1309-d5d0-4ab0-ab90-8bdaf5ac9618
+#EXTINF:-1 tvg-id="Bridge TV" tvg-name="Bridge TV",Bridge TV
+blob:https://ip.ontivi.net/4a980712-f1e3-458b-a10d-32384f9f775d
+#EXTINF:-1 tvg-id="Bridge TV Hits" tvg-name="Bridge TV Hits",Bridge TV Hits
+blob:https://ip.ontivi.net/9f9679ed-91d5-4861-8c67-39ac4b5fad5a
+#EXTINF:-1 tvg-id="Bridge TV Classic" tvg-name="Bridge TV Classic",Bridge TV Classic
+blob:https://ip.ontivi.net/217715a6-f827-41d2-ab0e-23f95fb9ed3c
+#EXTINF:-1 tvg-id="Bridge TV Русский хит" tvg-name="Bridge TV Русский хит",Bridge TV Русский хит
+blob:https://ip.ontivi.net/29536f02-552f-4751-a3ae-1a80c9a15c8a
+#EXTINF:-1 tvg-id="Russian Music Box" tvg-name="Russian Music Box",Russian Music Box
+blob:https://ip.ontivi.net/49dbf317-d0a3-4e0a-b287-8af51c1eac11
+#EXTINF:-1 tvg-id="Муз-ТВ" tvg-name="Муз-ТВ",Муз-ТВ
+blob:https://ip.ontivi.net/07ca6ae2-ed5f-4858-bcdf-19ae926bf043
+#EXTINF:-1 tvg-id="RU TV" tvg-name="RU TV",RU TV
+blob:https://ip.ontivi.net/1495b649-56df-4b84-82bf-ba6077bfac67
+#EXTINF:-1 tvg-id="Шансон ТВ" tvg-name="Шансон ТВ",Шансон ТВ
+blob:https://ip.ontivi.net/321cea5a-a857-4ab4-aa7b-30a46899a68c
+#EXTINF:-1 tvg-id="Музыка Первого" tvg-name="Музыка Первого",Музыка Первого
+blob:https://ip.ontivi.net/0c774177-71b7-41fe-8df0-8ed0c7f750e4
+#EXTINF:-1 tvg-id="Театр" tvg-name="Театр",Театр
+blob:https://ip.ontivi.net/fb7720da-4d22-433a-b9fe-73d4aa8c43a6
+#EXTINF:-1 tvg-id="Mezzo Live HD" tvg-name="Mezzo Live HD",Mezzo Live HD
+blob:https://ip.ontivi.net/0b0679af-7cbb-45e6-a01f-3308ea47a748
+#EXTINF:-1 tvg-id="1HD" tvg-name="1HD",1HD
+blob:https://ip.ontivi.net/65a3cf0b-03e5-41cb-a358-0e7d04a14d30
+#EXTINF:-1 tvg-id="MTV Hits" tvg-name="MTV Hits",MTV Hits
+blob:https://ip.ontivi.net/7018923d-a454-4bd0-9975-996e5d2ec7cd
+#EXTINF:-1 tvg-id="MTV 00s" tvg-name="MTV 00s",MTV 00s
+blob:https://ip.ontivi.net/405e4f7a-2e93-40ad-9ea1-8a158468c98a
+#EXTINF:-1 tvg-id="MTV 80s" tvg-name="MTV 80s",MTV 80s
+blob:https://ip.ontivi.net/188b7ee4-10e1-4445-8951-914ce10aebf7
+#EXTINF:-1 tvg-id="MCM Top" tvg-name="MCM Top",MCM Top
+blob:https://ip.ontivi.net/608d2234-0adb-4e0c-8007-7cdd0f279d4b
+#EXTINF:-1 tvg-id="Москва 24" tvg-name="Москва 24",Москва 24
+blob:https://ip.ontivi.net/fb61cccc-59bf-4fc8-b0ad-394e9998e5cb
+#EXTINF:-1 tvg-id="BBC News" tvg-name="BBC News",BBC News
+blob:https://ip.ontivi.net/1a036374-84cc-45b2-90db-d85c4f1130d7
