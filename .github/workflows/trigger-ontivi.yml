@@ -1,0 +1,23 @@
+name: Trigger ontivi Build
+
+on:
+  schedule:
+    - cron: '0 */6 * * *'
+  workflow_dispatch:
+
+jobs:
+  trigger:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: feature/ontivi
+      - name: Create trigger
+        run: echo "Triggered at $(date -u)" > trigger-ontivi.txt
+      - name: Push trigger
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add trigger-ontivi.txt
+          git commit -m "Trigger ontivi build [skip ci]" || exit 0
+          git push origin feature/ontivi
