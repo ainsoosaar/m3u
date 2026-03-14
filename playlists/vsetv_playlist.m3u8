@@ -1,7 +1,4 @@
-﻿# ОКОНЧАТЕЛЬНАЯ ВЕРСИЯ: 2026-03-13 01:25:16.217
 #EXTM3U
-# Актуально на: 2026-03-13 01:06:39
-# ÐÐ²Ñ‚Ð¾-Ð¾Ð±Ð½Ð¾Ð²Ð»ÐµÐ½Ð¸Ðµ: 2026-03-12T22:47:36.142Z
 #EXTINF:-1 tvg-id="2x2" tvg-name="2x2" tvg-logo="https://vsetv.click/uploads/2x2.jpg",2x2
 https://zabava-htlive.cdn.ngenix.net/hls/CH_2X2/variant.m3u8
 #EXTINF:-1 tvg-id="8 kanal" tvg-name="8 kanal" tvg-logo="https://vsetv.click/uploads/2x2.jpg",8 kanal
@@ -303,7 +300,3 @@ https://zabava-htlive.cdn.ngenix.net/hls/CH_PERETZ/variant.m3u8
 https://hls-shansontv.cdnvideo.ru/shansontv/shansontv-sd.smil/playlist.m3u8
 #EXTINF:-1 tvg-id="kanal yu" tvg-name="kanal yu" tvg-logo="https://vsetv.click/uploads/2x2.jpg",kanal yu
 https://zabava-htlive.cdn.ngenix.net/hls/CH_U/variant.m3u8
-
-
-# Обновлено: 2026-03-13 01:10:25
-
