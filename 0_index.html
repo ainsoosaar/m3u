@@ -1,0 +1,123 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokaz.me IPTV плейлист</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+            color: #333;
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        .card {
+            background: white;
+            border-radius: 8px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .playlist-link {
+            background: #3498db;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            display: inline-block;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+        .playlist-link:hover {
+            background: #2980b9;
+        }
+        code {
+            background: #ecf0f1;
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+        pre {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        .footer {
+            margin-top: 30px;
+            font-size: 0.9em;
+            color: #7f8c8d;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>🎬 Автоматический плейлист Pokaz.me</h1>
+    <div class="card">
+        <h2>🔗 Ссылка на плейлист</h2>
+        <p>Скопируйте эту ссылку для добавления в IPTV плеер (VLC, TiviMate и др.):</p>
+        <pre>https://raw.githubusercontent.com/ainsoosaar/m3u/master/playlists/pokaz_playlist.m3u8</pre>
+        <a class="playlist-link" href="https://raw.githubusercontent.com/ainsoosaar/m3u/master/playlists/pokaz_playlist.m3u8" target="_blank">📥 Скачать/Открыть плейлист</a>
+    </div>
+
+    <div class="card">
+        <h2>📋 Инструкция</h2>
+        <ol>
+            <li>Скопируйте ссылку выше.</li>
+            <li>Откройте VLC плеер (или любой IPTV плеер).</li>
+            <li>Нажмите <code>Ctrl+N</code> (или Медиа → Открыть URL).</li>
+            <li>Вставьте ссылку и нажмите "Воспроизвести".</li>
+        </ol>
+        <p>Плейлист обновляется автоматически каждые 6 часов. Все каналы собраны с сайта <a href="https://pokaz.me" target="_blank">pokaz.me</a>.</p>
+    </div>
+
+    <div class="card">
+        <h2>📊 Статистика</h2>
+        <ul>
+            <li>✅ Количество каналов: <strong>74</strong></li>
+            <li>🔄 Обновление: <strong>каждые 6 часов</strong></li>
+            <li>📅 Последнее обновление: <span id="last-update">загрузка...</span></li>
+        </ul>
+        <p><a href="https://github.com/ainsoosaar/m3u/actions" target="_blank">Последние запуски GitHub Actions →</a></p>
+    </div>
+
+    <div class="card">
+        <h2>⚙️ Для разработчиков</h2>
+        <p>Исходный код и скрипты доступны на GitHub:</p>
+        <p><a href="https://github.com/ainsoosaar/m3u" target="_blank">https://github.com/ainsoosaar/m3u</a></p>
+        <p>Сборка происходит с помощью <strong>Puppeteer</strong> и <strong>GitHub Actions</strong>.</p>
+    </div>
+
+    <div class="footer">
+        <p>Проект создан для личного использования. Все права на трансляции принадлежат их владельцам.</p>
+        <p>Последнее обновление страницы: <span id="page-date"></span></p>
+    </div>
+
+    <script>
+        // Отображаем дату последнего обновления страницы
+        document.getElementById('page-date').textContent = new Date().toLocaleString('ru-RU');
+
+        // Пытаемся получить время последнего коммита через GitHub API (необязательно)
+        fetch('https://api.github.com/repos/ainsoosaar/m3u/commits?path=playlists/pokaz_playlist.m3u8&page=1&per_page=1')
+            .then(response => response.json())
+            .then(data => {
+                if (data && data[0] && data[0].commit && data[0].commit.committer && data[0].commit.committer.date) {
+                    const date = new Date(data[0].commit.committer.date);
+                    document.getElementById('last-update').textContent = date.toLocaleString('ru-RU');
+                } else {
+                    document.getElementById('last-update').textContent = 'недоступно';
+                }
+            })
+            .catch(() => {
+                document.getElementById('last-update').textContent = 'недоступно';
+            });
+    </script>
+</body>
+</html>

@@ -1,123 +1,441 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pokaz.me IPTV плейлист</title>
+    <title>IPTV плейлисты | Pokaz.me, Vsetv.click, Ontivi.net</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            max-width: 800px;
-            margin: 50px auto;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
             padding: 20px;
-            background: #f5f5f5;
             color: #333;
         }
-        h1 {
-            color: #2c3e50;
-            border-bottom: 2px solid #3498db;
-            padding-bottom: 10px;
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+            backdrop-filter: blur(10px);
         }
-        .card {
-            background: white;
-            border-radius: 8px;
-            padding: 25px;
-            margin: 20px 0;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        .playlist-link {
-            background: #3498db;
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            padding: 15px 20px;
-            border-radius: 5px;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.95;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 5px 10px;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border-radius: 20px;
+            font-size: 0.9em;
+            margin: 5px;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+            padding: 30px;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            border-top: 4px solid #667eea;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .project-card h2 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+
+        .project-card h3 {
+            color: #333;
+            margin: 15px 0 10px;
+            font-size: 1.1em;
+        }
+
+        .playlist-link {
+            background: #667eea;
+            color: white;
+            padding: 12px 15px;
+            border-radius: 6px;
             text-decoration: none;
             display: inline-block;
             margin: 10px 0;
-            font-weight: bold;
+            font-weight: 500;
+            transition: all 0.3s;
+            width: 100%;
+            text-align: center;
         }
+
         .playlist-link:hover {
-            background: #2980b9;
+            background: #5a67d8;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
         }
+
+        .stats {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+
+        .stats p {
+            margin: 8px 0;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .stats .label {
+            color: #666;
+        }
+
+        .stats .value {
+            font-weight: bold;
+            color: #667eea;
+        }
+
         code {
             background: #ecf0f1;
             padding: 2px 5px;
             border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
         }
+
         pre {
             background: #2c3e50;
             color: #ecf0f1;
-            padding: 15px;
+            padding: 12px;
             border-radius: 5px;
             overflow-x: auto;
-        }
-        .footer {
-            margin-top: 30px;
             font-size: 0.9em;
-            color: #7f8c8d;
+            margin: 10px 0;
+        }
+
+        .copy-btn {
+            background: #48bb78;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9em;
+            transition: all 0.3s;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .copy-btn:hover {
+            background: #38a169;
+        }
+
+        .footer {
+            background: #333;
+            color: white;
             text-align: center;
+            padding: 30px;
+        }
+
+        .footer a {
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        .note {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+
+        .warning {
+            background: #f8d7da;
+            border-left: 4px solid #dc3545;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            padding: 0 30px;
+        }
+
+        .tab {
+            padding: 10px 20px;
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .tab:hover {
+            background: #e9ecef;
+        }
+
+        .tab.active {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+
+        .project-detail {
+            display: none;
+            padding: 0 30px 30px;
+        }
+
+        .project-detail.active {
+            display: block;
+        }
+
+        .branch-info {
+            font-family: 'Courier New', monospace;
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 8px 12px;
+            border-radius: 6px;
+            display: inline-block;
+            margin: 10px 0;
         }
     </style>
 </head>
 <body>
-    <h1>🎬 Автоматический плейлист Pokaz.me</h1>
-    <div class="card">
-        <h2>🔗 Ссылка на плейлист</h2>
-        <p>Скопируйте эту ссылку для добавления в IPTV плеер (VLC, TiviMate и др.):</p>
-        <pre>https://raw.githubusercontent.com/ainsoosaar/m3u/master/playlists/pokaz_playlist.m3u8</pre>
-        <a class="playlist-link" href="https://raw.githubusercontent.com/ainsoosaar/m3u/master/playlists/pokaz_playlist.m3u8" target="_blank">📥 Скачать/Открыть плейлист</a>
-    </div>
+    <div class="container">
+        <div class="header">
+            <h1>🎬 IPTV Плейлисты</h1>
+            <p>Автоматически обновляемые плейлисты с трёх источников</p>
+            <div>
+                <span class="badge">Pokaz.me</span>
+                <span class="badge">Vsetv.click</span>
+                <span class="badge">Ontivi.net</span>
+                <span class="badge">⏱️ Обновление каждые 6 часов</span>
+            </div>
+        </div>
 
-    <div class="card">
-        <h2>📋 Инструкция</h2>
-        <ol>
-            <li>Скопируйте ссылку выше.</li>
-            <li>Откройте VLC плеер (или любой IPTV плеер).</li>
-            <li>Нажмите <code>Ctrl+N</code> (или Медиа → Открыть URL).</li>
-            <li>Вставьте ссылку и нажмите "Воспроизвести".</li>
-        </ol>
-        <p>Плейлист обновляется автоматически каждые 6 часов. Все каналы собраны с сайта <a href="https://pokaz.me" target="_blank">pokaz.me</a>.</p>
-    </div>
+        <div class="tabs">
+            <div class="tab active" onclick="switchTab('pokaz')">📺 Pokaz.me</div>
+            <div class="tab" onclick="switchTab('vsetv')">📺 Vsetv.click</div>
+            <div class="tab" onclick="switchTab('ontivi')">📺 Ontivi.net</div>
+            <div class="tab" onclick="switchTab('about')">ℹ️ О проекте</div>
+        </div>
 
-    <div class="card">
-        <h2>📊 Статистика</h2>
-        <ul>
-            <li>✅ Количество каналов: <strong>74</strong></li>
-            <li>🔄 Обновление: <strong>каждые 6 часов</strong></li>
-            <li>📅 Последнее обновление: <span id="last-update">загрузка...</span></li>
-        </ul>
-        <p><a href="https://github.com/ainsoosaar/m3u/actions" target="_blank">Последние запуски GitHub Actions →</a></p>
-    </div>
+        <!-- Pokaz.me -->
+        <div id="pokaz" class="project-detail active">
+            <div class="project-card">
+                <h2>📺 Pokaz.me</h2>
+                <p>Российские телеканалы с сайта pokaz.me</p>
+                
+                <h3>🔗 Ссылка на плейлист:</h3>
+                <pre>https://raw.githubusercontent.com/ainsoosaar/m3u/main/playlists/pokaz_playlist.m3u8</pre>
+                <a class="playlist-link" href="https://raw.githubusercontent.com/ainsoosaar/m3u/main/playlists/pokaz_playlist.m3u8" target="_blank">📥 Открыть плейлист Pokaz.me</a>
+                
+                <div class="stats">
+                    <p><span class="label">📊 Каналов:</span> <span class="value">74</span></p>
+                    <p><span class="label">🌿 Ветка:</span> <span class="value">main</span></p>
+                    <p><span class="label">🔄 Обновление:</span> <span class="value">каждые 6 часов</span></p>
+                    <p><span class="label">📅 Последнее обновление:</span> <span class="value" id="pokaz-update">загрузка...</span></p>
+                </div>
 
-    <div class="card">
-        <h2>⚙️ Для разработчиков</h2>
-        <p>Исходный код и скрипты доступны на GitHub:</p>
-        <p><a href="https://github.com/ainsoosaar/m3u" target="_blank">https://github.com/ainsoosaar/m3u</a></p>
-        <p>Сборка происходит с помощью <strong>Puppeteer</strong> и <strong>GitHub Actions</strong>.</p>
-    </div>
+                <h3>📋 Инструкция:</h3>
+                <ol>
+                    <li>Скопируйте ссылку выше.</li>
+                    <li>Откройте VLC плеер (или любой IPTV плеер).</li>
+                    <li>Нажмите <code>Ctrl+N</code> (Медиа → Открыть URL).</li>
+                    <li>Вставьте ссылку и нажмите "Воспроизвести".</li>
+                </ol>
+            </div>
+        </div>
 
-    <div class="footer">
-        <p>Проект создан для личного использования. Все права на трансляции принадлежат их владельцам.</p>
-        <p>Последнее обновление страницы: <span id="page-date"></span></p>
+        <!-- Vsetv.click -->
+        <div id="vsetv" class="project-detail">
+            <div class="project-card">
+                <h2>📺 Vsetv.click</h2>
+                <p>Большая коллекция каналов с сайта vsetv.click</p>
+                
+                <h3>🔗 Ссылка на плейлист:</h3>
+                <pre>https://raw.githubusercontent.com/ainsoosaar/m3u/feature/vsetv-click/playlists/vsetv_playlist.m3u8</pre>
+                <a class="playlist-link" href="https://raw.githubusercontent.com/ainsoosaar/m3u/feature/vsetv-click/playlists/vsetv_playlist.m3u8" target="_blank">📥 Открыть плейлист Vsetv.click</a>
+                
+                <div class="stats">
+                    <p><span class="label">📊 Каналов:</span> <span class="value">150/151</span></p>
+                    <p><span class="label">🌿 Ветка:</span> <span class="value">feature/vsetv-click</span></p>
+                    <p><span class="label">🔄 Обновление:</span> <span class="value">каждые 6 часов</span></p>
+                    <p><span class="label">📅 Последнее обновление:</span> <span class="value" id="vsetv-update">загрузка...</span></p>
+                </div>
+
+                <div class="note">
+                    <strong>📌 Особенности:</strong> Использует Playerjs для извлечения потоков. Автоматические бэкапы перед каждой сборкой.
+                </div>
+            </div>
+        </div>
+
+        <!-- Ontivi.net -->
+        <div id="ontivi" class="project-detail">
+            <div class="project-card">
+                <h2>📺 Ontivi.net</h2>
+                <p>Телеканалы с сайта ip.ontivi.net</p>
+                
+                <h3>🔗 Ссылка на плейлист:</h3>
+                <pre>https://raw.githubusercontent.com/ainsoosaar/m3u/feature/ontivi/playlists/ontivi_playlist.m3u8</pre>
+                <a class="playlist-link" href="https://raw.githubusercontent.com/ainsoosaar/m3u/feature/ontivi/playlists/ontivi_playlist.m3u8" target="_blank">📥 Открыть плейлист Ontivi.net</a>
+                
+                <div class="stats">
+                    <p><span class="label">📊 Каналов:</span> <span class="value">112/145</span></p>
+                    <p><span class="label">🌿 Ветка:</span> <span class="value">feature/ontivi</span></p>
+                    <p><span class="label">🔄 Обновление:</span> <span class="value">каждые 6 часов</span></p>
+                    <p><span class="label">📅 Последнее обновление:</span> <span class="value" id="ontivi-update">загрузка...</span></p>
+                </div>
+
+                <div class="warning">
+                    <strong>⚠️ Внимание:</strong> Некоторые каналы могут не работать. Ведутся работы по улучшению.
+                </div>
+            </div>
+        </div>
+
+        <!-- О проекте -->
+        <div id="about" class="project-detail">
+            <div class="project-card">
+                <h2>ℹ️ О проекте</h2>
+                
+                <h3>🎯 Цель проекта</h3>
+                <p>Автоматический сбор и обновление IPTV плейлистов с различных сайтов-доноров. Все плейлисты обновляются каждые 6 часов через GitHub Actions и локальные слушатели.</p>
+
+                <h3>🏗️ Архитектура</h3>
+                <ul>
+                    <li><strong>Pokaz.me</strong> - основная ветка <code>main</code>, сборка через Puppeteer</li>
+                    <li><strong>Vsetv.click</strong> - ветка <code>feature/vsetv-click</code>, сборка через Playerjs</li>
+                    <li><strong>Ontivi.net</strong> - ветка <code>feature/ontivi</code>, сборка с перехватом сетевых запросов</li>
+                </ul>
+
+                <h3>⚙️ Технологии</h3>
+                <ul>
+                    <li>Node.js + Puppeteer для парсинга</li>
+                    <li>GitHub Actions для автоматизации</li>
+                    <li>PowerShell скрипты для управления</li>
+                    <li>Система бэкапов перед каждой сборкой</li>
+                </ul>
+
+                <h3>📁 Структура проекта</h3>
+                <pre>
+m3u/
+├── main (pokaz.me)
+├── feature/vsetv-click (vsetv.click)
+├── feature/ontivi (ontivi.net)
+├── playlists/         # Готовые плейлисты
+├── backups/           # Автоматические бэкапы
+├── logs/              # Логи слушателей
+└── src/               # Исходные коды
+    ├── build_*.js     # Скрипты сборки
+    └── listeners/     # Слушатели триггеров
+                </pre>
+
+                <h3>🔧 Управление проектами</h3>
+                <p>Для переключения между проектами используйте:</p>
+                <pre>.\switch-project.ps1 -Target status     # Текущий статус
+.\switch-project.ps1 -Target pokaz     # Переключиться на pokaz.me
+.\switch-project.ps1 -Target vsetv     # Переключиться на vsetv.click
+.\switch-project.ps1 -Target ontivi    # Переключиться на ontivi.net</pre>
+
+                <a class="playlist-link" href="https://github.com/ainsoosaar/m3u" target="_blank">🔗 Исходный код на GitHub</a>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>📅 Последнее обновление страницы: <span id="page-date"></span></p>
+            <p>Проект создан для личного использования. Все права на трансляции принадлежат их владельцам.</p>
+            <p><a href="https://github.com/ainsoosaar/m3u/actions" target="_blank">📊 Статус GitHub Actions</a></p>
+        </div>
     </div>
 
     <script>
+        // Переключение вкладок
+        function switchTab(tabId) {
+            // Скрываем все вкладки
+            document.querySelectorAll('.project-detail').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Убираем активный класс у всех кнопок
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Показываем выбранную вкладку
+            document.getElementById(tabId).classList.add('active');
+            
+            // Добавляем активный класс кнопке
+            event.target.classList.add('active');
+        }
+
         // Отображаем дату последнего обновления страницы
         document.getElementById('page-date').textContent = new Date().toLocaleString('ru-RU');
 
-        // Пытаемся получить время последнего коммита через GitHub API (необязательно)
-        fetch('https://api.github.com/repos/ainsoosaar/m3u/commits?path=playlists/pokaz_playlist.m3u8&page=1&per_page=1')
-            .then(response => response.json())
-            .then(data => {
+        // Получаем даты последних обновлений плейлистов
+        async function fetchLastUpdate(url, elementId) {
+            try {
+                const response = await fetch(`https://api.github.com/repos/ainsoosaar/m3u/commits?path=${url}&page=1&per_page=1`);
+                const data = await response.json();
                 if (data && data[0] && data[0].commit && data[0].commit.committer && data[0].commit.committer.date) {
                     const date = new Date(data[0].commit.committer.date);
-                    document.getElementById('last-update').textContent = date.toLocaleString('ru-RU');
+                    document.getElementById(elementId).textContent = date.toLocaleString('ru-RU');
                 } else {
-                    document.getElementById('last-update').textContent = 'недоступно';
+                    document.getElementById(elementId).textContent = 'недоступно';
                 }
-            })
-            .catch(() => {
-                document.getElementById('last-update').textContent = 'недоступно';
-            });
+            } catch {
+                document.getElementById(elementId).textContent = 'недоступно';
+            }
+        }
+
+        // Загружаем даты для каждого плейлиста
+        fetchLastUpdate('playlists/pokaz_playlist.m3u8', 'pokaz-update');
+        fetchLastUpdate('playlists/vsetv_playlist.m3u8?ref=feature/vsetv-click', 'vsetv-update');
+        fetchLastUpdate('playlists/ontivi_playlist.m3u8?ref=feature/ontivi', 'ontivi-update');
     </script>
 </body>
 </html>
